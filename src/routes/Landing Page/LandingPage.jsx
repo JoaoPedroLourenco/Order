@@ -1,9 +1,15 @@
-import React from "react";
+import LandingPageImage from "../../assets/imgs/Team work-bro 2.png";
+
+import styles from './LandingPage.module.css'
+
+import Header from "../../components/Header";
 
 const LandingPage = () => {
   return (
-    <div>
-      <div className="lado-esq-home">
+    <div className={styles.landing_page}>
+      <Header />
+      <div className={styles.landing_page_content}>
+      <div className={styles.lado_esq_home}>
         <h1>
           ORGANIZE SEU <br />
           RESTAURANTE <br />
@@ -14,11 +20,12 @@ const LandingPage = () => {
 
         <button>Começar gratuitamente</button>
       </div>
-      <div className="lado-dir-home">
+      <div className={styles.lado_dir_home}>
         <img
-          src="imgs/Team work-bro 2.png"
+          src={LandingPageImage}
           alt="Order, Organização de restaurantes."
         />
+      </div>
       </div>
     </div>
   );

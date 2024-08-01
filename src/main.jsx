@@ -16,6 +16,7 @@ import ErrorPage from "./routes/ErrorPage.jsx";
 import LandingPage from "./routes/Landing Page/LandingPage.jsx";
 
 import Layout from "./components/Layout.jsx";
+import Login from "./routes/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/inicio",
+        path: "/",
         element: <LandingPage />,
       },
       {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
+      {
+        path: "/login",
+        element: <Login/>
+      }
     ],
   },
 ]);
