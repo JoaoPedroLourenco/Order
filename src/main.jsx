@@ -5,14 +5,17 @@ import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Perfil from "./routes/Perfil.jsx";
-import Mesas from "./routes/Mesas.jsx";
-import Cardapio from "./routes/Cardapio.jsx";
-import Estoque from "./routes/Estoque.jsx";
-import Renda from "./routes/Renda.jsx";
-import Configuracoes from "./routes/Configuracoes.jsx";
-import Ajuda from "./routes/Ajuda.jsx";
+import Perfil from "./routes/Perfil/Perfil.jsx";
+import Mesas from "./routes/Mesas/Mesas.jsx";
+import Cardapio from "./routes/Cardapio/Cardapio.jsx";
+import Estoque from "./routes/Estoque/Estoque.jsx";
+import Renda from "./routes/Renda/Renda.jsx";
+import Configuracoes from "./routes/Configuracoes/Configuracoes.jsx";
+import Ajuda from "./routes/Ajuda/Ajuda.jsx";
 import ErrorPage from "./routes/ErrorPage.jsx";
+import LandingPage from "./routes/Landing Page/LandingPage.jsx";
+
+import Layout from "./components/Layout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,32 +24,64 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <Perfil />,
+        path: "/inicio",
+        element: <LandingPage />,
+      },
+      {
+        path: "/perfil",
+        element: (
+          <Layout>
+            <Perfil />
+          </Layout>
+        ),
       },
       {
         path: "/mesas",
-        element: <Mesas />,
+        element: (
+          <Layout>
+            <Mesas />
+          </Layout>
+        ),
       },
       {
         path: "/cardapio",
-        element: <Cardapio />,
+        element: (
+          <Layout>
+            <Cardapio />
+          </Layout>
+        ),
       },
       {
         path: "/estoque",
-        element: <Estoque />,
+        element: (
+          <Layout>
+            <Estoque />
+          </Layout>
+        ),
       },
       {
         path: "/renda",
-        element: <Renda />,
+        element: (
+          <Layout>
+            <Renda />
+          </Layout>
+        ),
       },
       {
         path: "/configuracoes",
-        element: <Configuracoes />,
+        element: (
+          <Layout>
+            <Configuracoes />
+          </Layout>
+        ),
       },
       {
         path: "/ajuda",
-        element: <Ajuda />,
+        element: (
+          <Layout>
+            <Ajuda />
+          </Layout>
+        ),
       },
     ],
   },

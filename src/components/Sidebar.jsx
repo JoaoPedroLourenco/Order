@@ -23,7 +23,7 @@ const Sidebar = () => {
           <ul className={styles.links_list}>
             <li>
               <NavLink
-                to="/"
+                to="/perfil"
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 <img src={perfil} alt="Perfil" />
