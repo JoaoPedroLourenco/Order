@@ -1,10 +1,15 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import React from "react";
+
+// CSS
 import "./index.css";
 
+// React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
+// Routes
+import App from "./App.jsx";
 import Perfil from "./routes/Perfil/Perfil.jsx";
 import Mesas from "./routes/Mesas/Mesas.jsx";
 import Cardapio from "./routes/Cardapio/Cardapio.jsx";
@@ -14,9 +19,11 @@ import Configuracoes from "./routes/Configuracoes/Configuracoes.jsx";
 import Ajuda from "./routes/Ajuda/Ajuda.jsx";
 import ErrorPage from "./routes/ErrorPage.jsx";
 import LandingPage from "./routes/Landing Page/LandingPage.jsx";
-
-import Layout from "./components/Layout.jsx";
 import Login from "./routes/Login/Login.jsx";
+import Cadastro from "./routes/Cadastro/Cadastro.jsx";
+
+// components
+import Layout from "./components/Layout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login/>
+      },
+      {
+        path: "/cadastro",
+        element: <Cadastro/>
       }
     ],
   },

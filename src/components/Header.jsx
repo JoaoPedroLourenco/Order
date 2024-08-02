@@ -24,10 +24,10 @@ const Header = () => {
     </ul>
 </nav>
     <div className={styles.login_navBar}>
-      <NavLink className={styles.login_btn}>
+      <NavLink to="/login" className={styles.login_btn}>
         Login        
       </NavLink>
-      <NavLink className={styles.cadastro_btn}>
+      <NavLink to="/cadastro" className={styles.cadastro_btn}>
         Cadastro        
       </NavLink>
     </div>
