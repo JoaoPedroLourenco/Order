@@ -2,6 +2,8 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form_container{
@@ -12,13 +14,13 @@
     justify-content: center;
     flex-direction: column;
     margin-top: -50px;
+    
 }
 
 .form_container h1{
     font-size: 5em;
     font-weight: 500;
     text-transform: uppercase;
-    margin-bottom: 100px;
 }
 
 .lado_dir{
@@ -32,3 +34,5 @@
 .lado_dir img{
     width: 60%;
 }
+
+

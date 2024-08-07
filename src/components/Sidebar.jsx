@@ -22,7 +22,7 @@ const Sidebar = () => {
         <nav>
           <ul className={styles.links_list}>
             <li>
-              <NavLink exact activeClassName={styles.active} to="/perfil">
+              <NavLink className={styles.link} to="/perfil">
                 <img src={perfil} alt="Perfil" />
               </NavLink>
             </li>
