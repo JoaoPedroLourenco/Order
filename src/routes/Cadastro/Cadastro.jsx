@@ -7,20 +7,57 @@ import logoBg from "../../assets/imgs/LogoBackground.png";
 import olhoNormal from "../../assets/imgs/olhoNormal.png";
 import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuthentication } from "../../assets/hooks/useAuthentication";
 
 const Cadastro = () => {
-  const [displayName, setDisplayName] = useState("");
+  const [nomeRestaurante, setNomeRestaurante] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [erro, setErro] = useState("");
+
+  const { criarUsuario, erro: authError, loading } = useAuthentication();
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErro("");
+
+    if (senha.length < 6) {
+      setErro("A senha precisa ter pelo menos 6 caracteres");
+      return;
+    }
+
+    if (senha !== confirmarSenha) {
+      setErro("As senhas precisam ser iguais");
+      return;
+    }
+
+    const usuario = {
+      nomeRestaurante,
+      email,
+      senha,
+    };
+
+    // if (senha !== confirmarSenha) {
+    //   setErro("As senhas precisam ser iguais!");
+    //   return;
+    // }
+
+    const res = await criarUsuario(usuario);
+
+    console.log(res);
   };
+
+  useEffect(() => {
+    if (authError) {
+      setErro(authError);
+    }
+  }, [authError]);
 
   return (
     <div>
@@ -36,9 +73,9 @@ const Cadastro = () => {
                 <input
                   type="text"
                   name="email"
-                  value={displayName}
+                  value={nomeRestaurante}
                   required
-                  onChange={(e) => setDisplayName(e.target.value)}
+                  onChange={(e) => setNomeRestaurante(e.target.value)}
                 />
               </label>
               <label>
@@ -95,6 +132,7 @@ const Cadastro = () => {
               </label>
 
               <button className="form_btn">Confirmar</button>
+              {erro && <p className="erro">{erro}</p>}
             </form>
           </div>
 

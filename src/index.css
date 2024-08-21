@@ -90,9 +90,9 @@ form .form_btn{
     margin-top: 20px;
 }
 
-.error{
+.erro{
     margin: 0 auto;
-    width: 40%;
+    width: 100%;
     color: darkred;
     background: #f8d7da;
     border: 1px solid pink;
@@ -100,4 +100,6 @@ form .form_btn{
     border-radius: 5px;
     font-weight: normal;
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: -30px;
   }

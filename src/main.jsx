@@ -7,7 +7,6 @@ import "./index.css";
 // React Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-
 // Routes
 import App from "./App.jsx";
 import Perfil from "./routes/Perfil/Perfil.jsx";
@@ -93,12 +92,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login/>
+        element: <Login />,
       },
       {
         path: "/cadastro",
-        element: <Cadastro/>
-      }
+        element: <Cadastro />,
+      },
     ],
   },
 ]);
