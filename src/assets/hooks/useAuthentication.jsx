@@ -40,6 +40,8 @@ export const useAuthentication = () => {
 
       await updateProfile(usuario, { nomeRestaurante: data.nomeRestaurante });
 
+      setLoading(true);
+
       return usuario;
     } catch (error) {
       console.log(error.message);
@@ -55,10 +57,30 @@ export const useAuthentication = () => {
         systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
       }
 
+      setLoading(false);
       setErro(systemErrorMessage);
     }
+  };
 
-    setLoading(false);
+  const login = async (data) => {
+    checarSeFoiCancelado();
+
+    setLoading(true);
+    setErro(null);
+
+    try {
+      const { usuario } = signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.senha
+      );
+
+      setLoading(true);
+      return usuario;
+    } catch (error) {
+      console.log(error.message);
+      console.log(typeof error.message);
+    }
   };
 
   useEffect(() => {
@@ -70,5 +92,6 @@ export const useAuthentication = () => {
     loading,
     erro,
     criarUsuario,
+    login,
   };
 };

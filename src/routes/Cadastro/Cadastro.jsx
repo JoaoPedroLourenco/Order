@@ -43,11 +43,6 @@ const Cadastro = () => {
       senha,
     };
 
-    // if (senha !== confirmarSenha) {
-    //   setErro("As senhas precisam ser iguais!");
-    //   return;
-    // }
-
     const res = await criarUsuario(usuario);
 
     console.log(res);
@@ -97,7 +92,7 @@ const Cadastro = () => {
                   required
                   onChange={(e) => setSenha(e.target.value)}
                 />
-                <button
+                {/* <button
                   onClick={() => setMostrarSenha(!mostrarSenha)}
                   className="btn_mostrar_senha"
                 >
@@ -106,7 +101,7 @@ const Cadastro = () => {
                   ) : (
                     <img src={olhoNormal} />
                   )}
-                </button>
+                </button> */}
               </label>
               <label>
                 Confirmar Senha:
@@ -117,7 +112,7 @@ const Cadastro = () => {
                   required
                   onChange={(e) => setConfirmarSenha(e.target.value)}
                 />
-                <button
+                {/* <button
                   onClick={() =>
                     setMostrarConfirmarSenha(!mostrarConfirmarSenha)
                   }
@@ -128,10 +123,15 @@ const Cadastro = () => {
                   ) : (
                     <img src={olhoNormal} />
                   )}
-                </button>
+                </button> */}
               </label>
 
-              <button className="form_btn">Confirmar</button>
+              {!loading && <button className="form_btn">Confirmar</button>}
+              {loading && (
+                <button className="form_btn" disabled>
+                  Aguarde...
+                </button>
+              )}
               {erro && <p className="erro">{erro}</p>}
             </form>
           </div>
