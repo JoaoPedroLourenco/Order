@@ -89,7 +89,7 @@ const Cadastro = () => {
               <label>
                 Senha:
                 <input
-                  type={mostrarSenha ? "text" : "password"}
+                  type="password"
                   name="senha"
                   value={senha}
                   required
@@ -109,7 +109,7 @@ const Cadastro = () => {
               <label>
                 Confirmar Senha:
                 <input
-                  type={mostrarConfirmarSenha ? "text" : "password"}
+                  type="password"
                   name="confirmarSenha"
                   value={confirmarSenha}
                   required

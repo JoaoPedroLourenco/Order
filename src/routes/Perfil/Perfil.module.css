@@ -1,0 +1,64 @@
+.popUpLogOut{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.397);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.popUpCard{
+    width: 500px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.popUpCard .btnsPopUp{
+    display: flex;
+    gap: 1em;
+}
+
+.btnsPopUp button{
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.cancelar{
+    background: white;
+    border: 1px solid red;
+}
+
+.cancelar:hover{
+    background: rgba(255, 0, 0, 0.267);
+
+}
+
+.signOut{
+    background: red;
+    border: none;
+    color: white;
+}
+
+.openPopUp{
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 1.1em;
+}

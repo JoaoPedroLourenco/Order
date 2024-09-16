@@ -1,7 +1,7 @@
 import "./App.css";
 
 // react-router-dom
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // paginas
 import Perfil from "./routes/Perfil/Perfil.jsx";
@@ -49,58 +49,58 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route
                 path="/perfil"
-                element={
-                  <Layout>
-                    <Perfil />
-                  </Layout>
+                element={ user ? (<Layout>
+                  <Perfil />
+                </Layout>) : (<Navigate to="/"/>)
+                  
                 }
               />
               <Route
                 path="/mesas"
-                element={
-                  <Layout>
-                    <Mesas />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Mesas />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
               <Route
                 path="/estoque"
-                element={
-                  <Layout>
-                    <Estoque />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Estoque />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
               <Route
                 path="/cardapio"
-                element={
-                  <Layout>
-                    <Cardapio />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Cardapio />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
               <Route
                 path="/renda"
-                element={
-                  <Layout>
-                    <Renda />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Renda />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
               <Route
                 path="/ajuda"
-                element={
-                  <Layout>
-                    <Ajuda />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Ajuda />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
               <Route
                 path="/configuracoes"
-                element={
-                  <Layout>
-                    <Configuracoes />
-                  </Layout>
+                element={ user ?  <Layout>
+                  <Configuracoes />
+                </Layout> : 
+                 <Navigate to="/"/>
                 }
               />
             </Routes>

@@ -10,11 +10,15 @@ import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 import Header from "../../components/Header";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const [erro, setErro] = useState("");
+
+  const navigate = useNavigate()
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
@@ -32,6 +36,8 @@ const Login = () => {
     const res = await login(usuario);
 
     console.log(res);
+
+    navigate("/mesas")
   };
 
   useEffect(() => {
