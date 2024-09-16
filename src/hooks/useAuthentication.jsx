@@ -1,4 +1,4 @@
-import { dataBase } from "../../firebase/Config";
+import { dataBase } from "../firebase/Config";
 
 import {
   getAuth,
@@ -27,20 +27,23 @@ export const useAuthentication = () => {
 
   const criarUsuario = async (data) => {
     checarSeFoiCancelado();
-
     setLoading(true);
     setErro(null);
 
     try {
-      const { usuario } = createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.senha
       );
 
-      await updateProfile(usuario, { nomeRestaurante: data.nomeRestaurante });
+      // é preciso atualizar o perfil adicionando o nome de display
+      // o firebase permite que crie contas com email e senha apenas
+      const usuario = userCredential.user;
 
-      setLoading(true);
+      await updateProfile(usuario, {
+        displayName: data.nomeRestaurante,
+      });
 
       return usuario;
     } catch (error) {
@@ -69,18 +72,17 @@ export const useAuthentication = () => {
     setErro(null);
 
     try {
-      const { usuario } = signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.senha
-      );
-
-      setLoading(true);
-      return usuario;
+      await signInWithEmailAndPassword(auth, data.email, data.senha);
     } catch (error) {
       console.log(error.message);
       console.log(typeof error.message);
     }
+  };
+
+  const logOut = () => {
+    checarSeFoiCancelado();
+
+    signOut(auth);
   };
 
   useEffect(() => {
@@ -93,5 +95,6 @@ export const useAuthentication = () => {
     erro,
     criarUsuario,
     login,
+    logOut,
   };
 };

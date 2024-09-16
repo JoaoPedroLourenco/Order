@@ -8,7 +8,7 @@ import olhoNormal from "../../assets/imgs/olhoNormal.png";
 import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 
 import Header from "../../components/Header";
-import { useAuthentication } from "../../assets/hooks/useAuthentication";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Login = () => {
   const [email, setEmail] = useState("");

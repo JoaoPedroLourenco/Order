@@ -7,8 +7,10 @@ import logoBg from "../../assets/imgs/LogoBackground.png";
 import olhoNormal from "../../assets/imgs/olhoNormal.png";
 import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 
+import { useNavigate } from "react-router-dom";
+
 import { useEffect, useState } from "react";
-import { useAuthentication } from "../../assets/hooks/useAuthentication";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Cadastro = () => {
   const [nomeRestaurante, setNomeRestaurante] = useState("");
@@ -19,8 +21,7 @@ const Cadastro = () => {
 
   const { criarUsuario, erro: authError, loading } = useAuthentication();
 
-  const [mostrarSenha, setMostrarSenha] = useState(false);
-  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +47,8 @@ const Cadastro = () => {
     const res = await criarUsuario(usuario);
 
     console.log(res);
+
+    navigate("/mesas");
   };
 
   useEffect(() => {
