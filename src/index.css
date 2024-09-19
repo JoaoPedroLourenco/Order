@@ -15,6 +15,14 @@ body{
     overflow-x: hidden;
 }
 
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .title h1{
     color: red;
     font-size: 3em;
@@ -61,7 +69,7 @@ label button{
     height: 100%;
 }
 
-form label input{
+form input{
     height: 50px;
     border: none;
     border-radius: 15px;

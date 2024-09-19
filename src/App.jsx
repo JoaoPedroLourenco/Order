@@ -21,6 +21,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/Config.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
+import EditCardapio from "./routes/Cardapio/EditCardapio/EditCardapio.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -49,58 +50,98 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route
                 path="/perfil"
-                element={ user ? (<Layout>
-                  <Perfil />
-                </Layout>) : (<Navigate to="/"/>)
-                  
+                element={
+                  user ? (
+                    <Layout>
+                      <Perfil />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/mesas"
-                element={ user ?  <Layout>
-                  <Mesas />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Mesas />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/estoque"
-                element={ user ?  <Layout>
-                  <Estoque />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Estoque />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/cardapio"
-                element={ user ?  <Layout>
-                  <Cardapio />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Cardapio />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/editCardapio"
+                element={
+                  user ? (
+                    <Layout>
+                      <EditCardapio />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/renda"
-                element={ user ?  <Layout>
-                  <Renda />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Renda />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/ajuda"
-                element={ user ?  <Layout>
-                  <Ajuda />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Ajuda />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/configuracoes"
-                element={ user ?  <Layout>
-                  <Configuracoes />
-                </Layout> : 
-                 <Navigate to="/"/>
+                element={
+                  user ? (
+                    <Layout>
+                      <Configuracoes />
+                    </Layout>
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
             </Routes>
