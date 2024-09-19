@@ -2,6 +2,8 @@ import styles from "./Cardapio.module.css";
 
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 const Cardapio = () => {
   const [activeDiv, setActiveDiv] = useState(1);
 
@@ -14,6 +16,9 @@ const Cardapio = () => {
       <div className="title">
         <h1>Cardápio</h1>
       </div>
+      <Link to="/editCardapio">
+        Editar Cardápio
+      </Link>
 
       <div className={styles.navItens}>
         <button

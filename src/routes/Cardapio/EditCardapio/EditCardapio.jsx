@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import styles from "../EditCardapio/EditCardapio.module.css";
+import { Link } from "react-router-dom";
 
 const EditCardapio = () => {
   const [imagemProduto, setImagemProduto] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0.0);
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    
+  }
+
 
   function previewImagem(e) {
     // o .files cria um array quando uma imagem é selecionada
@@ -15,13 +25,19 @@ const EditCardapio = () => {
     setImagemProduto(arquivoSelecionado); // Armazena o arquivo de imagem
   }
 
+  
+
   return (
     <div className={styles.editCardapio}>
       <div className="title">
         <h1>Editar Cardápio</h1>
       </div>
 
-      <form>
+      <Link to="/cardapio">
+        Voltar ao Cardápio
+      </Link>
+
+      <form onSubmit={handleSubmit}>
         <div className={styles.uploadImagemProduto}>
           <div className={styles.imagePreview}>
             {imagemProduto && (
