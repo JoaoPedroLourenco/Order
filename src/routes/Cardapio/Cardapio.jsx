@@ -16,9 +16,7 @@ const Cardapio = () => {
       <div className="title">
         <h1>Cardápio</h1>
       </div>
-      <Link to="/editCardapio">
-        Editar Cardápio
-      </Link>
+      <Link to="/editCardapio">Editar Cardápio</Link>
 
       <div className={styles.navItens}>
         <button
@@ -42,7 +40,7 @@ const Cardapio = () => {
       </div>
 
       <div className="containerProdutos">
-        {activeDiv === 1 && <div className="pratosPrincipais">Div 1</div>}
+        {activeDiv === 1 && <div className="pratosPrincipais"></div>}
         {activeDiv === 2 && <div className="bebidas">Div 2</div>}
         {activeDiv === 3 && <div className="outros">Div 3</div>}
       </div>
