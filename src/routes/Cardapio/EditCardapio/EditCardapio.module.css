@@ -54,58 +54,66 @@ form .infoProdutos{
     height: 40px;
 }
 
-.item{
-    width: 300px;
-    height: 300px;
-    border: 1px solid red;
-}
-
-.item h3,p{
-    color: black;
-}
-
-.item img{
-    width: 250px;
-    height: 250px;
-}
-
 .itensContainer{
-    width: 100vw;
+    width: 80vw;
     height: 50vh;
-
-}
-
-.cardapioItens{
+    display: flex;
+    gap: 5em;
     margin-top: 4em;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
+    flex-wrap: wrap;
 }
 
-.card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 40%;
+.cardProduto{
+    max-width: 400px;
     height: 9em;
+    display: flex;
     border-radius: 1em;
     font-size: 1.2em;
+    overflow: hidden;
+    background: rgba(255, 0, 0, 0.347);
 }
 
-.card img{
-    width: 10em;
+.cardProduto .cardEsq{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
 }
 
-.card .tituloCard{
+.preco{
+    display: flex;
+    gap: .2em;
+}
+
+.preco span{
+    font-size: 1em;
+}
+
+.cardProduto img{
+    max-width: 10em;
+    max-height: 10em;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.cardProduto h1{
+    font-size: 1.5em;
+    color: red;
+    font-weight: 400;
+}
+
+
+
+.cardProduto .tituloCard{
     font-size: 1.8em;
     margin-bottom: 0.1em;
     color: #EF233C;
 }
 
 
-.card .preco{
+.cardProduto .preco{
     margin-top: 0.1em;
     font-size: 1.8em;
 }
@@ -117,6 +125,6 @@ form .infoProdutos{
    margin-left: 0.5em;
 }
 
-.card span{
+.cardProduto span{
     color: #EF233C;
 }

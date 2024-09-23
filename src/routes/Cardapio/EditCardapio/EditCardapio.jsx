@@ -9,6 +9,12 @@ const EditCardapio = () => {
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0.0);
+  const [selectArea, setSelectArea] = useState(1)
+  const listaArea = [
+    {id: 1, name: "pratos Principais"},
+    {id: 2, name: "bebidas"},
+    {id: 3, name: "outros"},
+  ]
 
   const { produtos, loading } = useResgatarProdutos("produtos");
   const { inserirProdutos, response } = useInserirProdutos("produtos");
@@ -21,6 +27,7 @@ const EditCardapio = () => {
         nomeProduto,
         descProduto,
         precoProduto,
+        selectArea
       },
       imagemProduto
     );
@@ -76,6 +83,12 @@ const EditCardapio = () => {
             value={precoProduto}
             onChange={(e) => setPrecoProduto(e.target.value)}
           />
+          <select name="selectArea" value={selectArea} onChange={(e) => setSelectArea(e.target.value)}>
+            {listaArea.map((area, index) => {
+              <option value={area.id} key={index}>{area.name}</option>
+            })}
+          </select>
+            
           {!response.loading && <button>Confirmar</button>}
           {response.loading && <button>Aguarde...</button>}
         </div>
@@ -84,19 +97,18 @@ const EditCardapio = () => {
       <div className={styles.itensContainer}>
         {!loading &&
           produtos &&
-          produtos.map((produto) => (
-            <div className={styles.cardapioItens} key={produto.id}>
-              <div className={styles.card}>
-                <img src={produto.imagemProduto} alt="" />
-                <div className={styles.cardEsq}>
-                  <p className={styles.tituloCard}>{produto.nomeProduto}</p>
-                  <p>{produto.descProduto}</p>
-                  <p className={styles.preco}>
-                    <span>R$</span> {produto.precoProduto}
-                  </p>
-                </div>
+          produtos.map((produto, index) => (
+            <div key={index}>
+            <div className={styles.cardProduto}>
+              <img src={produto.imagemProduto} alt="" />
+              <div className={styles.cardEsq}>
+              <h1 className={styles.tituloProduto}>{produto.nomeProduto}</h1>
+              <p className={styles.descProduto}>{produto.descProduto}</p>
+              <p className={styles.preco}><span>R$</span>{produto.precoProduto}</p>
               </div>
             </div>
+            </div>
+            
           ))}
         {loading && (
           <div className="loading">
