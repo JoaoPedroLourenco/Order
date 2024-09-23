@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { dataBase } from "../firebase/Config";
-
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 export const useResgatarProdutos = (docCollection) => {
@@ -15,7 +14,6 @@ export const useResgatarProdutos = (docCollection) => {
     const cancelamento = onSnapshot(
       ordenar,
       (querySnapshot) => {
-        // log aqui
         console.log("Snapshot atualizado");
         if (querySnapshot.empty) {
           setProdutos([]);
@@ -27,6 +25,11 @@ export const useResgatarProdutos = (docCollection) => {
             }))
           );
         }
+        setLoading(false); // Atualiza o loading ao final da busca
+        console.log(
+          "Produtos atualizados:",
+          querySnapshot.docs.map((doc) => doc.data())
+        ); // Novo log para debug
       },
       (error) => {
         console.log(error);
@@ -36,7 +39,7 @@ export const useResgatarProdutos = (docCollection) => {
     );
 
     return () => {
-      console.log("Desmontando o listener"); // log aqui
+      console.log("Desmontando o listener");
       cancelamento();
     };
   }, [docCollection]);

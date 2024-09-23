@@ -1,5 +1,4 @@
 import { useState, useEffect, useReducer } from "react";
-
 import { dataBase, storage } from "../firebase/Config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -39,8 +38,6 @@ export const useInserirProdutos = (docCollection) => {
       let imageURL = "";
 
       if (imagemProduto) {
-        // Se o arquivo for fornecido, ele é enviado para o Firebase Storage e a URL de download é recuperada.
-
         const storageRef = ref(storage, `images/${imagemProduto.name}`);
         const uploadTask = await uploadBytesResumable(
           storageRef,
@@ -51,7 +48,7 @@ export const useInserirProdutos = (docCollection) => {
 
       const novoProduto = {
         ...dados,
-        imagemProduto: imageURL, // Alterando de imagemDoProduto para imagemProduto
+        imagemProduto: imageURL,
         createdAt: Timestamp.now(),
       };
 
@@ -76,7 +73,7 @@ export const useInserirProdutos = (docCollection) => {
 
   useEffect(() => {
     return () => setCancelado(true);
-  });
+  }, []);
 
   return { inserirProdutos, response };
 };

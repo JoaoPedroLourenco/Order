@@ -1,9 +1,7 @@
 import { useState } from "react";
-
-import styles from "../EditCardapio/EditCardapio.module.css";
 import { Link } from "react-router-dom";
+import styles from "../EditCardapio/EditCardapio.module.css";
 import { useInserirProdutos } from "../../../hooks/useInserirProdutos";
-
 import { useResgatarProdutos } from "../../../hooks/useResgatarProdutos";
 
 const EditCardapio = () => {
@@ -13,7 +11,6 @@ const EditCardapio = () => {
   const [precoProduto, setPrecoProduto] = useState(0.0);
 
   const { produtos, loading } = useResgatarProdutos("produtos");
-
   const { inserirProdutos, response } = useInserirProdutos("produtos");
 
   const handleSubmit = async (e) => {
@@ -27,14 +24,17 @@ const EditCardapio = () => {
       },
       imagemProduto
     );
+
+    setNomeProduto("");
+    setDescProduto("");
+    setPrecoProduto(0);
+    setImagemProduto(null);
   };
 
-  function previewImagem(e) {
-    // o .files cria um array quando uma imagem é selecionada
-    // colocando o índice 0 indica que o que queremos é a primeira imagem
+  const previewImagem = (e) => {
     const arquivoSelecionado = e.target.files[0];
     setImagemProduto(arquivoSelecionado); // Armazena o arquivo de imagem
-  }
+  };
 
   return (
     <div className={styles.editCardapio}>
@@ -84,9 +84,8 @@ const EditCardapio = () => {
       <div className={styles.itensContainer}>
         {!loading &&
           produtos &&
-          produtos.map((produto, index) => (
-            // Envolva o conteúdo em uma div ou outro elemento JSX
-            <div className={styles.cardapioItens} key={index}>
+          produtos.map((produto) => (
+            <div className={styles.cardapioItens} key={produto.id}>
               <div className={styles.card}>
                 <img src={produto.imagemProduto} alt="" />
                 <div className={styles.cardEsq}>
@@ -99,6 +98,16 @@ const EditCardapio = () => {
               </div>
             </div>
           ))}
+        {loading && (
+          <div className="loading">
+            <div className="bouncing-dots">
+              <div className="dot"></div>
+              <div className="dot"></div>
+              <div className="dot"></div>
+              <div className="dot"></div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
