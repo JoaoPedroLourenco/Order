@@ -42,7 +42,7 @@ export const useAuthentication = () => {
       const usuario = userCredential.user;
 
       await updateProfile(usuario, {
-        nomeRestaurante: data.nomeRestaurante,
+        displayName: data.nomeRestaurante,
       });
 
       return usuario;

@@ -3,9 +3,15 @@ import styles from "./Cardapio.module.css";
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
+import { useResgatarProdutos } from "../../hooks/useResgatarProdutos";
 
 const Cardapio = () => {
   const [activeDiv, setActiveDiv] = useState(1);
+  const [pratosPrincipais, setPratosPrincipais] = useState([]);
+  const [bebidas, setBebidas] = useState([]);
+  const [outros, setOutros] = useState([]);
+
+  const { produtos, loading } = useResgatarProdutos("produtos");
 
   const handleClick = (divNumber) => {
     setActiveDiv(divNumber);

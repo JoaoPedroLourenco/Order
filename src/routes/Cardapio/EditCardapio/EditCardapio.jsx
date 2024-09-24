@@ -9,12 +9,7 @@ const EditCardapio = () => {
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0.0);
-  const [selectArea, setSelectArea] = useState(1)
-  const listaArea = [
-    {id: 1, name: "pratos Principais"},
-    {id: 2, name: "bebidas"},
-    {id: 3, name: "outros"},
-  ]
+  const [selectArea, setSelectArea] = useState("pratosPrincipais");
 
   const { produtos, loading } = useResgatarProdutos("produtos");
   const { inserirProdutos, response } = useInserirProdutos("produtos");
@@ -27,7 +22,7 @@ const EditCardapio = () => {
         nomeProduto,
         descProduto,
         precoProduto,
-        selectArea
+        selectArea,
       },
       imagemProduto
     );
@@ -36,6 +31,15 @@ const EditCardapio = () => {
     setDescProduto("");
     setPrecoProduto(0);
     setImagemProduto(null);
+    selectArea("pratosPrincipais");
+
+    if (selectArea === "Outros") {
+      setSelectArea("Outros");
+    } else if (selectArea === "Bebidas") {
+      selectArea("Bebidas");
+    } else {
+      selectArea("pratosPrincipais");
+    }
   };
 
   const previewImagem = (e) => {
@@ -83,12 +87,16 @@ const EditCardapio = () => {
             value={precoProduto}
             onChange={(e) => setPrecoProduto(e.target.value)}
           />
-          <select name="selectArea" value={selectArea} onChange={(e) => setSelectArea(e.target.value)}>
-            {listaArea.map((area, index) => {
-              <option value={area.id} key={index}>{area.name}</option>
-            })}
+          <select
+            name="selectArea"
+            value={selectArea}
+            onChange={(e) => setSelectArea(e.target.value)}
+          >
+            <option value="pratosPrincipais">Pratos Principais</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="outros">Outros</option>
           </select>
-            
+
           {!response.loading && <button>Confirmar</button>}
           {response.loading && <button>Aguarde...</button>}
         </div>
@@ -99,16 +107,20 @@ const EditCardapio = () => {
           produtos &&
           produtos.map((produto, index) => (
             <div key={index}>
-            <div className={styles.cardProduto}>
-              <img src={produto.imagemProduto} alt="" />
-              <div className={styles.cardEsq}>
-              <h1 className={styles.tituloProduto}>{produto.nomeProduto}</h1>
-              <p className={styles.descProduto}>{produto.descProduto}</p>
-              <p className={styles.preco}><span>R$</span>{produto.precoProduto}</p>
+              <div className={styles.cardProduto}>
+                <img src={produto.imagemProduto} alt="" />
+                <div className={styles.cardEsq}>
+                  <h1 className={styles.tituloProduto}>
+                    {produto.nomeProduto}
+                  </h1>
+                  <p className={styles.descProduto}>{produto.descProduto}</p>
+                  <p className={styles.preco}>
+                    <span>R$</span>
+                    {produto.precoProduto}
+                  </p>
+                </div>
               </div>
             </div>
-            </div>
-            
           ))}
         {loading && (
           <div className="loading">

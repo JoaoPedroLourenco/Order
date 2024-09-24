@@ -15,10 +15,9 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
   const [erro, setErro] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
@@ -37,7 +36,7 @@ const Login = () => {
 
     console.log(res);
 
-    navigate("/mesas")
+    navigate("/mesas");
   };
 
   useEffect(() => {
