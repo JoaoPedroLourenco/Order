@@ -19,24 +19,16 @@ const Cadastro = () => {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const { criarUsuario, erro: authError, loading } = useAuthentication();
-
-  const navigate = useNavigate();
+  const {
+    criarUsuario,
+    error: erroAutenticacao,
+    loading,
+  } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErro("");
-
-    if (senha.length < 6) {
-      setErro("A senha precisa ter pelo menos 6 caracteres");
-      return;
-    }
-
-    if (senha !== confirmarSenha) {
-      setErro("As senhas precisam ser iguais");
-      return;
-    }
 
     const usuario = {
       nomeRestaurante,
@@ -44,18 +36,22 @@ const Cadastro = () => {
       senha,
     };
 
-    const res = await criarUsuario(usuario);
+    if (senha !== confirmarSenha) {
+      setErro("As senhas precisam ser iguais");
+      return;
+    }
 
-    console.log(res);
+    const response = await criarUsuario(usuario);
 
+    console.log(response);
     navigate("/mesas");
   };
 
   useEffect(() => {
-    if (authError) {
-      setErro(authError);
+    if (erroAutenticacao) {
+      setErro(erroAutenticacao);
     }
-  }, [authError]);
+  }, [erroAutenticacao]);
 
   return (
     <div>

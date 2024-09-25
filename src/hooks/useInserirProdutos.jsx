@@ -48,7 +48,7 @@ export const useInserirProdutos = (docCollection) => {
 
       const novoProduto = {
         ...dados,
-        imagemProduto: imageURL,
+        ...(imageURL && { imagemProduto: imageURL }),
         createdAt: Timestamp.now(),
       };
 

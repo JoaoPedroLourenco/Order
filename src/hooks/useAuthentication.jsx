@@ -2,33 +2,56 @@ import { dataBase } from "../firebase/Config";
 
 import {
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut,
-  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { useState, useEffect } from "react";
 
 export const useAuthentication = () => {
-  const [erro, setErro] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [cancelled, setCancelled] = useState(false);
 
   const auth = getAuth();
 
-  // cleanup
+  const provider = new GoogleAuthProvider();
+
   // lidando com vazamento de memória
+  const [cancelado, setCancelado] = useState(false);
+
+  // usado para não deixar "resquícios" de funções usadas
   function checarSeFoiCancelado() {
-    if (cancelled) {
+    if (cancelado) {
       return;
     }
   }
 
+  // entrar usando o google
+  const entrarComGoogle = async () => {
+    checarSeFoiCancelado();
+    setLoading(true);
+    setError(null);
+
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.log(error.message);
+      console.log(typeof error.message);
+    }
+
+    setError(error);
+    setLoading(false);
+  };
+
+  // função de cadastro de usuário
   const criarUsuario = async (data) => {
     checarSeFoiCancelado();
     setLoading(true);
-    setErro(null);
+    setError(null);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -42,7 +65,7 @@ export const useAuthentication = () => {
       const usuario = userCredential.user;
 
       await updateProfile(usuario, {
-        displayName: data.nomeRestaurante,
+        displayName: data.displayName,
       });
 
       return usuario;
@@ -50,51 +73,56 @@ export const useAuthentication = () => {
       console.log(error.message);
       console.log(typeof error.message);
 
-      let systemErrorMessage;
+      let mensagemErroDoSistema;
 
       if (error.message.includes("Password")) {
-        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
+        mensagemErroDoSistema = "A senha precisa ter pelo menos 6 caractéres!";
       } else if (error.message.includes("email-already")) {
-        systemErrorMessage = "E-mail já cadastrado.";
+        mensagemErroDoSistema = "E-mail já cadastrado.";
       } else {
-        systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
+        mensagemErroDoSistema = "Ocorreu um erro, tente novamente mais tarde";
       }
 
       setLoading(false);
-      setErro(systemErrorMessage);
+      setError(mensagemErroDoSistema);
     }
   };
 
+  // função de login
   const login = async (data) => {
     checarSeFoiCancelado();
-
+    setError(null);
     setLoading(true);
-    setErro(null);
 
     try {
       await signInWithEmailAndPassword(auth, data.email, data.senha);
+      setLoading(false);
     } catch (error) {
-      console.log(error.message);
-      console.log(typeof error.message);
+      let mensagemErroDoSistema = "Email ou Senha incorretos";
+
+      setError(mensagemErroDoSistema);
+      setLoading(false);
     }
   };
 
-  const logOut = () => {
+  // função de logOut / sair da conta
+  const sairDaConta = () => {
     checarSeFoiCancelado();
 
     signOut(auth);
   };
 
   useEffect(() => {
-    return () => setCancelled(true);
+    return () => setCancelado(true);
   }, []);
 
   return {
     auth,
-    loading,
-    erro,
     criarUsuario,
+    error,
+    loading,
+    entrarComGoogle,
     login,
-    logOut,
+    sairDaConta,
   };
 };

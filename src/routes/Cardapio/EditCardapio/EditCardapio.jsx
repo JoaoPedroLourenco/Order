@@ -31,7 +31,6 @@ const EditCardapio = () => {
     setDescProduto("");
     setPrecoProduto(0);
     setImagemProduto(null);
-    selectArea("pratosPrincipais");
 
     if (selectArea === "Outros") {
       setSelectArea("Outros");

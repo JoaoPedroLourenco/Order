@@ -82,7 +82,7 @@ aside > nav > ul > li{
 }
 
 .links_list a:hover{
-    background: #b4b4b483;
+    background: #0000003a;
     cursor: pointer;
     transition: .1s;
 }
