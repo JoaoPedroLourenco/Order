@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useResgatarMesas } from "../../hooks/useResgatarProdutos";
-import { useInserirProdutos } from "../../hooks/useInserirProdutos";
+import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
+import { useInserirMesas } from "../../hooks/useInserirMesas";
 
 const Mesas = () => {
   const [nomeMesa, setNomeMesa] = useState("");
 
-  const { resgatarMesas, loading, error } = useResgatarMesas("mesas");
-  const { inserirProdutos, response } = useInserirProdutos("mesas");
+  const { documentos, loading } = useFetchDocumentos("mesas");
+  const { inserirMesas, response } = useInserirMesas("mesas");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    await inserirProdutos(nomeMesa);
+    inserirMesas(nomeMesa);
   };
 
   return (
@@ -29,7 +29,15 @@ const Mesas = () => {
         {!loading && <button>Criar Mesa</button>}
         {loading && <button disabled>Aguarde...</button>}
 
-        <div></div>
+        <div>
+          {!response.loading &&
+            documentos &&
+            documentos.map((mesa, index) => (
+              <div key={index}>
+                <p>{mesa.nomeMesa}</p>
+              </div>
+            ))}
+        </div>
       </form>
     </div>
   );

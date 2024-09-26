@@ -2,16 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../EditCardapio/EditCardapio.module.css";
 import { useInserirProdutos } from "../../../hooks/useInserirProdutos";
-import { useResgatarProdutos } from "../../../hooks/useResgatarProdutos";
+import { useFetchDocumentos } from "../../../hooks/useResgatarProdutos";
 
 const EditCardapio = () => {
   const [imagemProduto, setImagemProduto] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0.0);
-  const [selectArea, setSelectArea] = useState("pratosPrincipais");
 
-  const { produtos, loading } = useResgatarProdutos("produtos");
+  const { documentos, loading } = useFetchDocumentos("produtos");
   const { inserirProdutos, response } = useInserirProdutos("produtos");
 
   const handleSubmit = async (e) => {
@@ -22,7 +21,6 @@ const EditCardapio = () => {
         nomeProduto,
         descProduto,
         precoProduto,
-        selectArea,
       },
       imagemProduto
     );
@@ -86,7 +84,7 @@ const EditCardapio = () => {
             value={precoProduto}
             onChange={(e) => setPrecoProduto(e.target.value)}
           />
-          <select
+          {/* <select
             name="selectArea"
             value={selectArea}
             onChange={(e) => setSelectArea(e.target.value)}
@@ -94,7 +92,7 @@ const EditCardapio = () => {
             <option value="pratosPrincipais">Pratos Principais</option>
             <option value="bebidas">Bebidas</option>
             <option value="outros">Outros</option>
-          </select>
+          </select> */}
 
           {!response.loading && <button>Confirmar</button>}
           {response.loading && <button>Aguarde...</button>}
@@ -103,8 +101,8 @@ const EditCardapio = () => {
 
       <div className={styles.itensContainer}>
         {!loading &&
-          produtos &&
-          produtos.map((produto, index) => (
+          documentos &&
+          documentos.map((produto, index) => (
             <div key={index}>
               <div className={styles.cardProduto}>
                 <img src={produto.imagemProduto} alt="" />
