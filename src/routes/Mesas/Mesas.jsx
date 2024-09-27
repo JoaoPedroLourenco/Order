@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
 import { useInserirMesas } from "../../hooks/useInserirMesas";
 
+import styles from "./Mesas.module.css";
+
 const Mesas = () => {
   const [nomeMesa, setNomeMesa] = useState("");
+  const [contadorMesa, setContadorMesa] = useState(0);
 
   const { documentos, loading } = useFetchDocumentos("mesas");
   const { inserirMesas, response } = useInserirMesas("mesas");
@@ -11,11 +14,16 @@ const Mesas = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    inserirMesas(nomeMesa);
+    inserirMesas({ nomeMesa });
+    setNomeMesa("");
+
+    if (nomeMesa === "") {
+      setContadorMesa(contadorMesa + 1);
+    }
   };
 
   return (
-    <div>
+    <div className={styles.mesas}>
       <div className="title">
         <h1>Mesas</h1>
       </div>
@@ -28,17 +36,23 @@ const Mesas = () => {
         />
         {!loading && <button>Criar Mesa</button>}
         {loading && <button disabled>Aguarde...</button>}
-
-        <div>
-          {!response.loading &&
-            documentos &&
-            documentos.map((mesa, index) => (
-              <div key={index}>
-                <p>{mesa.nomeMesa}</p>
-              </div>
-            ))}
-        </div>
       </form>
+
+      <div className={styles.mesasContainer}>
+        {!loading &&
+          documentos.map((mesa, index) => (
+            <div key={index}>
+              <div className={styles.mesaCard}>
+                <p>{mesa.mesa.nomeMesa || `Mesa ${contadorMesa}`}</p>
+              </div>
+            </div>
+          ))}
+        {loading && (
+          <div>
+            <p>Aguarde...</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -29,7 +29,7 @@ export const useFetchDocumentos = (docCollection) => {
     );
 
     return () => cancelado();
-  }, [docCollection]);
+  }, []);
 
   return { documentos, loading, error };
 };

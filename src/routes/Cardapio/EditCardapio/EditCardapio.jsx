@@ -29,14 +29,6 @@ const EditCardapio = () => {
     setDescProduto("");
     setPrecoProduto(0);
     setImagemProduto(null);
-
-    if (selectArea === "Outros") {
-      setSelectArea("Outros");
-    } else if (selectArea === "Bebidas") {
-      selectArea("Bebidas");
-    } else {
-      selectArea("pratosPrincipais");
-    }
   };
 
   const previewImagem = (e) => {
