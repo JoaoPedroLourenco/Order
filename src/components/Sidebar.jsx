@@ -15,9 +15,6 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className={styles.sideBar}>
-      <div className={styles.logo}>
-        <img src={logo} alt="Order" />
-      </div>
       <aside>
         <nav>
           <ul className={styles.links_list}>
@@ -32,6 +29,7 @@ const Sidebar = () => {
                 to="/perfil"
               >
                 <img src={perfil} alt="Perfil" />
+                Perfil
               </NavLink>
             </li>
             <hr />
@@ -46,6 +44,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={mesa} alt="Mesas" />
+                Mesas
               </NavLink>
             </li>
             <li>
@@ -59,6 +58,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={cardapio} alt="Cardápio" />
+                Cardápio
               </NavLink>
             </li>
             <li>
@@ -72,6 +72,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={estoque} alt="Estoque" />
+                Estoque
               </NavLink>
             </li>
             <li>
@@ -85,6 +86,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={renda} alt="Renda" />
+                Renda
               </NavLink>
             </li>
             <hr />
@@ -99,6 +101,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={configuracoes} alt="Configurações" />
+                Config.
               </NavLink>
             </li>
             <li>
@@ -112,11 +115,17 @@ const Sidebar = () => {
                 })}
               >
                 <img src={ajuda} alt="Ajuda" />
+                Ajuda
               </NavLink>
             </li>
           </ul>
+          <div className={styles.logo}>
+          <img src={logo} alt="" />
+        </div> 
         </nav>
+         
       </aside>
+      
     </div>
   );
 };
