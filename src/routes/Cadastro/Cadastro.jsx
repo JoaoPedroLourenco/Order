@@ -19,6 +19,8 @@ const Cadastro = () => {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
 
+  const navigate = useNavigate();
+
   const {
     criarUsuario,
     error: erroAutenticacao,

@@ -5,15 +5,6 @@
    flex-direction: column;
 }
 
-input[type="file"]{
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-}
-
 input[type="file"]:focus{
     box-shadow: none;
 }
@@ -24,6 +15,7 @@ input[type="file"]:focus{
     display: flex;
     margin-top: 10px;
     flex-direction: row;
+    background: rgba(156, 0, 0, 0.119);
     border: 1px solid red;
     border-radius: 10px;
     padding: 10px;
@@ -36,11 +28,49 @@ form .uploadImagemProduto{
     flex-direction: column;
 }
 
+
 .uploadImagemProduto .imagePreview, .imagePreview img{
     width: 250px;
     height: 250px;
     border: 1px solid red;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    background: white;
+}
+
+.imagePreview p{
+    color: rgba(0, 0, 0, 0.421);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.enviarImagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: .5em;
+    text-align: center;
+    padding: 20px 10px;
+    width: 80%;
+    height: 40px;
+    background: rgba(255, 0, 0, 0.141);
+    border: 1px solid red;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.792);
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+label img{
+    width: 30px;
+    height: 30px;
 }
 
 form .infoProdutos{
@@ -48,6 +78,24 @@ form .infoProdutos{
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+form textarea{
+    height: auto;
+    border: none;
+    resize: none;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    transition: .2s;
+}
+
+textarea:focus{
+    box-shadow: 0px 0px 0px 3px #ef233b90;
+    outline: none;
+    transition: .2s;
 }
 
 .infoProdutos button{
@@ -65,14 +113,12 @@ form .infoProdutos{
 }
 
 .cardProduto{
-    max-width: 400px;
-    min-width: 400px;
+    width: 450px;
     height: 9em;
     display: flex;
     border-radius: 1em;
     font-size: 1.2em;
     overflow: hidden;
-    background: rgba(255, 0, 0, 0.347);
 }
 
 .cardProduto .cardEsq{
@@ -90,13 +136,17 @@ form .infoProdutos{
 }
 
 .preco span{
-    font-size: 1em;
+    font-size: .8em;
+}
+
+.preco p{
+    font-size: .8em;
 }
 
 .cardProduto img{
     max-width: 10em;
     max-height: 10em;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
 }
 
@@ -104,9 +154,16 @@ form .infoProdutos{
     font-size: 1.5em;
     color: red;
     font-weight: 400;
+   
 }
 
+.preco .precoProduto{
+    color: black;
+}
 
+.tituloProduto{
+    text-overflow: ellipsis;
+}
 
 .cardProduto .tituloCard{
     font-size: 1.8em;

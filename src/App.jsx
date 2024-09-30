@@ -97,7 +97,7 @@ function App() {
                 }
               />
               <Route
-                path="/editCardapio"
+                path="/cardapio/editCardapio"
                 element={
                   user ? (
                     <Layout>

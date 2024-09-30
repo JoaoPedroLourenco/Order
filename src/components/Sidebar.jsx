@@ -2,7 +2,7 @@ import styles from "./Sidebar.module.css";
 
 import logo from "../assets/imgs/logoMenor.png";
 import perfil from "../assets/imgs/Male User.png";
-import mesa from "../assets/imgs/mesa.png";
+import mesa from "../assets/imgs/mesaIcone.png";
 import cardapio from "../assets/imgs/Restaurant Menu.png";
 import estoque from "../assets/imgs/New Product.png";
 import renda from "../assets/imgs/Money Bag.png";

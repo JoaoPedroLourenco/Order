@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
 import { useInserirMesas } from "../../hooks/useInserirMesas";
 
+import mesaCard from "../../assets/imgs/mesa.png";
+
 import styles from "./Mesas.module.css";
 
 const Mesas = () => {
@@ -44,6 +46,7 @@ const Mesas = () => {
             <div key={index}>
               <div className={styles.mesaCard}>
                 <p>{mesa.mesa.nomeMesa || `Mesa ${contadorMesa}`}</p>
+                <img src={mesaCard} alt="" />
               </div>
             </div>
           ))}

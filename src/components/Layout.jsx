@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
     "/renda",
     "/configuracoes",
     "/ajuda",
-    "/editCardapio",
+    "/cardapio/editCardapio",
   ];
 
   // Determina se a barra lateral deve ser mostrada

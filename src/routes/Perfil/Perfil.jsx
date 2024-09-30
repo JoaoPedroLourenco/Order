@@ -2,19 +2,18 @@ import React, { useState } from "react";
 // import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
-import styles from '../Perfil/Perfil.module.css'
+import styles from "../Perfil/Perfil.module.css";
 
 const Perfil = () => {
   // const { user } = useAuthValue();
 
-  const [popUp, setPopUp] = useState(false)
+  const [popUp, setPopUp] = useState(false);
 
   const abrirPopUp = () => {
-    setPopUp(!popUp)
-  }
-  
+    setPopUp(!popUp);
+  };
 
-  const {logOut} = useAuthentication()
+  const { sairDaConta } = useAuthentication();
 
   return (
     <div>
@@ -22,7 +21,6 @@ const Perfil = () => {
         <h1>Perfil</h1>
       </div>
       {/* <p>{user.email}</p> */}
-
 
       <button onClick={abrirPopUp} className={styles.openPopUp}>
         Sair da Conta
@@ -36,14 +34,13 @@ const Perfil = () => {
               <button onClick={abrirPopUp} className={styles.cancelar}>
                 Cancelar
               </button>
-              <button onClick={logOut} className={styles.signOut}>
+              <button onClick={sairDaConta} className={styles.signOut}>
                 Sair
               </button>
             </div>
           </div>
         </div>
       )}
-      
     </div>
   );
 };

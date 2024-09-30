@@ -4,11 +4,13 @@ import styles from "../EditCardapio/EditCardapio.module.css";
 import { useInserirProdutos } from "../../../hooks/useInserirProdutos";
 import { useFetchDocumentos } from "../../../hooks/useResgatarProdutos";
 
+import uploadImagem from "../../../assets/imgs/imageUpload.png";
+
 const EditCardapio = () => {
   const [imagemProduto, setImagemProduto] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
-  const [precoProduto, setPrecoProduto] = useState(0.0);
+  const [precoProduto, setPrecoProduto] = useState("");
 
   const { documentos, loading } = useFetchDocumentos("produtos");
   const { inserirProdutos, response } = useInserirProdutos("produtos");
@@ -47,6 +49,7 @@ const EditCardapio = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.uploadImagemProduto}>
           <div className={styles.imagePreview}>
+            {!imagemProduto && <p>Preview da imagem</p>}
             {imagemProduto && (
               <img
                 src={URL.createObjectURL(imagemProduto)}
@@ -54,7 +57,11 @@ const EditCardapio = () => {
               />
             )}
           </div>
-          <input type="file" name="imagemProduto" onChange={previewImagem} />
+          <label className={styles.enviarImagem}>
+            <img src={uploadImagem} alt="" />
+            Insira uma imagem
+            <input type="file" name="imagemProduto" onChange={previewImagem} />
+          </label>
         </div>
 
         <div className={styles.infoProdutos}>
@@ -62,32 +69,29 @@ const EditCardapio = () => {
             type="text"
             name="nomeProduto"
             value={nomeProduto}
+            placeholder="Insira o nome do produto"
+            required
             onChange={(e) => setNomeProduto(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea
             name="descProduto"
             value={descProduto}
+            placeholder="Insira uma descrição para o produto"
+            required
             onChange={(e) => setDescProduto(e.target.value)}
-          />
+          ></textarea>
+
           <input
             type="number"
             name="precoProduto"
             value={precoProduto}
+            placeholder="Insira o preço do produto"
+            required
             onChange={(e) => setPrecoProduto(e.target.value)}
           />
-          {/* <select
-            name="selectArea"
-            value={selectArea}
-            onChange={(e) => setSelectArea(e.target.value)}
-          >
-            <option value="pratosPrincipais">Pratos Principais</option>
-            <option value="bebidas">Bebidas</option>
-            <option value="outros">Outros</option>
-          </select> */}
 
-          {!response.loading && <button>Confirmar</button>}
-          {response.loading && <button>Aguarde...</button>}
+          {!response.loading && <button className="form_btn">Confirmar</button>}
+          {response.loading && <button className="form_btn">Aguarde...</button>}
         </div>
       </form>
 
@@ -105,7 +109,9 @@ const EditCardapio = () => {
                   <p className={styles.descProduto}>{produto.descProduto}</p>
                   <p className={styles.preco}>
                     <span>R$</span>
-                    {produto.precoProduto}
+                    <span className={styles.precoProduto}>
+                      {produto.precoProduto}
+                    </span>
                   </p>
                 </div>
               </div>
