@@ -1,0 +1,17 @@
+.containerItens{
+    width: 80vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    gap: 1em;
+}
+
+.cardItem{
+    width: 300px;
+    height: 150px;
+    border: 1px solid red;
+    color: black;
+    border-radius: 10px;
+}

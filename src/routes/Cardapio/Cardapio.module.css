@@ -1,6 +1,7 @@
 .cardapio{
     width: 95vw;
-    margin-left: 50px;
+    height: auto;
+    margin-left:50px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -25,10 +26,12 @@
 }
 
 .containerProdutos .pratosPrincipaisContainer, .outrosContainer, .bebidasContainer{
-    width: 800px;
+    width: 100%;
     height: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     background: black;
 }
  
@@ -54,15 +57,15 @@
 .itensContainer{
     width: 80vw;
     height: 50vh;
-    margin-left: 5vw;
     display: flex;
+    margin-top: 3em;
+    margin-left: 20em;
     gap: 5em;
-    margin-top: 4em;
     flex-wrap: wrap;
 }
 
 .cardProduto{
-    width: 450px;
+    width: 600px;
     height: 9em;
     display: flex;
     border-radius: 1em;
