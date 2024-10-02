@@ -68,6 +68,9 @@ export const useAuthentication = () => {
         displayName: data.displayName,
       });
 
+      // Recarrega os dados do usuário para garantir que o displayName foi atualizado
+      await usuario.reload();
+
       return usuario;
     } catch (error) {
       console.log(error.message);

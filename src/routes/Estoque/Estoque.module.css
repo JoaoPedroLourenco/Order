@@ -9,9 +9,40 @@
 }
 
 .cardItem{
-    width: 300px;
+    width: 350px;
     height: 150px;
     border: 1px solid red;
-    color: black;
+    padding: 10px;
     border-radius: 10px;
+}
+
+.cardItem .parteCimaCard{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.parteCimaCard .nomeItem{
+    width: 80%;
+}
+
+.nomeItem p{
+    font-size: 1.5em;
+    color: red;
+    font-weight: 500;
+}
+
+.parteCimaCard .qtdItem{
+    width: 20%;
+    height: 50%;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+}
+
+.qtdItem p{
+    font-size: 1.5em;
 }

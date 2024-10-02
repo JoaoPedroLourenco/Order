@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Cadastro = () => {
-  const [nomeRestaurante, setNomeRestaurante] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
@@ -33,7 +33,7 @@ const Cadastro = () => {
     setErro("");
 
     const usuario = {
-      nomeRestaurante,
+      displayName,
       email,
       senha,
     };
@@ -69,9 +69,9 @@ const Cadastro = () => {
                 <input
                   type="text"
                   name="email"
-                  value={nomeRestaurante}
+                  value={displayName}
                   required
-                  onChange={(e) => setNomeRestaurante(e.target.value)}
+                  onChange={(e) => setDisplayName(e.target.value)}
                 />
               </label>
               <label>

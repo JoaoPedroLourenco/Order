@@ -77,6 +77,9 @@ aside > nav > ul > li{
     text-align: center;
     text-decoration: none;
     color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .links_list a:hover{
@@ -107,4 +110,16 @@ hr{
     opacity: .2;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* .links_list li .perfilLink img{
+    width: 25px;
+    height: 25px;
+} */
+
+.links_list li .perfilLink{
+    font-size: .8em;
+    display: flex;
+    gap: .2em;
+    color: rgba(0, 0, 0, 0.387);
 }

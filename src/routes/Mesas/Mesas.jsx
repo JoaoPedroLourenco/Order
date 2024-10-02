@@ -51,8 +51,13 @@ const Mesas = () => {
             </div>
           ))}
         {loading && (
-          <div>
-            <p>Aguarde...</p>
+          <div className="loading">
+            <div className="bouncing-dots">
+              <div className="dot"></div>
+              <div className="dot"></div>
+              <div className="dot"></div>
+              <div className="dot"></div>
+            </div>
           </div>
         )}
       </div>

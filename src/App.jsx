@@ -18,7 +18,6 @@ import Cadastro from "./routes/Cadastro/Cadastro.jsx";
 import Layout from "./components/Layout.jsx";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/Config.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
 import EditCardapio from "./routes/Cardapio/EditCardapio/EditCardapio.jsx";
@@ -36,7 +35,16 @@ function App() {
   }, [auth]);
 
   if (loadingUser) {
-    return <p>Carregando usuário...</p>;
+    return (
+      <div className="loading">
+        <div className="bouncing-dots">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -12,7 +12,11 @@ import ajuda from "../assets/imgs/Help.png";
 // router
 import { NavLink } from "react-router-dom";
 
+import { useAuthValue } from "../context/AuthContext";
+
 const Sidebar = () => {
+  const { user } = useAuthValue();
+
   return (
     <div className={styles.sideBar}>
       <aside>
@@ -20,7 +24,7 @@ const Sidebar = () => {
           <ul className={styles.links_list}>
             <li>
               <NavLink
-                className={styles.link}
+                className={styles.perfilLink}
                 style={({ isActive }) => ({
                   transition: ".2s",
                   backgroundColor: isActive ? "#b4b4b483" : "",
@@ -29,7 +33,7 @@ const Sidebar = () => {
                 to="/perfil"
               >
                 <img src={perfil} alt="Perfil" />
-                Perfil
+                {user.displayName}
               </NavLink>
             </li>
             <hr />
@@ -120,12 +124,10 @@ const Sidebar = () => {
             </li>
           </ul>
           <div className={styles.logo}>
-          <img src={logo} alt="" />
-        </div> 
+            <img src={logo} alt="" />
+          </div>
         </nav>
-         
       </aside>
-      
     </div>
   );
 };

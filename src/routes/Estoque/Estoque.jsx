@@ -51,8 +51,14 @@ const Estoque = () => {
           documentos &&
           documentos.map((item, index) => (
             <div key={index} className={styles.cardItem}>
-              <p>{item.nomeItem}</p>
-              <p>{item.qtdItem}</p>
+              <div className={styles.parteCimaCard}>
+                <div className={styles.nomeItem}>
+                  <p>{item.nomeItem}</p>
+                </div>
+                <div className={styles.qtdItem}>
+                  <p>{item.qtdItem}</p>
+                </div>
+              </div>
             </div>
           ))}
       </div>
