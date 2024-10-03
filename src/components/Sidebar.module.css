@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: .5em;
+    background: white;
 }
 
 nav .logo{
@@ -62,10 +63,10 @@ aside > nav > ul > li{
 
 .links_list li a{
     width: 100%;
-    height:60px;
+    height:50px;
     display: flex;
     align-items: center;
-    gap: .8em;
+    gap: .5em;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -73,7 +74,7 @@ aside > nav > ul > li{
     transition: .1s;
     font-weight: 500;
     word-break: break-all;
-    font-size: 1em;
+    font-size: .8em;
     text-align: center;
     text-decoration: none;
     color: black;
@@ -89,8 +90,8 @@ aside > nav > ul > li{
 }
 
 .links_list a img{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     user-select: none;
 }
 
@@ -112,10 +113,10 @@ hr{
     margin-bottom: 5px;
 }
 
-/* .links_list li .perfilLink img{
+.links_list li .perfilLink img{
     width: 25px;
     height: 25px;
-} */
+} 
 
 .links_list li .perfilLink{
     font-size: .8em;

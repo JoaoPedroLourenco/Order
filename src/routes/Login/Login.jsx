@@ -9,6 +9,7 @@ import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 
 import Header from "../../components/Header";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { useAuthValue } from "../../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,8 @@ const Login = () => {
   const [erro, setErro] = useState("");
 
   const navigate = useNavigate();
+
+  const { user } = useAuthValue();
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
@@ -36,7 +39,9 @@ const Login = () => {
 
     console.log(res);
 
-    navigate("/mesas");
+    if (user) {
+      navigate("/mesas");
+    }
   };
 
   useEffect(() => {
@@ -51,7 +56,7 @@ const Login = () => {
       <div className={styles.login_container}>
         <div className={styles.form_container}>
           <h1>Login</h1>
-          {/* <div className="error">Deu erro</div> */}
+
           <form onSubmit={handleSubmit}>
             <label>
               E-mail:
@@ -89,7 +94,7 @@ const Login = () => {
               </button>
             )}
 
-            {erro && <p>{erro}</p>}
+            {erro && <p className="erro">{erro}</p>}
           </form>
         </div>
 

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { useAuthValue } from "../../context/AuthContext";
 
 const Cadastro = () => {
   const [displayName, setDisplayName] = useState("");
@@ -18,6 +19,8 @@ const Cadastro = () => {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
+
+  const { user } = useAuthValue();
 
   const navigate = useNavigate();
 
@@ -46,7 +49,9 @@ const Cadastro = () => {
     const response = await criarUsuario(usuario);
 
     console.log(response);
-    navigate("/mesas");
+    if (user) {
+      navigate("/mesas");
+    }
   };
 
   useEffect(() => {

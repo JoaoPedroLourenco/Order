@@ -78,7 +78,7 @@ export const useAuthentication = () => {
 
       let mensagemErroDoSistema;
 
-      if (error.message.includes("Password")) {
+      if (error.message.includes("password")) {
         mensagemErroDoSistema = "A senha precisa ter pelo menos 6 caractéres!";
       } else if (error.message.includes("email-already")) {
         mensagemErroDoSistema = "E-mail já cadastrado.";
@@ -101,11 +101,16 @@ export const useAuthentication = () => {
       await signInWithEmailAndPassword(auth, data.email, data.senha);
       setLoading(false);
     } catch (error) {
-      let mensagemErroDoSistema = "Email ou Senha incorretos";
+      let mensagemErroDoSistema;
+      if (error.message.includes("INVALID_LOGIN_CREDENTIALS")) {
+        mensagemErroDoSistema = "Email ou Senha incorretos";
+      }
 
       setError(mensagemErroDoSistema);
       setLoading(false);
     }
+
+    setLoading(false);
   };
 
   // função de logOut / sair da conta
