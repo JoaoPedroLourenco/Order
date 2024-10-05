@@ -1,11 +1,14 @@
-
+import Sidebar from "../../../components/Sidebar";
 
 const EditMesas = () => {
   return (
-    <div>
+    <>
+      <Sidebar />
+      <div>
         <h1>Edit Mesas</h1>
-    </div>
-  )
-}
+      </div>
+    </>
+  );
+};
 
-export default EditMesas
+export default EditMesas;

@@ -15,7 +15,6 @@ import ErrorPage from "./routes/ErrorPage.jsx";
 import LandingPage from "./routes/Landing Page/LandingPage.jsx";
 import Login from "./routes/Login/Login.jsx";
 import Cadastro from "./routes/Cadastro/Cadastro.jsx";
-import Layout from "./components/Layout.jsx";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext.jsx";
@@ -58,99 +57,35 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route
                 path="/perfil"
-                element={
-                  user ? (
-                    <Layout>
-                      <Perfil />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Perfil /> : <Navigate to="/" />}
               />
               <Route
                 path="/mesas"
-                element={
-                  user ? (
-                    <Layout>
-                      <Mesas />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Mesas /> : <Navigate to="/" />}
               />
               <Route
                 path="/estoque"
-                element={
-                  user ? (
-                    <Layout>
-                      <Estoque />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Estoque /> : <Navigate to="/" />}
               />
               <Route
                 path="/cardapio"
-                element={
-                  user ? (
-                    <Layout>
-                      <Cardapio />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Cardapio /> : <Navigate to="/" />}
               />
               <Route
                 path="/cardapio/editCardapio"
-                element={
-                  user ? (
-                    <Layout>
-                      <EditCardapio />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <EditCardapio /> : <Navigate to="/" />}
               />
               <Route
                 path="/renda"
-                element={
-                  user ? (
-                    <Layout>
-                      <Renda />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Renda /> : <Navigate to="/" />}
               />
               <Route
                 path="/ajuda"
-                element={
-                  user ? (
-                    <Layout>
-                      <Ajuda />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Ajuda /> : <Navigate to="/" />}
               />
               <Route
                 path="/configuracoes"
-                element={
-                  user ? (
-                    <Layout>
-                      <Configuracoes />
-                    </Layout>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
+                element={user ? <Configuracoes /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

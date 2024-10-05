@@ -1,12 +1,16 @@
 import React from "react";
+import Sidebar from "../../components/Sidebar";
 
 const Ajuda = () => {
   return (
-    <div>
-      <div className="title">
-        <h1>Ajuda</h1>
+    <>
+      <Sidebar />
+      <div>
+        <div className="title">
+          <h1>Ajuda</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

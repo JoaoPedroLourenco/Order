@@ -1,9 +1,17 @@
+.estoque{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
 .containerItens{
-    width: 80vw;
-    height: 50vh;
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     color: black;
     gap: 1em;
 }
