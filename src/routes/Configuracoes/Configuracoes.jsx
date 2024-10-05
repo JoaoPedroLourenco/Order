@@ -1,12 +1,16 @@
 import React from "react";
+import Sidebar from "../../components/Sidebar";
 
 const Configuracoes = () => {
   return (
-    <div>
-      <div className="title">
-        <h1>Configurações</h1>
+    <>
+      <Sidebar />
+      <div>
+        <div className="title">
+          <h1>Configurações</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
