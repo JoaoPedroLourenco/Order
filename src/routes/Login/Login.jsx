@@ -9,22 +9,27 @@ import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
 
 import Header from "../../components/Header";
 import { useAuthentication } from "../../hooks/useAuthentication";
-import { useAuthValue } from "../../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
+import { useAuthValue } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const navigate = useNavigate();
-
   const { user } = useAuthValue();
+
+  const navigate = useNavigate();
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
-  const { login, erro: authError, loading } = useAuthentication();
+  const {
+    login,
+    entrarComGoogle,
+    erro: authError,
+    loading,
+  } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,10 +43,6 @@ const Login = () => {
     const res = await login(usuario);
 
     console.log(res);
-
-    if (user) {
-      navigate("/mesas");
-    }
   };
 
   useEffect(() => {
@@ -93,6 +94,10 @@ const Login = () => {
                 Aguarde...
               </button>
             )}
+
+            {user ? navigate("/mesas") : ""}
+
+            <button onClick={entrarComGoogle}>Entrar com google</button>
 
             {erro && <p className="erro">{erro}</p>}
           </form>
