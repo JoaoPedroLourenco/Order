@@ -26,6 +26,7 @@ const Cadastro = () => {
 
   const {
     criarUsuario,
+    entrarComGoogle,
     error: erroAutenticacao,
     loading,
   } = useAuthentication();
@@ -49,9 +50,6 @@ const Cadastro = () => {
     const response = await criarUsuario(usuario);
 
     console.log(response);
-    if (user) {
-      navigate("/mesas");
-    }
   };
 
   useEffect(() => {
@@ -75,7 +73,6 @@ const Cadastro = () => {
                   type="text"
                   name="email"
                   value={displayName}
-                  required
                   onChange={(e) => setDisplayName(e.target.value)}
                 />
               </label>
@@ -85,7 +82,6 @@ const Cadastro = () => {
                   type="text"
                   name="email"
                   value={email}
-                  required
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
@@ -95,7 +91,6 @@ const Cadastro = () => {
                   type="password"
                   name="senha"
                   value={senha}
-                  required
                   onChange={(e) => setSenha(e.target.value)}
                 />
                 {/* <button
@@ -115,7 +110,6 @@ const Cadastro = () => {
                   type="password"
                   name="confirmarSenha"
                   value={confirmarSenha}
-                  required
                   onChange={(e) => setConfirmarSenha(e.target.value)}
                 />
                 {/* <button
@@ -138,9 +132,14 @@ const Cadastro = () => {
                   Aguarde...
                 </button>
               )}
+
+              {user ? navigate("/mesas") : ""}
+
               {erro && <p className="erro">{erro}</p>}
             </form>
           </div>
+
+          <button onClick={entrarComGoogle}>Entrar com google</button>
 
           <div
             className={styles.lado_dir}
