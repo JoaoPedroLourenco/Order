@@ -1,8 +1,11 @@
 .estoque{
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 1em;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .containerItens{
@@ -22,6 +25,7 @@
     border: 1px solid red;
     padding: 10px;
     border-radius: 10px;
+    background: white;
 }
 
 .cardItem .parteCimaCard{
@@ -48,7 +52,10 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     border: 1px solid red;
+    font-size: .8em;
+    background: rgba(255, 0, 0, 0.128);
 }
 
 .qtdItem p{

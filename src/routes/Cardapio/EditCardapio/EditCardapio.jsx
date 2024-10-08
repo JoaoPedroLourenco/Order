@@ -7,6 +7,8 @@ import { useFetchDocumentos } from "../../../hooks/useResgatarProdutos";
 import uploadImagem from "../../../assets/imgs/imageUpload.png";
 import Sidebar from "../../../components/Sidebar";
 
+import { useDeleteDocumentos } from "../../../hooks/useDeleteDocumentos";
+
 const EditCardapio = () => {
   const [imagemProduto, setImagemProduto] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
@@ -15,6 +17,8 @@ const EditCardapio = () => {
 
   const { documentos, loading } = useFetchDocumentos("produtos");
   const { inserirProdutos, response } = useInserirProdutos("produtos");
+
+  const { deletarDocumento } = useDeleteDocumentos("produtos");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,6 +116,9 @@ const EditCardapio = () => {
             documentos.map((produto, index) => (
               <div key={index}>
                 <div className={styles.cardProduto}>
+                  <button onClick={() => deletarDocumento(produto.id)}>
+                    Excluir
+                  </button>
                   <img src={produto.imagemProduto} alt="" />
                   <div className={styles.cardEsq}>
                     <h1 className={styles.tituloProduto}>
