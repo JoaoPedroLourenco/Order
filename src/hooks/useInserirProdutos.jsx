@@ -43,6 +43,7 @@ export const useInserirProdutos = (docCollection) => {
           storageRef,
           imagemProduto
         );
+        console.log(storageRef.fullPath);
         imageURL = await getDownloadURL(uploadTask.ref);
       }
 
