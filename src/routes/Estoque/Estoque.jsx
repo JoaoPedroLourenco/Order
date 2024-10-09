@@ -58,7 +58,7 @@ const Estoque = () => {
             documentos.map((item, index) => (
               <div key={index} className={styles.cardItem}>
                 <button
-                  onClick={() => deletarDocumento(mesa.id)}
+                  onClick={() => deletarDocumento(item.id)}
                   className={styles.deleteItem}
                 >
                   X
