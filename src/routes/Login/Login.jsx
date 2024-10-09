@@ -53,6 +53,8 @@ const Login = () => {
 
   return (
     <>
+      {user ? navigate("/mesas") : ""}
+
       <Header />
       <div className={styles.login_container}>
         <div className={styles.form_container}>
@@ -94,8 +96,6 @@ const Login = () => {
                 Aguarde...
               </button>
             )}
-
-            {user ? navigate("/mesas") : ""}
 
             <button onClick={entrarComGoogle}>Entrar com google</button>
 

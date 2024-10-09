@@ -120,7 +120,28 @@ textarea:focus{
     display: flex;
     border-radius: 1em;
     font-size: 1.2em;
-    overflow: hidden;
+    position: relative;
+}
+
+
+.cardProduto .deleteProduto{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    background: red;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.deleteProduto:hover{
+    background: rgb(177, 0, 0);
+    transition: .2s;
 }
 
 .cardProduto .cardEsq{

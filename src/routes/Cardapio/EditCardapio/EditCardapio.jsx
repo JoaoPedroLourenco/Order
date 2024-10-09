@@ -116,8 +116,13 @@ const EditCardapio = () => {
             documentos.map((produto, index) => (
               <div key={index}>
                 <div className={styles.cardProduto}>
-                  <button onClick={() => deletarDocumento(produto.id)}>
-                    Excluir
+                  <button
+                    onClick={() =>
+                      deletarDocumento(produto.id, produto.imagemProduto)
+                    }
+                    className={styles.deleteProduto}
+                  >
+                    X
                   </button>
                   <img src={produto.imagemProduto} alt="" />
                   <div className={styles.cardEsq}>
