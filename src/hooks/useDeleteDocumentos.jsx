@@ -32,21 +32,28 @@ export const useDeleteDocumentos = (docCollection) => {
   };
 
   const deletarDocumento = async (id, imagemProduto) => {
+    console.log("Deletando documento...");
     checarCanceladoAntesDoDispatch({ type: "LOADING" });
 
     try {
       const documentoDeletado = await deleteDoc(
         doc(dataBase, docCollection, id)
       );
+      console.log("Documento deletado com sucesso!");
 
-      const storageRef = ref(storage, `images/${imagemProduto.name}`);
-      await deleteObject(storageRef);
+      if (imagemProduto) {
+        console.log("Deletando imagem...");
+        const storageRef = ref(storage, imagemProduto);
+        await deleteObject(storageRef);
+        console.log("Imagem deletada com sucesso!");
+      }
 
       checarCanceladoAntesDoDispatch({
         type: "DELETED_DOC",
         payload: documentoDeletado,
       });
     } catch (error) {
+      console.error("Erro ao deletar documento ou imagem:", error);
       checarCanceladoAntesDoDispatch({
         type: "ERROR",
         payload: error.message,

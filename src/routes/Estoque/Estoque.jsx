@@ -5,6 +5,7 @@ import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
 
 import styles from "./Estoque.module.css";
 import Sidebar from "../../components/Sidebar";
+import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 
 const Estoque = () => {
   const [nomeItem, setNomeItem] = useState("");
@@ -12,6 +13,8 @@ const Estoque = () => {
 
   const { inserirItens, response } = useInserirItens("itensEstoque");
   const { documentos, loading, error } = useFetchDocumentos("itensEstoque");
+
+  const { deletarDocumento } = useDeleteDocumentos("itensEstoque");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +57,12 @@ const Estoque = () => {
             documentos &&
             documentos.map((item, index) => (
               <div key={index} className={styles.cardItem}>
+                <button
+                  onClick={() => deletarDocumento(item.id)}
+                  className={styles.deleteItem}
+                >
+                  X
+                </button>
                 <div className={styles.parteCimaCard}>
                   <div className={styles.nomeItem}>
                     <p>{item.nomeItem}</p>

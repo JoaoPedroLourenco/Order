@@ -6,6 +6,7 @@ import mesaCard from "../../assets/imgs/mesa.png";
 
 import styles from "./Mesas.module.css";
 import Sidebar from "../../components/Sidebar";
+import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 
 const Mesas = () => {
   const [nomeMesa, setNomeMesa] = useState("");
@@ -13,6 +14,8 @@ const Mesas = () => {
 
   const { documentos, loading } = useFetchDocumentos("mesas");
   const { inserirMesas, response } = useInserirMesas("mesas");
+
+  const { deletarDocumento } = useDeleteDocumentos("mesas");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +51,12 @@ const Mesas = () => {
             documentos.map((mesa, index) => (
               <div key={index}>
                 <div className={styles.mesaCard}>
+                  <button
+                    onClick={() => deletarDocumento(mesa.id)}
+                    className={styles.deleteMesa}
+                  >
+                    X
+                  </button>
                   <p>{mesa.mesa.nomeMesa || `Mesa ${contadorMesa}`}</p>
                   <img src={mesaCard} alt="" />
                 </div>

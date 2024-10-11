@@ -20,7 +20,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: .5em;
+    gap: 1em;
 }
 
 .mesaCard{
@@ -30,6 +30,22 @@
     border: 1px solid red;
     border-radius: 10px;
     color: black;
+    position: relative;
+}
+
+.mesaCard .deleteMesa{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    background: red;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .mesaCard p{
