@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
+import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useInserirMesas } from "../../hooks/useInserirMesas";
 
 import mesaCard from "../../assets/imgs/mesa.png";
@@ -7,13 +7,17 @@ import mesaCard from "../../assets/imgs/mesa.png";
 import styles from "./Mesas.module.css";
 import Sidebar from "../../components/Sidebar";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
+import { useAuthValue } from "../../context/AuthContext";
 
 const Mesas = () => {
+  const { user } = useAuthValue();
+  const uid = user.uid;
+
   const [nomeMesa, setNomeMesa] = useState("");
   const [contadorMesa, setContadorMesa] = useState(0);
 
-  const { documentos, loading } = useFetchDocumentos("mesas");
-  const { inserirMesas, response } = useInserirMesas("mesas");
+  const { documents: mesas, loading } = useFetchDocuments("mesas", uid);
+  const { inserirMesas, response } = useInserirMesas("mesas", user);
 
   const { deletarDocumento } = useDeleteDocumentos("mesas");
 
@@ -48,7 +52,8 @@ const Mesas = () => {
 
         <div className={styles.mesasContainer}>
           {!loading &&
-            documentos.map((mesa, index) => (
+            mesas &&
+            mesas.map((mesa, index) => (
               <div key={index}>
                 <div className={styles.mesaCard}>
                   <button

@@ -1,11 +1,15 @@
 import styles from "./Cardapio.module.css";
 
 import { Link } from "react-router-dom";
-import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
+import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import Sidebar from "../../components/Sidebar";
+import { useAuthValue } from "../../context/AuthContext";
 
 const Cardapio = () => {
-  const { documentos, loading } = useFetchDocumentos("produtos");
+  const { user } = useAuthValue();
+  const uid = user.uid;
+
+  const { documents: produtos, loading } = useFetchDocuments("produtos", uid);
 
   return (
     <>
@@ -18,8 +22,8 @@ const Cardapio = () => {
 
         <div className={styles.itensContainer}>
           {!loading &&
-            documentos &&
-            documentos.map((produto, index) => (
+            produtos &&
+            produtos.map((produto, index) => (
               <div key={index}>
                 <div className={styles.cardProduto}>
                   <img src={produto.imagemProduto} alt="" />

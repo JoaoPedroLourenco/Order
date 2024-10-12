@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useInserirItens } from "../../hooks/useInserirItens";
-import { useFetchDocumentos } from "../../hooks/useResgatarProdutos";
+import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 
 import styles from "./Estoque.module.css";
 import Sidebar from "../../components/Sidebar";
@@ -12,7 +12,11 @@ const Estoque = () => {
   const [qtdItem, setQtdItem] = useState("");
 
   const { inserirItens, response } = useInserirItens("itensEstoque");
-  const { documentos, loading, error } = useFetchDocumentos("itensEstoque");
+  const {
+    documents: itensEstoque,
+    loading,
+    error,
+  } = useFetchDocuments("itensEstoque");
 
   const { deletarDocumento } = useDeleteDocumentos("itensEstoque");
 
@@ -55,7 +59,7 @@ const Estoque = () => {
         <div className={styles.containerItens}>
           {!loading &&
             documentos &&
-            documentos.map((item, index) => (
+            itensEstoque.map((item, index) => (
               <div key={index} className={styles.cardItem}>
                 <button
                   onClick={() => deletarDocumento(item.id)}

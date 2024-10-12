@@ -1,34 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../EditCardapio/EditCardapio.module.css";
 import { useInserirProdutos } from "../../../hooks/useInserirProdutos";
-import { useFetchDocumentos } from "../../../hooks/useResgatarProdutos";
+import { useFetchDocuments } from "../../../hooks/useResgatarProdutos";
 import uploadImagem from "../../../assets/imgs/imageUpload.png";
 import Sidebar from "../../../components/Sidebar";
 import { useDeleteDocumentos } from "../../../hooks/useDeleteDocumentos";
 import { useAuthValue } from "../../../context/AuthContext";
-import { addUidToDocuments } from "../../../hooks/updateUid";
 
 const EditCardapio = () => {
+  const { user } = useAuthValue();
+  const uid = user.uid;
   const [imagemProduto, setImagemProduto] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState("");
 
-  const { documentos, loading } = useFetchDocumentos("produtos");
-  const { inserirProdutos, response } = useInserirProdutos("produtos");
+  const { documents: produtos, loading } = useFetchDocuments("produtos", uid);
+  const { inserirProdutos, response } = useInserirProdutos("produtos", user);
   const { deletarDocumento } = useDeleteDocumentos("produtos");
-  const { user } = useAuthValue();
-
-  useEffect(() => {
-    const updateUids = async () => {
-      await addUidToDocuments();
-    };
-
-    if (user) {
-      updateUids();
-    }
-  }, [user]); // Chama a função quando o usuário muda ou é autenticado
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +29,7 @@ const EditCardapio = () => {
         descProduto,
         precoProduto,
         uid: user.uid,
+        createdBy: user.displayName,
       },
       imagemProduto
     );
@@ -69,13 +60,20 @@ const EditCardapio = () => {
               {!imagemProduto ? (
                 <p>Preview da imagem</p>
               ) : (
-                <img src={URL.createObjectURL(imagemProduto)} alt="imagem do produto" />
+                <img
+                  src={URL.createObjectURL(imagemProduto)}
+                  alt="imagem do produto"
+                />
               )}
             </div>
             <label className={styles.enviarImagem}>
               <img src={uploadImagem} alt="" />
               Insira uma imagem
-              <input type="file" name="imagemProduto" onChange={previewImagem} />
+              <input
+                type="file"
+                name="imagemProduto"
+                onChange={previewImagem}
+              />
             </label>
           </div>
           <div className={styles.infoProdutos}>
@@ -119,31 +117,34 @@ const EditCardapio = () => {
               </div>
             </div>
           ) : (
-            documentos.length > 0 ? (
-              documentos.map((produto) => (
-                <div key={produto.id}>
-                  <div className={styles.cardProduto}>
-                    <button
-                      onClick={() => deletarDocumento(produto.id, produto.imagemProduto)}
-                      className={styles.deleteProduto}
-                    >
-                      X
-                    </button>
-                    <img src={produto.imagemProduto} alt="" />
-                    <div className={styles.cardEsq}>
-                      <h1 className={styles.tituloProduto}>{produto.nomeProduto}</h1>
-                      <p className={styles.descProduto}>{produto.descProduto}</p>
-                      <p className={styles.preco}>
-                        <span>R$</span>
-                        <span className={styles.precoProduto}>{produto.precoProduto}</span>
-                      </p>
-                    </div>
+            produtos &&
+            produtos.map((produto) => (
+              <div key={produto.id}>
+                <div className={styles.cardProduto}>
+                  <button
+                    onClick={() =>
+                      deletarDocumento(produto.id, produto.imagemProduto)
+                    }
+                    className={styles.deleteProduto}
+                  >
+                    X
+                  </button>
+                  <img src={produto.imagemProduto} alt="" />
+                  <div className={styles.cardEsq}>
+                    <h1 className={styles.tituloProduto}>
+                      {produto.nomeProduto}
+                    </h1>
+                    <p className={styles.descProduto}>{produto.descProduto}</p>
+                    <p className={styles.preco}>
+                      <span>R$</span>
+                      <span className={styles.precoProduto}>
+                        {produto.precoProduto}
+                      </span>
+                    </p>
                   </div>
                 </div>
-              ))
-            ) : (
-              <p>Nenhum produto encontrado.</p>
-            )
+              </div>
+            ))
           )}
         </div>
       </div>

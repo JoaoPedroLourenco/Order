@@ -41,7 +41,8 @@ export const useInserirMesas = (docCollection) => {
 
       const mesaInserida = await addDoc(
         collection(dataBase, docCollection),
-        novaMesa
+        novaMesa,
+        { merge: true }
       );
 
       checarCanceladoAntesDoDispatch({
