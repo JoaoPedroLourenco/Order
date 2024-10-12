@@ -24,7 +24,7 @@ const Mesas = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    inserirMesas({ nomeMesa });
+    inserirMesas({ nomeMesa, createdBy: user.displayName });
     setNomeMesa("");
 
     if (nomeMesa === "") {

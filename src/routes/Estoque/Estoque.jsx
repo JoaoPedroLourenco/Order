@@ -6,17 +6,21 @@ import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import styles from "./Estoque.module.css";
 import Sidebar from "../../components/Sidebar";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
+import { useAuthValue } from "../../context/AuthContext";
 
 const Estoque = () => {
+  const { user } = useAuthValue();
+  const uid = user.uid;
+
   const [nomeItem, setNomeItem] = useState("");
   const [qtdItem, setQtdItem] = useState("");
 
-  const { inserirItens, response } = useInserirItens("itensEstoque");
+  const { inserirItens, response } = useInserirItens("itensEstoque", user);
   const {
     documents: itensEstoque,
     loading,
     error,
-  } = useFetchDocuments("itensEstoque");
+  } = useFetchDocuments("itensEstoque", uid);
 
   const { deletarDocumento } = useDeleteDocumentos("itensEstoque");
 
@@ -26,6 +30,7 @@ const Estoque = () => {
     await inserirItens({
       nomeItem,
       qtdItem,
+      createdBy: user.displayName,
     });
 
     setNomeItem("");
@@ -58,7 +63,7 @@ const Estoque = () => {
 
         <div className={styles.containerItens}>
           {!loading &&
-            documentos &&
+            itensEstoque &&
             itensEstoque.map((item, index) => (
               <div key={index} className={styles.cardItem}>
                 <button

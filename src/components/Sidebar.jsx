@@ -33,7 +33,10 @@ const Sidebar = () => {
                 to="/perfil"
               >
                 <img src={perfil} alt="Perfil" />
-                {user.displayName}
+                <div className={styles.nomeEmail}>
+                  <p className={styles.nomeUsuario}>{user.displayName}</p>
+                  <p>{user.email}</p>
+                </div>
               </NavLink>
             </li>
             <hr />
