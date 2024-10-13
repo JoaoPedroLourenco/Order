@@ -1,8 +1,11 @@
-# React + Vite
+# Order - Gestão de Restaurantes
+## projeto desenvolvido em React + Firebase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O Order é um sistema projetado para melhorar a gestão de restaurantes, aumentando significativamente a eficiência operacional e proporcionando uma experiência gastronômica superior. Nosso sistema não apenas reduz os tempos de espera, mas também maximiza a satisfação dos clientes, criando um ambiente mais agradável e produtivo para todos os envolvidos. 
+Nosso sistema oferece funcionalidades essenciais como: Organização otimizada de mesas e estoque, garantindo um fluxo suave de operações, cardápio interativo e dinâmico, permitindo atualizações em tempo real, sistema de agendamento de mesas intuitivo, melhorando a gestão do tempo, análise de informações de renda mensal, facilitando decisões financeiras informadas, gestão eficiente de funcionários, criação e gerenciamento simplificado de comandas, reduzindo erros.
+Com o Order, permitimos que proprietários e equipes se concentrem no que realmente importa: oferecer um serviço excepcional e criar momentos memoráveis para seus clientes.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## Como inciar o projeto
