@@ -20,7 +20,7 @@ const inserirReducer = (state, action) => {
   }
 };
 
-export const useInserirItens = (docCollection) => {
+export const useInserirItens = (docCollection, user) => {
   const [response, dispatch] = useReducer(inserirReducer, estadoInicial);
   const [cancelado, setCancelado] = useState(null);
 
@@ -36,6 +36,7 @@ export const useInserirItens = (docCollection) => {
     try {
       const novoItem = {
         ...item,
+        uid: user.uid,
         createdAt: Timestamp.now(),
       };
 

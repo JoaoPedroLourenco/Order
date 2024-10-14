@@ -62,7 +62,7 @@ const Mesas = () => {
                   >
                     X
                   </button>
-                  <p>{mesa.mesa.nomeMesa || `Mesa ${contadorMesa}`}</p>
+                  <p>{mesa.nomeMesa || `Mesa ${contadorMesa}`}</p>
                   <img src={mesaCard} alt="" />
                 </div>
               </div>

@@ -20,7 +20,7 @@ const inserirReducer = (state, action) => {
   }
 };
 
-export const useInserirMesas = (docCollection) => {
+export const useInserirMesas = (docCollection, user) => {
   const [response, dispatch] = useReducer(inserirReducer, estadoInicial);
   const [cancelado, setCancelado] = useState(null);
 
@@ -35,7 +35,8 @@ export const useInserirMesas = (docCollection) => {
 
     try {
       const novaMesa = {
-        mesa,
+        ...mesa,
+        uid: user.uid,
         createdAt: Timestamp.now(),
       };
 
