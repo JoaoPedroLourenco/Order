@@ -68,7 +68,7 @@
     width: 600px;
     height: 9em;
     display: flex;
-    border-radius: 1em;
+    border-radius: 10px;
     font-size: 1.2em;
     overflow: hidden;
 }
@@ -80,6 +80,11 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 5px;
+}
+
+.descProduto{
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.584);
 }
 
 .preco{
@@ -100,10 +105,9 @@
 }
 
 .cardProduto h1{
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: red;
     font-weight: 400;
-   
 }
 
 .preco .precoProduto{

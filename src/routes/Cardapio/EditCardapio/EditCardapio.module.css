@@ -115,12 +115,17 @@ textarea:focus{
 }
 
 .cardProduto{
-    width: 450px;
+    width: 600px;
     height: 9em;
     display: flex;
     border-radius: 1em;
     font-size: 1.2em;
     position: relative;
+}
+
+.descProduto{
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.584);
 }
 
 
@@ -174,7 +179,7 @@ textarea:focus{
 }
 
 .cardProduto h1{
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: red;
     font-weight: 400;
    
