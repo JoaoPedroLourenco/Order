@@ -2,8 +2,6 @@ import { useState, useEffect, useReducer } from "react";
 import { dataBase, storage } from "../firebase/Config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import firebase from "firebase/compat/app";
-import { useAuthValue } from "../context/AuthContext";
 
 const estadoInicial = {
   loading: null,
@@ -23,7 +21,7 @@ const inserirReducer = (state, action) => {
   }
 };
 
-export const useInserirProdutos = (docCollection, user) => {
+export const useInsertDocuments = (docCollection, user) => {
   const [response, dispatch] = useReducer(inserirReducer, estadoInicial);
 
   const [cancelado, setCancelado] = useState(false);
@@ -34,39 +32,39 @@ export const useInserirProdutos = (docCollection, user) => {
     }
   };
 
-  const inserirProdutos = async (dados, imagemProduto) => {
+  const inserirDocumentos = async (dados, imagemDocumento) => {
     checarCanceladoAntesDoDispatch({ type: "LOADING" });
 
     try {
       let imageURL = "";
 
-      if (imagemProduto) {
-        const storageRef = ref(storage, `images/${imagemProduto.name}`);
+      if (imagemDocumento) {
+        const storageRef = ref(storage, `images/${imagemDocumento.name}`);
 
         const uploadTask = await uploadBytesResumable(
           storageRef,
-          imagemProduto
+          imagemDocumento
         );
         imageURL = await getDownloadURL(uploadTask.ref);
       }
 
-      const novoProduto = {
+      const novoDocumento = {
         ...dados,
-        ...(imageURL && { imagemProduto: imageURL }),
+        ...(imageURL && { imagemDocumento: imageURL }),
         uid: user.uid,
         createdAt: Timestamp.now(),
       };
 
-      const produtoInserido = await addDoc(
+      const documentoInserido = await addDoc(
         collection(dataBase, docCollection),
-        novoProduto,
+        novoDocumento,
         { merge: true }
       );
 
       checarCanceladoAntesDoDispatch({
         type: "INSERTED_DOC",
 
-        payload: produtoInserido,
+        payload: documentoInserido,
       });
     } catch (error) {
       checarCanceladoAntesDoDispatch({ type: "ERROR", payload: error.message });
@@ -77,5 +75,5 @@ export const useInserirProdutos = (docCollection, user) => {
     return () => setCancelado(true);
   }, []);
 
-  return { inserirProdutos, response };
+  return { inserirDocumentos, response };
 };

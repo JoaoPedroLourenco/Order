@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
-import { useInserirMesas } from "../../hooks/useInserirMesas";
+import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 
 import mesaCard from "../../assets/imgs/mesa.png";
 
@@ -17,14 +17,14 @@ const Mesas = () => {
   const [contadorMesa, setContadorMesa] = useState(0);
 
   const { documents: mesas, loading } = useFetchDocuments("mesas", uid);
-  const { inserirMesas, response } = useInserirMesas("mesas", user);
+  const { inserirDocumentos, response } = useInsertDocuments("mesas", user);
 
   const { deletarDocumento } = useDeleteDocumentos("mesas");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    inserirMesas({ nomeMesa, createdBy: user.displayName });
+    inserirDocumentos({ nomeMesa, createdBy: user.displayName });
     setNomeMesa("");
 
     if (nomeMesa === "") {

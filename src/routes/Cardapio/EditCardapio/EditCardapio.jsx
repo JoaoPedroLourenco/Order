@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../EditCardapio/EditCardapio.module.css";
-import { useInserirProdutos } from "../../../hooks/useInserirProdutos";
+import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../../hooks/useResgatarProdutos";
 import uploadImagem from "../../../assets/imgs/imageUpload.png";
 import Sidebar from "../../../components/Sidebar";
@@ -11,19 +11,19 @@ import { useAuthValue } from "../../../context/AuthContext";
 const EditCardapio = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
-  const [imagemProduto, setImagemProduto] = useState(null);
+  const [imagemDocumento, setImagemDocumento] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState("");
 
   const { documents: produtos, loading } = useFetchDocuments("produtos", uid);
-  const { inserirProdutos, response } = useInserirProdutos("produtos", user);
+  const { inserirDocumentos, response } = useInsertDocuments("produtos", user);
   const { deletarDocumento } = useDeleteDocumentos("produtos");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await inserirProdutos(
+    await inserirDocumentos(
       {
         nomeProduto,
         descProduto,
@@ -31,19 +31,19 @@ const EditCardapio = () => {
         uid: user.uid,
         createdBy: user.displayName,
       },
-      imagemProduto
+      imagemDocumento
     );
 
     // Resetando os campos
     setNomeProduto("");
     setDescProduto("");
     setPrecoProduto("");
-    setImagemProduto(null);
+    setImagemDocumento(null);
   };
 
   const previewImagem = (e) => {
     const arquivoSelecionado = e.target.files[0];
-    setImagemProduto(arquivoSelecionado);
+    setImagemDocumento(arquivoSelecionado);
   };
 
   return (
@@ -57,11 +57,11 @@ const EditCardapio = () => {
         <form onSubmit={handleSubmit}>
           <div className={styles.uploadImagemProduto}>
             <div className={styles.imagePreview}>
-              {!imagemProduto ? (
+              {!imagemDocumento ? (
                 <p>Preview da imagem</p>
               ) : (
                 <img
-                  src={URL.createObjectURL(imagemProduto)}
+                  src={URL.createObjectURL(imagemDocumento)}
                   alt="imagem do produto"
                 />
               )}
@@ -123,13 +123,13 @@ const EditCardapio = () => {
                 <div className={styles.cardProduto}>
                   <button
                     onClick={() =>
-                      deletarDocumento(produto.id, produto.imagemProduto)
+                      deletarDocumento(produto.id, produto.imagemDocumento)
                     }
                     className={styles.deleteProduto}
                   >
                     X
                   </button>
-                  <img src={produto.imagemProduto} alt="" />
+                  <img src={produto.imagemDocumento} alt="" />
                   <div className={styles.cardEsq}>
                     <h1 className={styles.tituloProduto}>
                       {produto.nomeProduto}

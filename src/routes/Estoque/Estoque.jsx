@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useInserirItens } from "../../hooks/useInserirItens";
+import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 
 import styles from "./Estoque.module.css";
@@ -15,7 +15,10 @@ const Estoque = () => {
   const [nomeItem, setNomeItem] = useState("");
   const [qtdItem, setQtdItem] = useState("");
 
-  const { inserirItens, response } = useInserirItens("itensEstoque", user);
+  const { inserirDocumentos, response } = useInsertDocuments(
+    "itensEstoque",
+    user
+  );
   const {
     documents: itensEstoque,
     loading,
@@ -27,7 +30,7 @@ const Estoque = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await inserirItens({
+    await inserirDocumentos({
       nomeItem,
       qtdItem,
       createdBy: user.displayName,

@@ -26,7 +26,7 @@ const Cardapio = () => {
             produtos.map((produto, index) => (
               <div key={index}>
                 <div className={styles.cardProduto}>
-                  <img src={produto.imagemProduto} alt="" />
+                  <img src={produto.imagemDocumento} alt="" />
                   <div className={styles.cardEsq}>
                     <h1 className={styles.tituloProduto}>
                       {produto.nomeProduto}
