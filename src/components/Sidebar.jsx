@@ -1,5 +1,6 @@
 import styles from "./Sidebar.module.css";
 
+// imagens
 import logo from "../assets/imgs/logoMenor.png";
 import perfil from "../assets/imgs/Male User.png";
 import mesa from "../assets/imgs/mesaIcone.png";
@@ -8,6 +9,7 @@ import estoque from "../assets/imgs/New Product.png";
 import renda from "../assets/imgs/Money Bag.png";
 import configuracoes from "../assets/imgs/Settings.png";
 import ajuda from "../assets/imgs/Help.png";
+import funcionarios from "../assets/imgs/funcionarios.png";
 
 // router
 import { NavLink } from "react-router-dom";
@@ -80,6 +82,20 @@ const Sidebar = () => {
               >
                 <img src={estoque} alt="Estoque" />
                 Estoque
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/funcionarios"
+                className={styles.link}
+                style={({ isActive }) => ({
+                  transition: ".2s",
+                  backgroundColor: isActive ? "#b4b4b483" : "",
+                  boxShadow: isActive ? "0px 2px 2px #0000003a" : "",
+                })}
+              >
+                <img src={funcionarios} alt="Estoque" />
+                Funcionários
               </NavLink>
             </li>
             <li>

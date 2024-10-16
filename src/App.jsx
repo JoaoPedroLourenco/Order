@@ -15,12 +15,15 @@ import ErrorPage from "./routes/ErrorPage.jsx";
 import LandingPage from "./routes/Landing Page/LandingPage.jsx";
 import Login from "./routes/Login/Login.jsx";
 import Cadastro from "./routes/Cadastro/Cadastro.jsx";
+import Funcionarios from "./routes/Funcionarios/Funcionarios.jsx";
+import EditCardapio from "./routes/Cardapio/EditCardapio/EditCardapio.jsx";
+import Search from "./routes/Search/Search.jsx";
+
+// hooks
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
-import EditCardapio from "./routes/Cardapio/EditCardapio/EditCardapio.jsx";
-import Search from "./routes/Search/Search.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -88,6 +91,10 @@ function App() {
               <Route
                 path="/configuracoes"
                 element={user ? <Configuracoes /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/funcionarios"
+                element={user ? <Funcionarios /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

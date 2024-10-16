@@ -1,0 +1,99 @@
+.funcionarios{
+    width: 100%;
+   display: flex;
+   text-align: center;
+   align-items: center;
+   flex-direction: column;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+.funcionarios form{
+    width: 300px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.funcionarios form .fotoFuncionario{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.581);
+}
+
+.funcionarios form input{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 0px;
+}
+
+.funcionarios form input[type="file"] {
+    display: none;
+}
+
+.enviarImagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: .5em;
+    text-align: center;
+    padding: 20px 10px;
+    width: 80%;
+    height: 40px;
+    background: rgba(255, 0, 0, 0.141);
+    border: 1px solid red;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.792);
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.fotoFuncionario img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    background: white;
+    object-position: center;
+}
+
+.funcionarios .containerFuncionarios{
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 1em;
+    padding: 10px;
+}
+
+.containerFuncionarios .cardFuncionario{
+    width: 250px;
+    height: 300px;
+    background: white;
+    border: 1px solid red;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.cardFuncionario img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
