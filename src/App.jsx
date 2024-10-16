@@ -20,6 +20,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
 import EditCardapio from "./routes/Cardapio/EditCardapio/EditCardapio.jsx";
+import Search from "./routes/Search/Search.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -55,6 +56,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/search" element={<Search />} />
               <Route
                 path="/perfil"
                 element={user ? <Perfil /> : <Navigate to="/" />}

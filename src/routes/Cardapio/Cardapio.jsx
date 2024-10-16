@@ -1,15 +1,32 @@
 import styles from "./Cardapio.module.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import Sidebar from "../../components/Sidebar";
 import { useAuthValue } from "../../context/AuthContext";
+import { useState } from "react";
 
 const Cardapio = () => {
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const { documents: produtos, loading } = useFetchDocuments("produtos", uid);
+  const { documents: produtos, loading } = useFetchDocuments(
+    "produtos",
+    null,
+    uid
+  );
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (query) {
+      return navigate(`/search/q=${query}`);
+    }
+  };
 
   return (
     <>
@@ -19,6 +36,18 @@ const Cardapio = () => {
           <h1>Cardápio</h1>
         </div>
         <Link to="/cardapio/editCardapio">Editar Cardápio</Link>
+
+        <div className={styles.searchForm}>
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              name="search"
+              placeholder="Procure por produtos"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button>Procurar</button>
+          </form>
+        </div>
 
         <div className={styles.itensContainer}>
           {!loading &&

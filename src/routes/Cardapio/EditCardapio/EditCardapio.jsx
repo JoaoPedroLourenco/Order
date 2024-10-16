@@ -16,7 +16,11 @@ const EditCardapio = () => {
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState("");
 
-  const { documents: produtos, loading } = useFetchDocuments("produtos", uid);
+  const { documents: produtos, loading } = useFetchDocuments(
+    "produtos",
+    null,
+    uid
+  );
   const { inserirDocumentos, response } = useInsertDocuments("produtos", user);
   const { deletarDocumento } = useDeleteDocumentos("produtos");
 

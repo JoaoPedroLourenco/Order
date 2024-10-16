@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, uid = null) => {
+export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -29,7 +29,13 @@ export const useFetchDocuments = (docCollection, uid = null) => {
       try {
         let q;
 
-        if (uid) {
+        if (search) {
+          q = await query(
+            collectionRef,
+            where("nomeProduto", "==", search),
+            orderBy("createdAt", "desc")
+          );
+        } else if (uid) {
           q = await query(
             collectionRef,
             where("uid", "==", uid),
