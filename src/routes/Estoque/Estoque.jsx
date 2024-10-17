@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
@@ -22,8 +22,7 @@ const Estoque = () => {
   const {
     documents: itensEstoque,
     loading,
-    error,
-  } = useFetchDocuments("itensEstoque", uid);
+  } = useFetchDocuments("itensEstoque",null, uid);
 
   const { deletarDocumento } = useDeleteDocumentos("itensEstoque");
 

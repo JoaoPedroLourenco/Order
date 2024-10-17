@@ -16,7 +16,7 @@ const Mesas = () => {
   const [nomeMesa, setNomeMesa] = useState("");
   const [contadorMesa, setContadorMesa] = useState(0);
 
-  const { documents: mesas, loading } = useFetchDocuments("mesas", uid);
+  const { documents: mesas, loading } = useFetchDocuments("mesas", null, uid);
   const { inserirDocumentos, response } = useInsertDocuments("mesas", user);
 
   const { deletarDocumento } = useDeleteDocumentos("mesas");
