@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
+import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 
 const Funcionarios = () => {
   const { user } = useAuthValue();
@@ -22,6 +23,8 @@ const Funcionarios = () => {
     "funcionarios",
     user
   );
+
+  const { deletarDocumento } = useDeleteDocumentos("funcionarios");
 
   const {
     documents: funcionarios,
@@ -107,17 +110,46 @@ const Funcionarios = () => {
         </form>
 
         <div className={styles.containerFuncionarios}>
-          {funcionarios &&
-            funcionarios.map((funcionario) => (
-              <div key={funcionario.id}>
-                <div className={styles.cardFuncionario}>
-                  <img src={funcionario.imagemDocumento} alt="" />
-                  <p>{funcionario.nomeFuncionario}</p>
-                  <p>{funcionario.cargoFuncionario}</p>
-                  <p>{funcionario.salarioFuncionario}</p>
-                </div>
-              </div>
-            ))}
+          <table>
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Salário</th>
+              </tr>
+            </thead>
+            <tbody>
+              {funcionarios &&
+                funcionarios.map((funcionario) => (
+                  <>
+                    <button
+                      onClick={() =>
+                        deletarDocumento(
+                          funcionario.id,
+                          funcionario.imagemDocumento
+                        )
+                      }
+                      className={styles.deletDocument}
+                    >
+                      X
+                    </button>
+                    <tr key={funcionario.id}>
+                      <td>
+                        <img
+                          src={funcionario.imagemDocumento}
+                          alt={funcionario.nomeFuncionario}
+                          className={styles.imagemTabela}
+                        />
+                      </td>
+                      <td>{funcionario.nomeFuncionario}</td>
+                      <td>{funcionario.cargoFuncionario}</td>
+                      <td>R$ {funcionario.salarioFuncionario}</td>
+                    </tr>
+                  </>
+                ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
