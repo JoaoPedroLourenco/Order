@@ -149,3 +149,7 @@ td img{
     border-radius: 100%;
     object-fit: cover;
 }
+
+.salario{
+    color: red;
+}

@@ -33,7 +33,6 @@ nav .logo{
     height: 100%;
     overflow: hidden;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.147);
-    padding: 5px;
 }
 
 aside > nav{
@@ -49,7 +48,7 @@ aside > nav > .links_list{
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 5px;
+    gap: 0px;
 }
 
 aside > nav > ul{
@@ -70,7 +69,6 @@ aside > nav > ul > li{
     gap: .5em;
     padding: 10px;
     border: none;
-    border-radius: 10px;
     background: none;
     transition: .1s;
     font-weight: 500;
@@ -110,8 +108,8 @@ hr{
     border: none;
     border-radius: 10px;
     opacity: .2;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .links_list li .perfilLink img{
@@ -140,4 +138,8 @@ hr{
 .nomeEmail .nomeUsuario{
     color: black;
     font-size: 1em;
+}
+
+.emailUsuario{
+    font-size: .7em;
 }

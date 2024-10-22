@@ -5,6 +5,8 @@ import styles from "../Funcionarios/Funcionarios.module.css";
 
 import { useState } from "react";
 
+import CurrencyInput from "react-currency-input-field";
+
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
@@ -88,7 +90,6 @@ const Funcionarios = () => {
             placeholder="Nome do funcionário"
             onChange={(e) => setNomeFuncionario(e.target.value)}
           />
-
           <input
             type="text"
             name="cargoFuncionario"
@@ -96,16 +97,16 @@ const Funcionarios = () => {
             placeholder="Cargo do funcionário"
             onChange={(e) => setCargoFuncionario(e.target.value)}
           />
-
-          <input
-            type="number"
-            name="salarioFuncionario"
+          <CurrencyInput
             value={salarioFuncionario}
-            placeholder="Salário do funcionário"
-            onChange={(e) => setSalarioFuncionario(e.target.value)}
-            step="any"
+            name="input-name"
+            prefix="R$"
+            placeholder="Salário do Funcionário"
+            decimalsLimit={2}
+            decimalSeparator=","
+            groupSeparator="."
+            onValueChange={(salario) => setSalarioFuncionario(salario)}
           />
-
           <button>Cadastrar funcionário</button>
         </form>
 
@@ -144,7 +145,12 @@ const Funcionarios = () => {
                       </td>
                       <td>{funcionario.nomeFuncionario}</td>
                       <td>{funcionario.cargoFuncionario}</td>
-                      <td>R$ {funcionario.salarioFuncionario}</td>
+                      <td>
+                        R${" "}
+                        <span className={styles.salario}>
+                          {funcionario.salarioFuncionario}
+                        </span>
+                      </td>
                     </tr>
                   </>
                 ))}

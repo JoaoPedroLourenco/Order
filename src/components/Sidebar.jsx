@@ -37,7 +37,7 @@ const Sidebar = () => {
                 <img src={perfil} alt="Perfil" />
                 <div className={styles.nomeEmail}>
                   <p className={styles.nomeUsuario}>{user.displayName}</p>
-                  <p>{user.email}</p>
+                  <p className={styles.emailUsuario}>{user.email}</p>
                 </div>
               </NavLink>
             </li>
