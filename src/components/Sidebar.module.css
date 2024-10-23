@@ -133,6 +133,10 @@ hr{
     gap: .2em;
     flex-direction: column;
     padding: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+
+
 }
 
 .nomeEmail .nomeUsuario{
@@ -142,4 +146,5 @@ hr{
 
 .emailUsuario{
     font-size: .7em;
+    padding-right: 5px;
 }

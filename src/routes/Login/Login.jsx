@@ -4,8 +4,7 @@ import styles from "./Login.module.css";
 
 import mockUpLoginImage from "../../assets/imgs/MacBook Pro and iPhone 15 Pro Mockup.png";
 import logoBg from "../../assets/imgs/LogoBackground.png";
-import olhoNormal from "../../assets/imgs/olhoNormal.png";
-import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
+import google from "../../assets/imgs/Google.png";
 
 import Header from "../../components/Header";
 import { useAuthentication } from "../../hooks/useAuthentication";
@@ -21,8 +20,6 @@ const Login = () => {
   const { user } = useAuthValue();
 
   const navigate = useNavigate();
-
-  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const {
     login,
@@ -73,22 +70,17 @@ const Login = () => {
             <label>
               Senha:
               <input
-                type={mostrarSenha ? "text" : "password"}
+                type="password"
                 name="senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
               />
-              <button
-                onClick={() => setMostrarSenha(!mostrarSenha)}
-                className="btn_mostrar_senha"
-              >
-                {mostrarSenha ? (
-                  <img src={olhoRiscado} />
-                ) : (
-                  <img src={olhoNormal} />
-                )}
-              </button>
             </label>
+
+            <button onClick={entrarComGoogle} className="btnGoogle">
+              <img src={google} alt="google" />
+              Entrar com google
+            </button>
 
             {!loading && <button className="form_btn">Confirmar</button>}
             {loading && (
@@ -96,8 +88,6 @@ const Login = () => {
                 Aguarde...
               </button>
             )}
-
-            <button onClick={entrarComGoogle}>Entrar com google</button>
 
             {erro && <p className="erro">{erro}</p>}
           </form>

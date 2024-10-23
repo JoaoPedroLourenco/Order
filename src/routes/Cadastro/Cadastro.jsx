@@ -4,8 +4,7 @@ import Header from "../../components/Header";
 
 import mockUpCadastroImage from "../../assets/imgs/mockUpCelular.png";
 import logoBg from "../../assets/imgs/LogoBackground.png";
-import olhoNormal from "../../assets/imgs/olhoNormal.png";
-import olhoRiscado from "../../assets/imgs/olhoRiscado.png";
+import google from "../../assets/imgs/Google.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -93,16 +92,6 @@ const Cadastro = () => {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                 />
-                {/* <button
-                  onClick={() => setMostrarSenha(!mostrarSenha)}
-                  className="btn_mostrar_senha"
-                >
-                  {mostrarSenha ? (
-                    <img src={olhoRiscado} />
-                  ) : (
-                    <img src={olhoNormal} />
-                  )}
-                </button> */}
               </label>
               <label>
                 Confirmar Senha:
@@ -112,19 +101,11 @@ const Cadastro = () => {
                   value={confirmarSenha}
                   onChange={(e) => setConfirmarSenha(e.target.value)}
                 />
-                {/* <button
-                  onClick={() =>
-                    setMostrarConfirmarSenha(!mostrarConfirmarSenha)
-                  }
-                  className="btn_mostrar_senha"
-                >
-                  {mostrarConfirmarSenha ? (
-                    <img src={olhoRiscado} />
-                  ) : (
-                    <img src={olhoNormal} />
-                  )}
-                </button> */}
               </label>
+              <button onClick={entrarComGoogle} className="btnGoogle">
+                <img src={google} alt="google" />
+                Entrar com google
+              </button>
 
               {!loading && <button className="form_btn">Confirmar</button>}
               {loading && (
@@ -138,8 +119,6 @@ const Cadastro = () => {
               {erro && <p className="erro">{erro}</p>}
             </form>
           </div>
-
-          <button onClick={entrarComGoogle}>Entrar com google</button>
 
           <div
             className={styles.lado_dir}
