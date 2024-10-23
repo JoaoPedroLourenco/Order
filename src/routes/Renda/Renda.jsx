@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 
 import styles from "../Renda/Renda.module.css";
@@ -7,6 +7,12 @@ import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
 
 const Renda = () => {
+  // const [diminuirContainer, setDiminuirContainer] = useState(false);
+
+  // const hideContainer = () => {
+  //   setDiminuirContainer(!diminuirContainer);
+  // };
+
   const { user } = useAuthValue();
   const uid = user.uid;
 
@@ -38,8 +44,10 @@ const Renda = () => {
         </div>
 
         {loading && <p>Carregando...</p>}
-
-        <div className={styles.containerFuncionarios}>
+        <div
+          className={styles.containerFuncionarios}
+          // style={{ display: diminuirContainer ? "none" : "block" }}
+        >
           <h2>Funcionários</h2>
           <table>
             <thead>

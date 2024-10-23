@@ -35,7 +35,9 @@ const Cardapio = () => {
         <div className="title">
           <h1>Cardápio</h1>
         </div>
-        <Link to="/cardapio/editCardapio">Editar Cardápio</Link>
+        <Link to="/cardapio/editCardapio" className="btnLinkPage">
+          Editar Cardápio
+        </Link>
 
         <div className={styles.searchForm}>
           <form onSubmit={handleSearch}>

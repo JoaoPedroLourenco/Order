@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
+import EditFuncionarios from "./routes/Funcionarios/EditFuncionarios/EditFuncionarios.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -95,6 +96,10 @@ function App() {
               <Route
                 path="/funcionarios"
                 element={user ? <Funcionarios /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/funcionarios/editFuncionarios"
+                element={user ? <EditFuncionarios /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

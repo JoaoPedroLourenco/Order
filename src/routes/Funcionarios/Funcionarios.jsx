@@ -11,20 +11,11 @@ import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
+import { Link } from "react-router-dom";
 
 const Funcionarios = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
-
-  const [imagemDocumento, setImagemDocumento] = useState(null);
-  const [nomeFuncionario, setNomeFuncionario] = useState("");
-  const [salarioFuncionario, setSalarioFuncionario] = useState("");
-  const [cargoFuncionario, setCargoFuncionario] = useState("");
-
-  const { inserirDocumentos, response } = useInsertDocuments(
-    "funcionarios",
-    user
-  );
 
   const { deletarDocumento } = useDeleteDocumentos("funcionarios");
 
@@ -34,31 +25,6 @@ const Funcionarios = () => {
     error,
   } = useFetchDocuments("funcionarios", null, uid);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    await inserirDocumentos(
-      {
-        nomeFuncionario,
-        salarioFuncionario,
-        cargoFuncionario,
-        uid: user.uid,
-        createdBy: user.displayName,
-      },
-      imagemDocumento
-    );
-
-    setImagemDocumento(null);
-    setNomeFuncionario("");
-    setCargoFuncionario("");
-    setSalarioFuncionario("");
-  };
-
-  const previewImagem = (e) => {
-    const arquivoSelecionado = e.target.files[0];
-    setImagemDocumento(arquivoSelecionado);
-  };
-
   return (
     <>
       <Sidebar />
@@ -66,50 +32,9 @@ const Funcionarios = () => {
         <div className="title">
           <h1>Funcionários</h1>
         </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className={styles.fotoFuncionario}>
-            {imagemDocumento ? (
-              <img src={URL.createObjectURL(imagemDocumento)} alt="" />
-            ) : (
-              <p>Foto do funcionário</p>
-            )}
-          </div>
-          <label className={styles.enviarImagem}>
-            Insira a foto do funcionário
-            <input
-              type="file"
-              name="fotoFuncionario"
-              onChange={previewImagem}
-            />
-          </label>
-          <input
-            type="text"
-            name="nomeFuncionario"
-            value={nomeFuncionario}
-            placeholder="Nome do funcionário"
-            onChange={(e) => setNomeFuncionario(e.target.value)}
-          />
-          <input
-            type="text"
-            name="cargoFuncionario"
-            value={cargoFuncionario}
-            placeholder="Cargo do funcionário"
-            onChange={(e) => setCargoFuncionario(e.target.value)}
-          />
-          <CurrencyInput
-            value={salarioFuncionario}
-            name="input-name"
-            prefix="R$"
-            placeholder="Salário do Funcionário"
-            decimalsLimit={2}
-            decimalSeparator=","
-            groupSeparator="."
-            onValueChange={(salario) => setSalarioFuncionario(salario)}
-          />
-          <button>Cadastrar funcionário</button>
-        </form>
-
+        <Link to="/funcionarios/editFuncionarios" className="btnLinkPage">
+          Editar
+        </Link>
         <div className={styles.containerFuncionarios}>
           <table>
             <thead>
@@ -124,17 +49,6 @@ const Funcionarios = () => {
               {funcionarios &&
                 funcionarios.map((funcionario) => (
                   <>
-                    <button
-                      onClick={() =>
-                        deletarDocumento(
-                          funcionario.id,
-                          funcionario.imagemDocumento
-                        )
-                      }
-                      className={styles.deletDocument}
-                    >
-                      X
-                    </button>
                     <tr key={funcionario.id}>
                       <td>
                         <img
