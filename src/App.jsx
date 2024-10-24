@@ -25,6 +25,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
 import EditFuncionarios from "./routes/Funcionarios/EditFuncionarios/EditFuncionarios.jsx";
+import FaleConosco from "./routes/FaleConosco/FaleConosco.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -60,6 +61,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/faleConosco" element={<FaleConosco />} />
               <Route path="/search" element={<Search />} />
               <Route
                 path="/perfil"
