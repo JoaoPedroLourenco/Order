@@ -26,6 +26,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import { useAuthentication } from "./hooks/useAuthentication.jsx";
 import EditFuncionarios from "./routes/Funcionarios/EditFuncionarios/EditFuncionarios.jsx";
 import FaleConosco from "./routes/FaleConosco/FaleConosco.jsx";
+import Mesa from "./routes/Mesas/Mesa Individual/Mesa.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -70,6 +71,10 @@ function App() {
               <Route
                 path="/mesas"
                 element={user ? <Mesas /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/mesas/:id"
+                element={user ? <Mesa /> : <Navigate to="/" />}
               />
               <Route
                 path="/estoque"

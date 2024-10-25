@@ -8,6 +8,8 @@ import Sidebar from "../../../components/Sidebar";
 import { useDeleteDocumentos } from "../../../hooks/useDeleteDocumentos";
 import { useAuthValue } from "../../../context/AuthContext";
 
+import CurrencyInput from "react-currency-input-field";
+
 const EditCardapio = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
@@ -96,13 +98,15 @@ const EditCardapio = () => {
               required
               onChange={(e) => setDescProduto(e.target.value)}
             />
-            <input
-              type="number"
-              name="precoProduto"
+            <CurrencyInput
               value={precoProduto}
-              placeholder="Insira o preço do produto"
-              required
-              onChange={(e) => setPrecoProduto(e.target.value)}
+              name="precoProduto"
+              prefix="R$"
+              placeholder="R$"
+              decimalsLimit={2}
+              decimalSeparator=","
+              groupSeparator="."
+              onValueChange={(preco) => setPrecoProduto(preco)}
             />
             <button className="form_btn" disabled={response.loading}>
               {response.loading ? "Aguarde..." : "Confirmar"}

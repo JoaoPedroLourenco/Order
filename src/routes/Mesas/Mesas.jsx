@@ -9,6 +9,8 @@ import Sidebar from "../../components/Sidebar";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 import { useAuthValue } from "../../context/AuthContext";
 
+import { Link } from "react-router-dom";
+
 const Mesas = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
@@ -55,16 +57,18 @@ const Mesas = () => {
             mesas &&
             mesas.map((mesa, index) => (
               <div key={index}>
-                <div className={styles.mesaCard}>
-                  <button
-                    onClick={() => deletarDocumento(mesa.id)}
-                    className={styles.deleteMesa}
-                  >
-                    X
-                  </button>
-                  <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
-                  <img src={mesaCard} alt="" />
-                </div>
+                <Link to={`/mesas/${mesa.id}`}>
+                  <div className={styles.mesaCard}>
+                    <button
+                      onClick={() => deletarDocumento(mesa.id)}
+                      className={styles.deleteMesa}
+                    >
+                      X
+                    </button>
+                    <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
+                    <img src={mesaCard} alt="" />
+                  </div>
+                </Link>
               </div>
             ))}
           {loading && (
