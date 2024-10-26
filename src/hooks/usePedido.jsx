@@ -6,7 +6,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { app } from "../firebase/Config"; // Importe o firebaseApp do seu arquivo de configuração
+import { app } from "../firebase/Config";
 
 const firestore = getFirestore(app);
 
@@ -21,7 +21,6 @@ function useFetchMenuItems(mesaId) {
       setError(null);
 
       try {
-        // Cria uma referência à coleção "produtos"
         const produtosRef = collection(firestore, "produtos");
         // Cria uma query para buscar os produtos com base no "mesaId"
         const q = query(produtosRef, where("mesaId", "==", mesaId));

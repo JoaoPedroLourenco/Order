@@ -116,7 +116,52 @@
     color: #EF233C;
 }
 
-.pedido{
+.mesa .pedido{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    min-height: 300px;
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    background: white;
+    position: fixed;
+    bottom: 2%;
+    left: 15%;
 }
+
+.pedido .pedidoLista{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.pedidoLista .cardPedido{
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.21);
+}
+
+.pedido .pedidoTotal{
+    width: 90%;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    left: 0%;
+    bottom: 0%;
+}
+
+.pedido .produtoPreco{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.produtoPreco p{
+    font-size: 1.3em;
+    color: red;
+}
+

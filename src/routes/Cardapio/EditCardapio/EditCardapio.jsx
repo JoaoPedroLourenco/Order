@@ -29,11 +29,16 @@ const EditCardapio = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Converte precoProduto para um número, removendo caracteres não numéricos
+    const precoNumerico = parseFloat(
+      precoProduto.replace(/[^0-9,-]+/g, "").replace(",", ".")
+    );
+
     await inserirDocumentos(
       {
         nomeProduto,
         descProduto,
-        precoProduto,
+        precoProduto: precoNumerico, // Use o valor numérico aqui
         uid: user.uid,
         createdBy: user.displayName,
       },
@@ -146,7 +151,7 @@ const EditCardapio = () => {
                     <p className={styles.preco}>
                       <span>R$</span>
                       <span className={styles.precoProduto}>
-                        {produto.precoProduto}
+                        {parseFloat(produto.precoProduto).toFixed(2)}
                       </span>
                     </p>
                   </div>
