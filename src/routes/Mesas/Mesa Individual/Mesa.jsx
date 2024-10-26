@@ -10,6 +10,8 @@ import useFetchMenuItems from "../../../hooks/usePedido";
 
 import { useAuthValue } from "../../../context/AuthContext";
 
+import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
+
 import { useState, useEffect } from "react";
 
 const Mesa = () => {
@@ -71,6 +73,30 @@ const Mesa = () => {
     );
   }
 
+  // const { inserirDocumentos, response: insertResponse } = useInsertDocuments(
+  //   "pedidos",
+  //   user
+  // );
+
+  // const salvarPedido = async (e) => {
+  //   e.preventDefault();
+
+  //   const dadosPedido = {
+  //     mesaId: id,
+  //     pedidosLista,
+  //     valorTotal,
+  //     uid,
+  //   };
+
+  //   try {
+  //     await inserirDocumentos(dadosPedido);
+  //     setPedidosLista([]); // Limpar a lista de pedidos após salvar
+  //     setValorTotal(0);
+  //   } catch (error) {
+  //     console.error("Erro ao salvar pedido:", error);
+  //   }
+  // };
+
   return (
     <>
       <Sidebar />
@@ -88,7 +114,6 @@ const Mesa = () => {
             produtos &&
             produtos.map((produto, index) => (
               <div key={index}>
-                {console.log("Produto:", produto)}
                 <div className={styles.cardProduto}>
                   <img src={produto.imagemDocumento} alt="" />
                   <div className={styles.cardEsq}>
@@ -132,6 +157,9 @@ const Mesa = () => {
 
             <div className={styles.pedidoTotal}>
               <h3>Valor Total: R${valorTotal.toFixed(2)}</h3>
+              {/* <form onSubmit={salvarPedido}>
+                <button>fechar pedido</button>
+              </form> */}
             </div>
           </div>
         </div>

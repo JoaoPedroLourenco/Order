@@ -131,6 +131,13 @@
     left: 15%;
 }
 
+.pedido .btnPedido{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: red;
+}
+
 .pedido .pedidoLista{
     width: 100%;
     display: flex;
