@@ -1,0 +1,63 @@
+.faleConosco{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.faleConosco .ladoEsq{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.ladoEsq h1{
+    font-size: 4em;
+    font-weight: 600;
+}
+
+.ladoEsq form{
+    display: flex;
+    flex-direction: column;
+}
+
+.ladoEsq form select{
+    width: 100%;
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background: white;
+}
+
+.ladoEsq form select option{
+    height: 30px;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.ladoDir{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    gap: 3em;
+}
+
+.ladoDir h2{
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.ladoDir h2 span{
+    color: red;
+}

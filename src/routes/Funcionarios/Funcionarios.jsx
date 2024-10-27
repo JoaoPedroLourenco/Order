@@ -48,9 +48,9 @@ const Funcionarios = () => {
             <tbody>
               {funcionarios &&
                 funcionarios.map((funcionario) => (
-                  <>
-                    <tr key={funcionario.id}>
-                      <td>
+                  <div key={funcionario.id}>
+                    <tr>
+                      <td className={styles.fotoFuncionario}>
                         <img
                           src={funcionario.imagemDocumento}
                           alt={funcionario.nomeFuncionario}
@@ -66,7 +66,7 @@ const Funcionarios = () => {
                         </span>
                       </td>
                     </tr>
-                  </>
+                  </div>
                 ))}
             </tbody>
           </table>

@@ -97,6 +97,11 @@ const Mesa = () => {
   //   }
   // };
 
+  const limparPedido = () => {
+    setPedidosLista([]);
+    setValorTotal(0);
+  };
+
   return (
     <>
       <Sidebar />
@@ -157,6 +162,7 @@ const Mesa = () => {
 
             <div className={styles.pedidoTotal}>
               <h3>Valor Total: R${valorTotal.toFixed(2)}</h3>
+              <button onClick={limparPedido}>Limpar</button>
               {/* <form onSubmit={salvarPedido}>
                 <button>fechar pedido</button>
               </form> */}

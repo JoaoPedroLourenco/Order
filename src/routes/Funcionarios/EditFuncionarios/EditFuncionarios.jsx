@@ -124,7 +124,7 @@ const EditFuncionarios = () => {
             <tbody>
               {funcionarios &&
                 funcionarios.map((funcionario) => (
-                  <>
+                  <div key={funcionario.id}>
                     <button
                       onClick={() =>
                         deletarDocumento(
@@ -153,7 +153,7 @@ const EditFuncionarios = () => {
                         </span>
                       </td>
                     </tr>
-                  </>
+                  </div>
                 ))}
             </tbody>
           </table>
