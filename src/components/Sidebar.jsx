@@ -10,6 +10,7 @@ import renda from "../assets/imgs/Money Bag.png";
 import configuracoes from "../assets/imgs/Settings.png";
 import ajuda from "../assets/imgs/Help.png";
 import funcionarios from "../assets/imgs/funcionarios.png";
+import pedidos from "../assets/imgs/pedidos.png";
 
 // router
 import { NavLink } from "react-router-dom";
@@ -82,6 +83,20 @@ const Sidebar = () => {
               >
                 <img src={estoque} alt="Estoque" />
                 Estoque
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/pedidos"
+                className={styles.link}
+                style={({ isActive }) => ({
+                  transition: ".2s",
+                  backgroundColor: isActive ? "#b4b4b483" : "",
+                  boxShadow: isActive ? "0px 2px 2px #0000003a" : "",
+                })}
+              >
+                <img src={pedidos} alt="Estoque" />
+                Pedidos
               </NavLink>
             </li>
             <li>

@@ -26,8 +26,19 @@ const Mesa = () => {
     uid
   );
 
+  const { inserirDocumentos } = useInsertDocuments("pedidos", user);
+
   const [pedidosLista, setPedidosLista] = useState([]);
   const [valorTotal, setValorTotal] = useState(0);
+
+  const salvarPedido = async (e) => {
+    e.preventDefault();
+
+    await inserirDocumentos({
+      pedidosLista,
+      valorTotal,
+    });
+  };
 
   const addItemNaLista = (item) => {
     const preco = parseFloat(item.precoProduto);
@@ -112,6 +123,7 @@ const Mesa = () => {
         <div className="title">
           <h1>Mesa {id}</h1>
         </div>
+        <button onClick={salvarPedido}>Salvar Pedido</button>
 
         <div className={styles.itensContainer}>
           {loading && <p>Carregando...</p>}

@@ -17,6 +17,10 @@ const EditCardapio = () => {
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState("");
+  const [tipoProduto, setTipoProduto] = useState("pratosPrincipais");
+  const [pratosPrincipaisArea, setPratosPrincipaisArea] = useState([]);
+  const [bebidasArea, setBebidasArea] = useState([]);
+  const [outrosArea, setOutrosArea] = useState([]);
 
   const { documents: produtos, loading } = useFetchDocuments(
     "produtos",
@@ -39,6 +43,7 @@ const EditCardapio = () => {
         nomeProduto,
         descProduto,
         precoProduto: precoNumerico, // Use o valor numérico aqui
+        tipoProduto,
         uid: user.uid,
         createdBy: user.displayName,
       },
@@ -49,6 +54,7 @@ const EditCardapio = () => {
     setNomeProduto("");
     setDescProduto("");
     setPrecoProduto("");
+    setTipoProduto("");
     setImagemDocumento(null);
   };
 
@@ -113,6 +119,15 @@ const EditCardapio = () => {
               groupSeparator="."
               onValueChange={(preco) => setPrecoProduto(preco)}
             />
+            <select
+              name="tipoProduto"
+              value={tipoProduto}
+              onChange={(e) => setTipoProduto(e.target.value)}
+            >
+              <option value="pratosPrincipais">Pratos Principais</option>
+              <option value="bebidas">Bebidas</option>
+              <option value="Outros">Outros</option>
+            </select>
             <button className="form_btn" disabled={response.loading}>
               {response.loading ? "Aguarde..." : "Confirmar"}
             </button>
@@ -154,6 +169,7 @@ const EditCardapio = () => {
                         {parseFloat(produto.precoProduto).toFixed(2)}
                       </span>
                     </p>
+                    <p>{produto.tipoProduto}</p>
                   </div>
                 </div>
               </div>

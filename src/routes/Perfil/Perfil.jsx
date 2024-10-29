@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
 import styles from "../Perfil/Perfil.module.css";
@@ -7,8 +6,6 @@ import { useAuthValue } from "../../context/AuthContext";
 import Sidebar from "../../components/Sidebar";
 
 const Perfil = () => {
-  // const { user } = useAuthValue();
-
   const [popUp, setPopUp] = useState(false);
 
   const abrirPopUp = () => {

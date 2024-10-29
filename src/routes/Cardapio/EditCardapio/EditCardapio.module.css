@@ -230,8 +230,7 @@ textarea:focus{
     width: 80%;
     height: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    
 }
 
 .containerProdutos .pratosPrincipaisContainer, .outrosContainer, .bebidasContainer{
@@ -259,4 +258,17 @@ textarea:focus{
 
 .active:hover{
     background: #b8b8b898;
+}
+
+
+.pratosPrincipais{
+    width: 300px;
+    height: 500px;
+    background: red;
+}
+
+.bebidas{
+    width: 300px;
+    height: 500px;
+    background: blue;
 }

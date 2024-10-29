@@ -27,6 +27,7 @@ import { useAuthentication } from "./hooks/useAuthentication.jsx";
 import EditFuncionarios from "./routes/Funcionarios/EditFuncionarios/EditFuncionarios.jsx";
 import FaleConosco from "./routes/FaleConosco/FaleConosco.jsx";
 import Mesa from "./routes/Mesas/Mesa Individual/Mesa.jsx";
+import Pedidos from "./routes/Pedidos/Pedidos.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -107,6 +108,10 @@ function App() {
               <Route
                 path="/funcionarios/editFuncionarios"
                 element={user ? <EditFuncionarios /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/pedidos"
+                element={user ? <Pedidos /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

@@ -81,7 +81,7 @@ const Renda = () => {
                 <td></td>
                 <td></td>
                 <td className={styles.totalSalario}>
-                  Total: <span>R${somaSalarios}</span>
+                  Total: <span>R${parseFloat(somaSalarios).toFixed(2)}</span>
                 </td>
               </tr>
             </tbody>
