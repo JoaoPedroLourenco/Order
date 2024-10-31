@@ -52,6 +52,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
               ...doc.data(),
             }))
           );
+          console.log(documents);
         });
       } catch (error) {
         console.log(error);
@@ -62,11 +63,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     }
 
     loadData();
+    setCancelled(false);
   }, [docCollection, uid, cancelled]);
 
   useEffect(() => {
     return () => setCancelled(true);
-  }, []);
+  }, [cancelled]);
 
   return { documents, loading, error };
 };

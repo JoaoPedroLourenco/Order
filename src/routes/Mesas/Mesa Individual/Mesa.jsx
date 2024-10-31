@@ -37,6 +37,8 @@ const Mesa = () => {
     await inserirDocumentos({
       pedidosLista,
       valorTotal,
+      createdBy: user.displayName,
+      uid: user.uid,
     });
   };
 

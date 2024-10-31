@@ -25,12 +25,31 @@ const Pedidos = () => {
         </div>
 
         <div className={styles.containerPedidos}>
-          {pedidos &&
+          {loading && <p>Carregando...</p>}
+          {pedidos && pedidos.length > 0 ? (
             pedidos.map((pedido) => (
               <div key={pedido.id}>
-                {parseFloat(pedido.valorTotal).toFixed(2)}
+                <h3>
+                  Valor Total: R${parseFloat(pedido.valorTotal).toFixed(2)}
+                </h3>
+
+                {/* Verifica se pedidosLista existe e possui itens */}
+                {pedido.pedidosLista && pedido.pedidosLista.length > 0 ? (
+                  pedido.pedidosLista.map((item) => (
+                    <div key={item.id}>
+                      <p>Produto: {item.nomeProduto}</p>
+                      <p>Preço: R${item.precoProduto}</p>
+                      <p>Quantidade: {item.quantidade}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>Sem itens na lista de pedidos.</p>
+                )}
               </div>
-            ))}
+            ))
+          ) : (
+            <p>Nenhum pedido encontrado.</p>
+          )}
         </div>
       </div>
     </>
