@@ -6,3 +6,51 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.pedidos .containerPedidos{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  gap: 3em;
+  flex-wrap: wrap;
+}
+
+.cardPedido{
+  width: 300px;
+  min-height: 400px;
+  border: 1px solid red;
+  border-bottom: 0px;
+  background: white;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.cardPedido .pedidoLista{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.358);
+}
+
+.pedidoLista .nomeQtd{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nomeQtd i{
+  font-weight: 500;
+  color: red;
+  font-size: 1.1em;
+}
+
+.valorTotal{
+  background: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  border-radius: 0px 0px 10px 10px;
+}
