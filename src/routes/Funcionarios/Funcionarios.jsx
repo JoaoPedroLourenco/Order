@@ -35,7 +35,10 @@ const Funcionarios = () => {
         <Link to="/funcionarios/editFuncionarios" className="btnLinkPage">
           Editar
         </Link>
-        <div className={styles.containerFuncionarios}>
+        <div
+          className={styles.containerFuncionarios}
+          // style={{ display: diminuirContainer ? "none" : "block" }}
+        >
           <table>
             <thead>
               <tr>
@@ -48,9 +51,9 @@ const Funcionarios = () => {
             <tbody>
               {funcionarios &&
                 funcionarios.map((funcionario) => (
-                  <div key={funcionario.id}>
-                    <tr>
-                      <td className={styles.fotoFuncionario}>
+                  <>
+                    <tr key={funcionario.id}>
+                      <td>
                         <img
                           src={funcionario.imagemDocumento}
                           alt={funcionario.nomeFuncionario}
@@ -59,15 +62,11 @@ const Funcionarios = () => {
                       </td>
                       <td>{funcionario.nomeFuncionario}</td>
                       <td>{funcionario.cargoFuncionario}</td>
-                      <td>
-                        R${" "}
-                        <span className={styles.salario}>
-                          {funcionario.salarioFuncionario}
-                        </span>
-                      </td>
+                      <td>R$ {funcionario.salarioFuncionario}</td>
                     </tr>
-                  </div>
+                  </>
                 ))}
+             
             </tbody>
           </table>
         </div>

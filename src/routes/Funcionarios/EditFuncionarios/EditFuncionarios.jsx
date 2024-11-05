@@ -111,7 +111,10 @@ const EditFuncionarios = () => {
           <button>Cadastrar funcionário</button>
         </form>
 
-        <div className={styles.containerFuncionarios}>
+        <div
+          className={styles.containerFuncionarios}
+          // style={{ display: diminuirContainer ? "none" : "block" }}
+        >
           <table>
             <thead>
               <tr>
@@ -124,19 +127,13 @@ const EditFuncionarios = () => {
             <tbody>
               {funcionarios &&
                 funcionarios.map((funcionario) => (
-                  <div key={funcionario.id}>
-                    <button
-                      onClick={() =>
-                        deletarDocumento(
-                          funcionario.id,
-                          funcionario.imagemDocumento
-                        )
-                      }
-                      className={styles.deletDocument}
-                    >
-                      X
-                    </button>
+                  <>
+                  <button onClick={() => deletarDocumento(funcionario.id,
+                          funcionario.imagemDocumento)} >
+                        X
+                      </button>
                     <tr key={funcionario.id}>
+                      
                       <td>
                         <img
                           src={funcionario.imagemDocumento}
@@ -146,14 +143,9 @@ const EditFuncionarios = () => {
                       </td>
                       <td>{funcionario.nomeFuncionario}</td>
                       <td>{funcionario.cargoFuncionario}</td>
-                      <td>
-                        R${" "}
-                        <span className={styles.salario}>
-                          {funcionario.salarioFuncionario}
-                        </span>
-                      </td>
+                      <td>R$ {funcionario.salarioFuncionario}</td>
                     </tr>
-                  </div>
+                  </>
                 ))}
             </tbody>
           </table>
