@@ -39,7 +39,10 @@ const Pedidos = () => {
                         </div>
 
                         <p>
-                          Subtotal: R${parseFloat(item.precoProduto).toFixed(2)}
+                          Subtotal: R$
+                          {parseFloat(
+                            item.precoProduto * item.quantidade
+                          ).toFixed(2)}
                         </p>
                       </div>
                     ))
@@ -48,9 +51,7 @@ const Pedidos = () => {
                   )}
                 </div>
                 <div className={styles.valorTotal}>
-                  <h3>
-                    Valor Total: R${parseFloat(pedido.valorTotal).toFixed(2)}
-                  </h3>
+                  <h3>Total: R${parseFloat(pedido.valorTotal).toFixed(2)}</h3>
                 </div>
               </div>
             ))

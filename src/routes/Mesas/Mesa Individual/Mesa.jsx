@@ -122,9 +122,7 @@ const Mesa = () => {
         <Link to="/mesas" className={styles.voltar}>
           <img src={seta} alt="" />
         </Link>
-        <div className="title">
-          <h1>Mesa {id}</h1>
-        </div>
+        <div className="title"></div>
         <button onClick={salvarPedido}>Salvar Pedido</button>
 
         <div className={styles.itensContainer}>
