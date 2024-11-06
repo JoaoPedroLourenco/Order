@@ -6,6 +6,8 @@ import styles from "../Renda/Renda.module.css";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
 
+import func from "../../assets/imgs/funcionarios.png";
+
 const Renda = () => {
   // const [diminuirContainer, setDiminuirContainer] = useState(false);
 
@@ -45,47 +47,20 @@ const Renda = () => {
 
         {loading && <p>Carregando...</p>}
         <div
-          className={styles.containerFuncionarios}
+          className={styles.cardTotalSalario}
           // style={{ display: diminuirContainer ? "none" : "block" }}
         >
-          <h2>Funcionários</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Foto</th>
-                <th>Nome</th>
-                <th>Cargo</th>
-                <th>Salário</th>
-              </tr>
-            </thead>
-            <tbody>
-              {funcionarios &&
-                funcionarios.map((funcionario) => (
-                  <>
-                    <tr key={funcionario.id}>
-                      <td>
-                        <img
-                          src={funcionario.imagemDocumento}
-                          alt={funcionario.nomeFuncionario}
-                          className={styles.imagemTabela}
-                        />
-                      </td>
-                      <td>{funcionario.nomeFuncionario}</td>
-                      <td>{funcionario.cargoFuncionario}</td>
-                      <td>R$ {funcionario.salarioFuncionario}</td>
-                    </tr>
-                  </>
-                ))}
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td className={styles.totalSalario}>
-                  Total: <span>R${parseFloat(somaSalarios).toFixed(2)}</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={styles.titleCard}>
+            <img src={func} alt="func" />
+            <p>Funcionários</p>
+          </div>
+          <div className={styles.totalFuncionarios}>
+            <p>Total:</p>
+            <span>R$ {parseFloat(somaSalarios).toFixed(2)}</span>
+            <div className={styles.qtdFuncionarios}>
+              <p>Funcionários: {funcionarios && funcionarios.length}</p>
+            </div>
+          </div>
         </div>
       </div>
     </>
