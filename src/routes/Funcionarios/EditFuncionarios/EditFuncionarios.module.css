@@ -102,15 +102,14 @@
 }
 
 .editFuncionarios table{
-    width: 80%;
+  width: 80%;
     margin: 0 auto;
-    border: 1px solid black;
     border-radius: 20px;
     overflow: visible;
 }
 
-tbody{
-    width: 100%;
+table tbody{
+    width: 500px;
     height: 100%;
     position: relative;
 }
@@ -132,23 +131,26 @@ td{
     margin-bottom: 200px;
     padding: 20px;
     font-size: 1.2em;
-    border-bottom: 1px solid black;
+    border: none;
 }
 
 table thead{
     height: 50px;
     border-radius: 20px;
-   
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.304);
+    
 }
 
 thead th{
     color: red;
-    border-bottom: 1px solid black;
+    border: none;
+    border-radius: 10px;
 }
 
 td img{
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
     object-fit: cover;
 }

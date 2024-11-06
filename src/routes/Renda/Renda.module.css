@@ -8,16 +8,23 @@
     padding: 0em 3em;
 }
 
-.cardTotalSalario{
-  width: 300px;
+.renda .containerCardsRenda{
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.containerCardsRenda .cardTotalSalario{
+  width: 800px;
   height: 200px;
   background: rgba(255, 255, 255, 0.775);
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.169);
-  padding: 15px 10px;
+  padding: 20px 10px;
 }
 
-.cardTotalSalario .titleCard{
+.titleCard{
   width: 100%;
   height: 10%;
   display: flex;
@@ -28,8 +35,8 @@
 }
 
 .titleCard img{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   padding: 5px;
   background: rgba(255, 0, 0, 0.16);
   border-radius: 50%;
@@ -57,3 +64,29 @@
   font-size: 2em;
 }
 
+
+.containerCardsRenda .cardTotalPedidos{
+  width: 800px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.775);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.169);
+  padding: 20px 10px;
+}
+
+.totalPedidos p{
+  color: #0000005b;
+  font-size: 1.2em;
+}
+
+.totalPedidos  span{
+  font-size: 2em;
+}
+
+.cardTotalPedidos .totalPedidos{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -66,7 +66,6 @@ const Funcionarios = () => {
                     </tr>
                   </>
                 ))}
-             
             </tbody>
           </table>
         </div>

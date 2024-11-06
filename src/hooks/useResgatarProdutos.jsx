@@ -3,71 +3,69 @@ import { dataBase } from "../firebase/Config";
 import {
   collection,
   query,
+  where,
   orderBy,
   onSnapshot,
-  where,
 } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, search = null, uid = null) => {
-  const [documents, setDocuments] = useState(null);
+export const useFetchDocuments = (
+  docCollections,
+  search = null,
+  uid = null
+) => {
+  const [documents, setDocuments] = useState({});
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
-
-  // deal with memory leak
-  const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
-    async function loadData() {
-      if (cancelled) {
-        return;
-      }
+    const unsubscribes = []; // Array para armazenar as funções de cancelamento de cada snapshot
 
-      setLoading(true);
-
-      const collectionRef = await collection(dataBase, docCollection);
-
+    const fetchCollections = async () => {
       try {
-        let q;
+        const collectionsData = {};
 
-        if (search) {
-          q = await query(
-            collectionRef,
-            where("nomeProduto", "==", search),
-            orderBy("createdAt", "desc")
-          );
-        } else if (uid) {
-          q = await query(
-            collectionRef,
-            where("uid", "==", uid),
-            orderBy("createdAt", "desc")
-          );
-        } else {
-          q = await query(collectionRef, orderBy("createdAt", "desc"));
-        }
+        docCollections.forEach((col) => {
+          const collectionRef = collection(dataBase, col);
+          let q;
 
-        await onSnapshot(q, (querySnapshot) => {
-          setDocuments(
-            querySnapshot.docs.map((doc) => ({
+          if (search) {
+            q = query(
+              collectionRef,
+              where("nomeProduto", "==", search),
+              orderBy("createdAt", "desc")
+            );
+          } else if (uid) {
+            q = query(
+              collectionRef,
+              where("uid", "==", uid),
+              orderBy("createdAt", "desc")
+            );
+          } else {
+            q = query(collectionRef, orderBy("createdAt", "desc"));
+          }
+
+          const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            collectionsData[col] = querySnapshot.docs.map((doc) => ({
               id: doc.id,
               ...doc.data(),
-            }))
-          );
+            }));
+            setDocuments((prev) => ({ ...prev, [col]: collectionsData[col] }));
+            setLoading(false);
+          });
+
+          unsubscribes.push(unsubscribe); // Armazena a função de cancelamento
         });
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
+      } catch (err) {
+        console.error(err);
+        setError("Erro ao carregar documentos");
       }
+    };
 
-      setLoading(false);
-    }
+    fetchCollections();
 
-    loadData();
-    setCancelled(false);
-  }, [uid, cancelled]);
-
-  useEffect(() => {
-    return () => setCancelled(true);
-  }, [cancelled]);
+    // Limpa as escutas ao desmontar o componente
+    return () => unsubscribes.forEach((unsub) => unsub());
+  }, [search, uid]);
 
   return { documents, loading, error };
 };
