@@ -23,7 +23,7 @@ const Mesa = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { documents: produtos, loading } = useFetchDocuments(
     "produtos",
@@ -39,24 +39,21 @@ const Mesa = () => {
   const salvarPedido = async (e) => {
     e.preventDefault();
 
-    if(pedidosLista.length === 0){
-      throw new Error("insira produtos ao pedido")
-    }
-    else{
+    if (pedidosLista.length === 0) {
+      throw new Error("insira produtos ao pedido");
+    } else {
       await inserirDocumentos({
         pedidosLista,
         valorTotal,
         createdBy: user.displayName,
         uid: user.uid,
-        createdAt: Timestamp.now()
+        createdAt: Timestamp.now(),
       });
 
-      navigate("/pedidos")
-      setPedidosLista([])
-      setValorTotal(0)
+      navigate("/pedidos");
+      setPedidosLista([]);
+      setValorTotal(0);
     }
-
-    
   };
 
   const addItemNaLista = (item) => {
@@ -84,8 +81,8 @@ const Mesa = () => {
       if (indiceItemExistente !== -1) {
         const listaAtualizada = [...prevList];
         listaAtualizada[indiceItemExistente].quantidade -= 1;
-        if(listaAtualizada[indiceItemExistente].quantidade <= 0){
-
+        if (listaAtualizada[indiceItemExistente].quantidade <= 0) {
+          listaAtualizada.splice(indiceItemExistente, 1);
         }
         return listaAtualizada;
       } else {
@@ -93,7 +90,6 @@ const Mesa = () => {
       }
     });
   };
-
 
   useEffect(() => {
     const novoTotal = pedidosLista.reduce((acc, item) => {
@@ -113,9 +109,7 @@ const Mesa = () => {
           {menuItems.map((item) => (
             <li key={item.id}>
               {item.name} - R${parseFloat(item.preco).toFixed(2)}
-              <button onClick={() => (item)}>
-                Adicionar
-              </button>
+              <button onClick={() => item}>Adicionar</button>
             </li>
           ))}
         </ul>
@@ -195,7 +189,6 @@ const Mesa = () => {
             <div className={styles.pedidoLista}>
               {pedidosLista.map((item) => (
                 <div key={item.id} className={styles.cardPedido}>
-                
                   <div className={styles.produtoPreco}>
                     <p>{item.nomeProduto}</p>
                     <p>x{item.quantidade}</p>
@@ -206,9 +199,9 @@ const Mesa = () => {
                       {(item.preco * item.quantidade).toFixed(2)}
                     </p>
                   </div>
-                      <button onClick={() => removeItemNaLista(item)}>
-                        Adicionar
-                      </button>
+                  <button onClick={() => removeItemNaLista(item)}>
+                    Adicionar
+                  </button>
                 </div>
               ))}
             </div>
