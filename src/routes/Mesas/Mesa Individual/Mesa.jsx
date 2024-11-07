@@ -15,6 +15,7 @@ import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
 import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { Timestamp } from "firebase/firestore";
 
 const Mesa = () => {
   const { id } = useParams();
@@ -47,6 +48,7 @@ const Mesa = () => {
         valorTotal,
         createdBy: user.displayName,
         uid: user.uid,
+        createdAt: Timestamp.now()
       });
 
       navigate("/pedidos")
@@ -73,6 +75,26 @@ const Mesa = () => {
     });
   };
 
+  const removeItemNaLista = (item) => {
+    const preco = parseFloat(item.precoProduto);
+
+    setPedidosLista((prevList) => {
+      const indiceItemExistente = prevList.findIndex((i) => i.id === item.id);
+
+      if (indiceItemExistente !== -1) {
+        const listaAtualizada = [...prevList];
+        listaAtualizada[indiceItemExistente].quantidade -= 1;
+        if(listaAtualizada[indiceItemExistente].quantidade <= 0){
+
+        }
+        return listaAtualizada;
+      } else {
+        return [...prevList, { ...item, quantidade: 1, preco }];
+      }
+    });
+  };
+
+
   useEffect(() => {
     const novoTotal = pedidosLista.reduce((acc, item) => {
       return acc + (item.preco * item.quantidade || 0);
@@ -91,7 +113,7 @@ const Mesa = () => {
           {menuItems.map((item) => (
             <li key={item.id}>
               {item.name} - R${parseFloat(item.preco).toFixed(2)}
-              <button onClick={() => addItemToOrderList(item)}>
+              <button onClick={() => (item)}>
                 Adicionar
               </button>
             </li>
@@ -173,6 +195,7 @@ const Mesa = () => {
             <div className={styles.pedidoLista}>
               {pedidosLista.map((item) => (
                 <div key={item.id} className={styles.cardPedido}>
+                
                   <div className={styles.produtoPreco}>
                     <p>{item.nomeProduto}</p>
                     <p>x{item.quantidade}</p>
@@ -183,6 +206,9 @@ const Mesa = () => {
                       {(item.preco * item.quantidade).toFixed(2)}
                     </p>
                   </div>
+                      <button onClick={() => removeItemNaLista(item)}>
+                        Adicionar
+                      </button>
                 </div>
               ))}
             </div>

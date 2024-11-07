@@ -5,6 +5,7 @@
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding: 2em 0em;
 }
 
 .pedidos .containerPedidos{
@@ -27,6 +28,7 @@
   overflow-x: hidden;
   scrollbar-color: rgb(255, 69, 69) #dcdcdc;
   scrollbar-width: thin;
+ 
 }
 
 .cardPedido .pedidoLista{
@@ -58,6 +60,7 @@
   justify-content: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.358);
   border-radius: 0px 0px 10px 10px;
+  margin-bottom: 10px;
 }
 
 .valorTotal h3{
