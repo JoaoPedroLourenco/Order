@@ -14,11 +14,15 @@ import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
 
 import { useState, useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 const Mesa = () => {
   const { id } = useParams();
 
   const { user } = useAuthValue();
   const uid = user.uid;
+
+  const navigate = useNavigate()
 
   const { documents: produtos, loading } = useFetchDocuments(
     "produtos",
@@ -34,12 +38,23 @@ const Mesa = () => {
   const salvarPedido = async (e) => {
     e.preventDefault();
 
-    await inserirDocumentos({
-      pedidosLista,
-      valorTotal,
-      createdBy: user.displayName,
-      uid: user.uid,
-    });
+    if(pedidosLista.length === 0){
+      throw new Error("insira produtos ao pedido")
+    }
+    else{
+      await inserirDocumentos({
+        pedidosLista,
+        valorTotal,
+        createdBy: user.displayName,
+        uid: user.uid,
+      });
+
+      navigate("/pedidos")
+      setPedidosLista([])
+      setValorTotal(0)
+    }
+
+    
   };
 
   const addItemNaLista = (item) => {
