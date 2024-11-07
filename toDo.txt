@@ -14,4 +14,4 @@ adicionar gastos e lucros na renda
 
 editar itens
 
-retirar item do pedido
+✅ retirar itens do pedido ✅

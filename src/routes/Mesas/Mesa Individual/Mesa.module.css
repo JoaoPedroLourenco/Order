@@ -45,7 +45,28 @@
     display: flex;
     border-radius: 10px;
     font-size: 1.2em;
-    overflow: hidden;
+    position: relative;
+}
+
+.cardProduto .addItem{
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 0, 0, 0.25);
+  border: none;
+  font-size: 1em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+  position: absolute;
+  right: 18%;
+  top: 60px;
+}
+
+.addItem:hover{
+  background: rgba(255, 0, 0, 0.414);
 }
 
 .cardProduto .cardEsq{
@@ -148,6 +169,7 @@
 .pedidoLista .cardPedido{
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.21);
+    padding-bottom: 5px;
 }
 
 .pedido .pedidoTotal{
@@ -172,3 +194,24 @@
     color: red;
 }
 
+.subTotal{
+  display: flex;
+  justify-content: space-between;
+}
+
+.subTotal button{
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 0, 0, 0.25);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.3em;
+  text-align: center;
+  font-weight: 700;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.subTotal button:hover{
+  background: rgba(255, 0, 0, 0.414);
+}

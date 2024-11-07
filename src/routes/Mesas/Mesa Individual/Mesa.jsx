@@ -102,19 +102,6 @@ const Mesa = () => {
     const { menuItems, loading, error } = useFetchMenuItems(mesaId);
     if (loading) return <p>Carregando...</p>;
     if (error) return <p>{error}</p>;
-
-    return (
-      <div>
-        <ul>
-          {menuItems.map((item) => (
-            <li key={item.id}>
-              {item.name} - R${parseFloat(item.preco).toFixed(2)}
-              <button onClick={() => item}>Adicionar</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
   }
 
   // const { inserirDocumentos, response: insertResponse } = useInsertDocuments(
@@ -170,8 +157,11 @@ const Mesa = () => {
                     </h1>
                     <p className={styles.descProduto}>{produto.descProduto}</p>
                     <p className={styles.preco}>
-                      <button onClick={() => addItemNaLista(produto)}>
-                        Adicionar
+                      <button
+                        onClick={() => addItemNaLista(produto)}
+                        className={styles.addItem}
+                      >
+                        +
                       </button>
                       <span>R$</span>
                       <span className={styles.precoProduto}>
@@ -198,10 +188,8 @@ const Mesa = () => {
                       Subtotal: R$
                       {(item.preco * item.quantidade).toFixed(2)}
                     </p>
+                    <button onClick={() => removeItemNaLista(item)}>-</button>
                   </div>
-                  <button onClick={() => removeItemNaLista(item)}>
-                    Adicionar
-                  </button>
                 </div>
               ))}
             </div>
