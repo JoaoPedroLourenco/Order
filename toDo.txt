@@ -1,17 +1,51 @@
+❗❗❗❗❗❗ PRIORIDADE ❗❗❗❗❗❗❗
+
+
+✅ retirar itens do pedido ✅
+
+
+---------------------
+reserva de mesas 
+
+-> pop Up com: data(dia e hora) e nome do cliente;
+-> mudar card da mesa, mostrando a reserva e marcando como reservado;
+-> botão para cancelar reserva que volta pra mesa livre.
+---------------------
+
+---------------------
+mesa ocupada
+
+-> botão que ocupa;
+-> poder marcar pedido só se tiver ocupado (fazer botão aparecer ou algo do tipo);
+-> desocupa quando confirmar pagamento ou cancelar.
+
+---------------------
+
 estilização
 
-arrumar/tratar erros
-
-reserva de mesas
-
-mesa ocupada
+colocar placeholder nos inputs
 
 resgatar nome mesa nos pedidos
 
-renda de pedidos
-
-adicionar gastos e lucros na renda
-
 editar itens
 
-✅ retirar itens do pedido ✅
+arrumar/tratar erros
+❗❗❗❗❗❗ PRIORIDADE ❗❗❗❗❗❗❗
+
+
+
+---------------------
+renda de pedidos
+
+-> renda de pedidos apenas em pedidos que foram finalizados (confirmados pagamento);
+-> calculo total e talvez detalhes.
+---------------------
+
+---------------------
+adicionar gastos e lucros na renda
+
+-> form para coisas específicas ou dinâmico (decidir ainda);
+-> área na renda para contas (obrigatório);
+-> 
+---------------------
+
