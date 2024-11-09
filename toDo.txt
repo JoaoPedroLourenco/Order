@@ -7,9 +7,9 @@
 ---------------------
 reserva de mesas 
 
--> pop Up com: data(dia e hora) e nome do cliente;
+-> ✅ pop Up com: data(dia e hora) e nome do cliente; ✅
 -> mudar card da mesa, mostrando a reserva e marcando como reservado;
--> botão para cancelar reserva que volta pra mesa livre.
+-> ✅botão para cancelar reserva que volta pra mesa livre.✅
 ---------------------
 
 ---------------------

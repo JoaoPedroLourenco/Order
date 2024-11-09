@@ -73,7 +73,9 @@ const Mesas = () => {
                       <button onClick={() => setEstadoMesa("ocupada")}>
                         ocupar
                       </button>
-                      <Link to="/mesas/reserva">reservar</Link>
+                      <div>
+                        <PopUpReserva />
+                      </div>
                     </>
                   )}
                   {estadoMesa === "ocupada" && (

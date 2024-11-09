@@ -8,12 +8,10 @@ import {
   where,
 } from "firebase/firestore";
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
-
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   // deal with memory leak
-
 
   const [cancelled, setCancelled] = useState(false);
 
@@ -63,7 +61,6 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   useEffect(() => {
     return () => setCancelled(true);
   }, [cancelled]);
-
 
   return { documents, loading, error };
 };

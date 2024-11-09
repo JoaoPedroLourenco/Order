@@ -94,7 +94,7 @@ form input{
     height: 50px;
     border: none;
     border-radius: 15px;
-    padding: 15px;
+    padding: 0px 15px;
     font-size: 1.2em;
     margin-bottom: 20px;
     border: 1px solid black;
