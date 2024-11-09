@@ -10,6 +10,7 @@ import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 import { useAuthValue } from "../../context/AuthContext";
 
 import { Link } from "react-router-dom";
+import PopUpReserva from "../../components/Pop up reserva/PopUpReserva";
 
 const Mesas = () => {
   const { user } = useAuthValue();
@@ -17,6 +18,7 @@ const Mesas = () => {
 
   const [nomeMesa, setNomeMesa] = useState("");
   const [contadorMesa, setContadorMesa] = useState(0);
+  const [estadoMesa, setEstadoMesa] = useState("livre");
 
   const { documents: mesas, loading } = useFetchDocuments("mesas", null, uid);
   const { inserirDocumentos, response } = useInsertDocuments("mesas", user);
@@ -48,8 +50,8 @@ const Mesas = () => {
             value={nomeMesa}
             onChange={(e) => setNomeMesa(e.target.value)}
           />
-          {!loading && <button>Criar Mesa</button>}
-          {loading && <button disabled>Aguarde...</button>}
+          {!response.loading && <button>Criar Mesa</button>}
+          {response.loading && <button disabled>Aguarde...</button>}
         </form>
 
         <div className={styles.mesasContainer}>
@@ -57,18 +59,34 @@ const Mesas = () => {
             mesas &&
             mesas.map((mesa, index) => (
               <div key={index}>
-                <Link to={`/mesas/${mesa.id}`}>
-                  <div className={styles.mesaCard}>
-                    <button
-                      onClick={() => deletarDocumento(mesa.id)}
-                      className={styles.deleteMesa}
-                    >
-                      X
-                    </button>
-                    <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
-                    <img src={mesaCard} alt="" />
-                  </div>
-                </Link>
+                <div className={styles.mesaCard}>
+                  <button
+                    onClick={() => deletarDocumento(mesa.id)}
+                    className={styles.deleteMesa}
+                  >
+                    X
+                  </button>
+                  <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
+                  <img src={mesaCard} alt="" />
+                  {estadoMesa === "livre" && (
+                    <>
+                      <button onClick={() => setEstadoMesa("ocupada")}>
+                        ocupar
+                      </button>
+                      <Link to="/mesas/reserva">reservar</Link>
+                    </>
+                  )}
+                  {estadoMesa === "ocupada" && (
+                    <>
+                      <button>
+                        <Link to={`/mesas/${mesa.id}`}> mesa</Link>
+                      </button>
+                      <button onClick={() => setEstadoMesa("livre")}>
+                        Cancelar
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
             ))}
           {loading && (

@@ -15,9 +15,10 @@ reserva de mesas
 ---------------------
 mesa ocupada
 
--> botão que ocupa;
--> poder marcar pedido só se tiver ocupado (fazer botão aparecer ou algo do tipo);
--> desocupa quando confirmar pagamento ou cancelar.
+-> ✅botão que ocupa✅;
+-> ✅poder marcar pedido só se tiver ocupado (fazer botão aparecer ou algo do tipo)✅;
+-> desocupa quando confirmar pagamento ou ✅cancelar✅;
+-> armazenar estado de ocupado.
 
 ---------------------
 
