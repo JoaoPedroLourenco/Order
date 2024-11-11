@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../EditCardapio/EditCardapio.module.css";
 import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
@@ -33,22 +33,20 @@ const EditCardapio = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Converte precoProduto para um número, removendo caracteres não numéricos
     const precoNumerico = parseFloat(
       precoProduto.replace(/[^0-9,-]+/g, "").replace(",", ".")
     );
 
-    await inserirDocumentos(
-      {
-        nomeProduto,
-        descProduto,
-        precoProduto: precoNumerico, // Use o valor numérico aqui
-        tipoProduto,
-        uid: user.uid,
-        createdBy: user.displayName,
-      },
-      imagemDocumento
-    );
+    const novoProduto = {
+      nomeProduto,
+      descProduto,
+      precoProduto: precoNumerico,
+      tipoProduto,
+      uid: user.uid,
+      createdBy: user.displayName,
+    };
+
+    await inserirDocumentos(novoProduto, imagemDocumento);
 
     // Resetando os campos
     setNomeProduto("");
@@ -56,7 +54,25 @@ const EditCardapio = () => {
     setPrecoProduto("");
     setTipoProduto("");
     setImagemDocumento(null);
+
+    if (tipoProduto === "pratosPrincipais") {
+      setPratosPrincipaisArea((prevPratos) => [...prevPratos, novoProduto]);
+    } else if (tipoProduto === "bebidas") {
+      setBebidasArea((prevBebidas) => [...prevBebidas, novoProduto]);
+    } else {
+      setOutrosArea((prevOutros) => [...prevOutros, novoProduto]);
+    }
   };
+
+  useEffect(() => {
+    if (produtos) {
+      setPratosPrincipaisArea(
+        produtos.filter((item) => item.tipoProduto === "pratosPrincipais")
+      );
+      setBebidasArea(produtos.filter((item) => item.tipoProduto === "bebidas"));
+      setOutrosArea(produtos.filter((item) => item.tipoProduto === "Outros"));
+    }
+  }, [produtos]);
 
   const previewImagem = (e) => {
     const arquivoSelecionado = e.target.files[0];
@@ -135,7 +151,7 @@ const EditCardapio = () => {
         </form>
 
         <div className={styles.itensContainer}>
-          {loading ? (
+          {/* {loading ? (
             <div className="loading">
               <div className="bouncing-dots">
                 <div className="dot"></div>
@@ -174,7 +190,41 @@ const EditCardapio = () => {
                 </div>
               </div>
             ))
-          )}
+          )} */}
+          <div className={styles.itensContainer}>
+            <div className={styles.pratosPrincipais}>
+              <h2>Pratos Principais</h2>
+              {pratosPrincipaisArea.map((prato) => (
+                <div key={prato.id}>
+                  <p>{prato.nomeProduto}</p>
+                  <p>R$ {parseFloat(prato.precoProduto).toFixed(2)}</p>
+                  <p>{prato.descProduto}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.bebidas}>
+              <h2>Bebidas</h2>
+              {bebidasArea.map((bebida) => (
+                <div key={bebida.id}>
+                  <p>{bebida.nomeProduto}</p>
+                  <p>R$ {parseFloat(bebida.precoProduto).toFixed(2)}</p>
+                  <p>{bebida.descProduto}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.outros}>
+              <h2>Outros</h2>
+              {outrosArea.map((outro) => (
+                <div key={outro.id}>
+                  <p>{outro.nomeProduto}</p>
+                  <p>R$ {parseFloat(outro.precoProduto).toFixed(2)}</p>
+                  <p>{outro.descProduto}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -262,9 +262,9 @@ textarea:focus{
 
 
 .pratosPrincipais{
-    width: 300px;
+    width: 1200px;
     height: 500px;
-    background: red;
+    background: rgb(204, 204, 204);
 }
 
 .bebidas{
