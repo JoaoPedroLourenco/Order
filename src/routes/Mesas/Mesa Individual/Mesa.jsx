@@ -17,24 +17,41 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
 
+import { dataBase } from "../../../firebase/Config";
+
+import { doc, getDoc } from "firebase/firestore";
+
 const Mesa = () => {
   const { id } = useParams();
 
   const { user } = useAuthValue();
   const uid = user.uid;
 
+  const [mesaNome, setMesaNome] = useState("");
   const navigate = useNavigate();
-
   const { documents: produtos, loading } = useFetchDocuments(
     "produtos",
     null,
     uid
   );
-
   const { inserirDocumentos } = useInsertDocuments("pedidos", user);
-
   const [pedidosLista, setPedidosLista] = useState([]);
   const [valorTotal, setValorTotal] = useState(0);
+
+  // Buscar o nome da mesa ao carregar a página
+  useEffect(() => {
+    const fetchMesaNome = async () => {
+      const mesaRef = doc(dataBase, "mesas", id);
+      const mesaSnap = await getDoc(mesaRef);
+
+      if (mesaSnap.exists()) {
+        setMesaNome(mesaSnap.data().nomeMesa); // Supondo que "nome" é o campo com o nome da mesa
+      } else {
+        console.log("Mesa não encontrada.");
+      }
+    };
+    fetchMesaNome();
+  }, [id]);
 
   const salvarPedido = async (e) => {
     e.preventDefault();
@@ -43,6 +60,7 @@ const Mesa = () => {
       throw new Error("insira produtos ao pedido");
     } else {
       await inserirDocumentos({
+        mesaNome,
         pedidosLista,
         valorTotal,
         createdBy: user.displayName,
@@ -104,30 +122,6 @@ const Mesa = () => {
     if (error) return <p>{error}</p>;
   }
 
-  // const { inserirDocumentos, response: insertResponse } = useInsertDocuments(
-  //   "pedidos",
-  //   user
-  // );
-
-  // const salvarPedido = async (e) => {
-  //   e.preventDefault();
-
-  //   const dadosPedido = {
-  //     mesaId: id,
-  //     pedidosLista,
-  //     valorTotal,
-  //     uid,
-  //   };
-
-  //   try {
-  //     await inserirDocumentos(dadosPedido);
-  //     setPedidosLista([]); // Limpar a lista de pedidos após salvar
-  //     setValorTotal(0);
-  //   } catch (error) {
-  //     console.error("Erro ao salvar pedido:", error);
-  //   }
-  // };
-
   const limparPedido = () => {
     setPedidosLista([]);
     setValorTotal(0);
@@ -137,6 +131,7 @@ const Mesa = () => {
     <>
       <Sidebar />
       <div className={styles.mesa}>
+        <h1>{mesaNome ? `Mesa: ${mesaNome}` : "Carregando..."}</h1>
         <Link to="/mesas" className={styles.voltar}>
           <img src={seta} alt="" />
         </Link>

@@ -23,7 +23,6 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.358);
   border-bottom: 0px;
   background: white;
-  border-radius: 10px 10px 0px 0px;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-color: rgb(255, 69, 69) #dcdcdc;
@@ -65,4 +64,20 @@
 
 .valorTotal h3{
   font-weight: 500;
+}
+
+.nomeMesa{
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.358);
+}
+
+.nomeMesa h1{
+  font-size: 1.2em;
 }

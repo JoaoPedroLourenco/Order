@@ -16,17 +16,18 @@ const Pedidos = () => {
     uid
   );
 
-
   return (
     <>
       <Sidebar />
       <div className={styles.pedidos}>
-
         <div className={styles.containerPedidos}>
           {loading && <p>Carregando...</p>}
           {pedidos && pedidos.length > 0 ? (
             pedidos.map((pedido) => (
               <div key={pedido.id}>
+                <div className={styles.nomeMesa}>
+                  <h1>Mesa {pedido.mesaNome}</h1>
+                </div>
                 <div className={styles.cardPedido}>
                   {pedido.pedidosLista && pedido.pedidosLista.length > 0 ? (
                     pedido.pedidosLista.map((item) => (

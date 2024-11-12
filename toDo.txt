@@ -26,11 +26,11 @@ estilização
 
 colocar placeholder nos inputs
 
-resgatar nome mesa nos pedidos
+✅resgatar nome mesa nos pedidos✅
 
 editar itens
 
-dividir itens do cardápio por categoria (pratos principais, bebidas, outros)
+✅dividir itens do cardápio por categoria (pratos principais, bebidas, outros)✅
 
 arrumar/tratar erros
 ❗❗❗❗❗❗ PRIORIDADE ❗❗❗❗❗❗❗
