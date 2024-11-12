@@ -104,12 +104,12 @@ textarea:focus{
     height: 40px;
 }
 
-.itensContainer{
-    width: 80vw;
-    height: 50vh;
-    margin-left: 5vw;
+.editCardapio .allItensContainer{
+    width: 100%;
+    height: auto;
     display: flex;
-    gap: 5em;
+    justify-content: center;
+    gap: 2em;
     margin-top: 4em;
     flex-wrap: wrap;
 }
@@ -121,6 +121,7 @@ textarea:focus{
     border-radius: 1em;
     font-size: 1.2em;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .descProduto{
@@ -233,14 +234,6 @@ textarea:focus{
     
 }
 
-.containerProdutos .pratosPrincipaisContainer, .outrosContainer, .bebidasContainer{
-    width: 800px;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    background: black;
-}
- 
 .navItens button{
     width: 33.33%;
     height: 50px;
@@ -261,14 +254,44 @@ textarea:focus{
 }
 
 
-.pratosPrincipais{
-    width: 1200px;
-    height: 500px;
-    background: rgb(204, 204, 204);
+.itensContainer .pratosPrincipais, .bebidas, .outros{
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em;
 }
 
-.bebidas{
-    width: 300px;
-    height: 500px;
-    background: blue;
+.allItensContainer .itensContainer{
+  width: 80%;
+  display: flex;
+  padding:0em 5em;
+}
+
+.editCardapio .btnsAreaProduto{
+  width: 80%;
+    display: flex;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.btnsAreaProduto button{
+  width: 33.33%;
+  height: 50px;
+  border: none;
+  background: none;
+  font-size: 1.5em;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.btnsAreaProduto button:hover{
+  background: #b8b8b898;
+}
+
+.btnsAreaProduto button:focus{
+  background: #b8b8b898;
 }

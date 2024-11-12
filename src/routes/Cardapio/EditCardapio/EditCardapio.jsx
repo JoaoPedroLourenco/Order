@@ -11,17 +11,30 @@ import { useAuthValue } from "../../../context/AuthContext";
 import CurrencyInput from "react-currency-input-field";
 
 const EditCardapio = () => {
+  // troca de divs
+  const [areaProdutos, setAreaProdutos] = useState(1);
+
+  const handleClick = (divNumber) => {
+    setAreaProdutos(divNumber);
+  };
+
+  // user data
   const { user } = useAuthValue();
   const uid = user.uid;
+
+  // states de criação de produto
   const [imagemDocumento, setImagemDocumento] = useState(null);
   const [nomeProduto, setNomeProduto] = useState("");
   const [descProduto, setDescProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState("");
   const [tipoProduto, setTipoProduto] = useState("pratosPrincipais");
+
+  // filtragem de itens por tipo
   const [pratosPrincipaisArea, setPratosPrincipaisArea] = useState([]);
   const [bebidasArea, setBebidasArea] = useState([]);
   const [outrosArea, setOutrosArea] = useState([]);
 
+  // hooks
   const { documents: produtos, loading } = useFetchDocuments(
     "produtos",
     null,
@@ -30,6 +43,7 @@ const EditCardapio = () => {
   const { inserirDocumentos, response } = useInsertDocuments("produtos", user);
   const { deletarDocumento } = useDeleteDocumentos("produtos");
 
+  // submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,28 +70,30 @@ const EditCardapio = () => {
     setImagemDocumento(null);
 
     if (tipoProduto === "pratosPrincipais") {
-      setPratosPrincipaisArea((prevPratos) => [...prevPratos, novoProduto]);
+      setPratosPrincipaisArea((prevPratos) => [...prevPratos]);
     } else if (tipoProduto === "bebidas") {
-      setBebidasArea((prevBebidas) => [...prevBebidas, novoProduto]);
+      setBebidasArea((prevBebidas) => [...prevBebidas]);
     } else {
-      setOutrosArea((prevOutros) => [...prevOutros, novoProduto]);
+      setOutrosArea((prevOutros) => [...prevOutros]);
     }
   };
 
+  // preview da imagem no form
+  const previewImagem = (e) => {
+    const arquivoSelecionado = e.target.files[0];
+    setImagemDocumento(arquivoSelecionado);
+  };
+
+  // filtragem de itens
   useEffect(() => {
     if (produtos) {
       setPratosPrincipaisArea(
         produtos.filter((item) => item.tipoProduto === "pratosPrincipais")
       );
       setBebidasArea(produtos.filter((item) => item.tipoProduto === "bebidas"));
-      setOutrosArea(produtos.filter((item) => item.tipoProduto === "Outros"));
+      setOutrosArea(produtos.filter((item) => item.tipoProduto === "outros"));
     }
   }, [produtos]);
-
-  const previewImagem = (e) => {
-    const arquivoSelecionado = e.target.files[0];
-    setImagemDocumento(arquivoSelecionado);
-  };
 
   return (
     <>
@@ -140,9 +156,10 @@ const EditCardapio = () => {
               value={tipoProduto}
               onChange={(e) => setTipoProduto(e.target.value)}
             >
+              Tipo de produto:
               <option value="pratosPrincipais">Pratos Principais</option>
               <option value="bebidas">Bebidas</option>
-              <option value="Outros">Outros</option>
+              <option value="outros">Outros</option>
             </select>
             <button className="form_btn" disabled={response.loading}>
               {response.loading ? "Aguarde..." : "Confirmar"}
@@ -150,8 +167,28 @@ const EditCardapio = () => {
           </div>
         </form>
 
-        <div className={styles.itensContainer}>
-          {/* {loading ? (
+        <div className={styles.allItensContainer}>
+          <div className={styles.btnsAreaProduto}>
+            <button
+              className={areaProdutos === 1 ? "active" : ""}
+              onClick={() => handleClick(1)}
+            >
+              Pratos Principais
+            </button>
+            <button
+              className={areaProdutos === 2 ? "active" : ""}
+              onClick={() => handleClick(2)}
+            >
+              Bebidas
+            </button>
+            <button
+              className={areaProdutos === 3 ? "active" : ""}
+              onClick={() => handleClick(3)}
+            >
+              Outros
+            </button>
+          </div>
+          {loading && (
             <div className="loading">
               <div className="bouncing-dots">
                 <div className="dot"></div>
@@ -160,70 +197,95 @@ const EditCardapio = () => {
                 <div className="dot"></div>
               </div>
             </div>
-          ) : (
-            produtos &&
-            produtos.map((produto) => (
-              <div key={produto.id}>
-                <div className={styles.cardProduto}>
-                  <button
-                    onClick={() =>
-                      deletarDocumento(produto.id, produto.imagemDocumento)
-                    }
-                    className={styles.deleteProduto}
-                  >
-                    X
-                  </button>
-                  <img src={produto.imagemDocumento} alt="" />
-                  <div className={styles.cardEsq}>
-                    <h1 className={styles.tituloProduto}>
-                      {produto.nomeProduto}
-                    </h1>
-                    <p className={styles.descProduto}>{produto.descProduto}</p>
-                    <p className={styles.preco}>
-                      <span>R$</span>
-                      <span className={styles.precoProduto}>
-                        {parseFloat(produto.precoProduto).toFixed(2)}
-                      </span>
-                    </p>
-                    <p>{produto.tipoProduto}</p>
-                  </div>
-                </div>
-              </div>
-            ))
-          )} */}
+          )}
           <div className={styles.itensContainer}>
-            <div className={styles.pratosPrincipais}>
-              <h2>Pratos Principais</h2>
-              {pratosPrincipaisArea.map((prato) => (
-                <div key={prato.id}>
-                  <p>{prato.nomeProduto}</p>
-                  <p>R$ {parseFloat(prato.precoProduto).toFixed(2)}</p>
-                  <p>{prato.descProduto}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.bebidas}>
-              <h2>Bebidas</h2>
-              {bebidasArea.map((bebida) => (
-                <div key={bebida.id}>
-                  <p>{bebida.nomeProduto}</p>
-                  <p>R$ {parseFloat(bebida.precoProduto).toFixed(2)}</p>
-                  <p>{bebida.descProduto}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.outros}>
-              <h2>Outros</h2>
-              {outrosArea.map((outro) => (
-                <div key={outro.id}>
-                  <p>{outro.nomeProduto}</p>
-                  <p>R$ {parseFloat(outro.precoProduto).toFixed(2)}</p>
-                  <p>{outro.descProduto}</p>
-                </div>
-              ))}
-            </div>
+            {areaProdutos === 1 && (
+              <div className={styles.pratosPrincipais}>
+                {pratosPrincipaisArea.map((prato) => (
+                  <div className={styles.cardProduto} key={prato.id}>
+                    <button
+                      onClick={() =>
+                        deletarDocumento(prato.id, prato.imagemDocumento)
+                      }
+                      className={styles.deleteProduto}
+                    >
+                      X
+                    </button>
+                    <img src={prato.imagemDocumento} alt="" />
+                    <div className={styles.cardEsq}>
+                      <h1 className={styles.tituloProduto}>
+                        {prato.nomeProduto}
+                      </h1>
+                      <p className={styles.descProduto}>{prato.descProduto}</p>
+                      <p className={styles.preco}>
+                        <span>R$</span>
+                        <span className={styles.precoProduto}>
+                          {parseFloat(prato.precoProduto).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {areaProdutos === 2 && (
+              <div className={styles.bebidas}>
+                {bebidasArea.map((bebida) => (
+                  <div className={styles.cardProduto} key={bebida.id}>
+                    <button
+                      onClick={() =>
+                        deletarDocumento(bebida.id, bebida.imagemDocumento)
+                      }
+                      className={styles.deleteProduto}
+                    >
+                      X
+                    </button>
+                    <img src={bebida.imagemDocumento} alt="" />
+                    <div className={styles.cardEsq}>
+                      <h1 className={styles.tituloProduto}>
+                        {bebida.nomeProduto}
+                      </h1>
+                      <p className={styles.descProduto}>{bebida.descProduto}</p>
+                      <p className={styles.preco}>
+                        <span>R$</span>
+                        <span className={styles.precoProduto}>
+                          {parseFloat(bebida.precoProduto).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {areaProdutos === 3 && (
+              <div className={styles.outros}>
+                {outrosArea.map((outro) => (
+                  <div className={styles.cardProduto} key={outro.id}>
+                    <button
+                      onClick={() =>
+                        deletarDocumento(outro.id, outro.imagemDocumento)
+                      }
+                      className={styles.deleteProduto}
+                    >
+                      X
+                    </button>
+                    <img src={outro.imagemDocumento} alt="" />
+                    <div className={styles.cardEsq}>
+                      <h1 className={styles.tituloProduto}>
+                        {outro.nomeProduto}
+                      </h1>
+                      <p className={styles.descProduto}>{outro.descProduto}</p>
+                      <p className={styles.preco}>
+                        <span>R$</span>
+                        <span className={styles.precoProduto}>
+                          {parseFloat(outro.precoProduto).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

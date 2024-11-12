@@ -25,120 +25,194 @@
     justify-content: center;
 }
 
-.containerProdutos .pratosPrincipaisContainer, .outrosContainer, .bebidasContainer{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    background: black;
-}
- 
-.navItens button{
-    width: 33.33%;
-    height: 50px;
-    border: none;
-    background: none;
-    font-size: 1.5em;
-    transition: .2s;
-    cursor: pointer;
-}
- 
- 
-.navItens > button:hover{
-    background: #b8b8b898;
-}
-
-.active:hover{
-    background: #b8b8b898;
-}
-
-.itensContainer{
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    margin-top: 3em;
-    margin-left: 20em;
-    gap: 5em;
-    flex-wrap: wrap;
+.cardapio .allItensContainer{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 4em;
+  flex-wrap: wrap;
 }
 
 .cardProduto{
-    width: 600px;
-    height: 9em;
-    display: flex;
-    border-radius: 10px;
-    font-size: 1.2em;
-    overflow: hidden;
-}
-
-.cardProduto .cardEsq{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px;
+  width: 600px;
+  height: 9em;
+  display: flex;
+  border-radius: 1em;
+  font-size: 1.2em;
+  position: relative;
+  margin-bottom: 50px;
 }
 
 .descProduto{
-    font-size: .8em;
-    color: rgba(0, 0, 0, 0.584);
+  font-size: .8em;
+  color: rgba(0, 0, 0, 0.584);
+}
+
+
+.cardProduto .deleteProduto{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  background: red;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.deleteProduto:hover{
+  background: rgb(177, 0, 0);
+  transition: .2s;
+}
+
+.cardProduto .cardEsq{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 .preco{
-    display: flex;
-    gap: .2em;
+  display: flex;
+  gap: .2em;
 }
 
 .preco span{
-    font-size: .8em;
+  font-size: .8em;
 }
 
+.preco p{
+  font-size: .8em;
+}
 
 .cardProduto img{
-    max-width: 10em;
-    min-width: 10em;
-    max-height: 10em;
-    object-fit: cover;
-    border-radius: 10px;
+  max-width: 10em;
+  max-height: 10em;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .cardProduto h1{
-    font-size: 1.3em;
-    color: red;
-    font-weight: 400;
+  font-size: 1.2em;
+  color: red;
+  font-weight: 400;
+ 
 }
 
 .preco .precoProduto{
-    color: black;
+  color: black;
 }
 
 .tituloProduto{
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 .cardProduto .tituloCard{
-    font-size: 1.8em;
-    margin-bottom: 0.1em;
-    color: #EF233C;
+  font-size: 1.8em;
+  margin-bottom: 0.1em;
+  color: #EF233C;
 }
 
 
 .cardProduto .preco{
-    margin-top: 0.1em;
-    font-size: 1.8em;
+  margin-top: 0.1em;
+  font-size: 1.8em;
 }
 
 .cardEsq{
-    display: flex;
-    flex-direction: column;
-   justify-content: center;
-   margin-left: 0.5em;
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ margin-left: 0.5em;
 }
 
 .cardProduto span{
-    color: #EF233C;
+  color: #EF233C;
 }
 
+.cardapio .navItens{
+  width: 80%;
+  display: flex;
+  margin-top: 50px;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow: hidden;
+}
+
+.containerProdutos{
+  width: 80%;
+  height: 50%;
+  display: flex;
+  
+}
+
+.navItens button{
+  width: 33.33%;
+  height: 50px;
+  border: none;
+  background: none;
+  font-size: 1.5em;
+  transition: .2s;
+  cursor: pointer;
+}
+
+
+.navItens > button:hover{
+  background: #b8b8b898;
+}
+
+.active:hover{
+  background: #b8b8b898;
+}
+
+
+.itensContainer .pratosPrincipais, .bebidas, .outros{
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+}
+
+.allItensContainer .itensContainer{
+width: 80%;
+display: flex;
+padding:0em 5em;
+}
+
+.cardapio .btnsAreaProduto{
+width: 80%;
+  display: flex;
+  margin-top: 50px;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow: hidden;
+}
+
+.btnsAreaProduto button{
+width: 33.33%;
+height: 50px;
+border: none;
+background: none;
+font-size: 1.5em;
+transition: .2s;
+cursor: pointer;
+}
+
+.btnsAreaProduto button:hover{
+background: #b8b8b898;
+}
+
+.btnsAreaProduto button:focus{
+background: #b8b8b898;
+}

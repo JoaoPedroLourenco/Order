@@ -65,7 +65,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/faleConosco" element={<FaleConosco />} />
-              <Route path="/search" element={<Search />} />
+              <Route path="/search/" element={<Search />} />
               <Route
                 path="/perfil"
                 element={user ? <Perfil /> : <Navigate to="/" />}
