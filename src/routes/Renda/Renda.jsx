@@ -4,10 +4,11 @@ import Sidebar from "../../components/Sidebar";
 import styles from "../Renda/Renda.module.css";
 
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
+import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
 import { useAuthValue } from "../../context/AuthContext";
 
 import func from "../../assets/imgs/funcionarios.png";
-// import pedidoImg from "../../assets/imgs/pedidos.png";
+import pedidoImg from "../../assets/imgs/pedidos.png";
 
 const Renda = () => {
   // const [diminuirContainer, setDiminuirContainer] = useState(false);
@@ -19,11 +20,14 @@ const Renda = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const { documents: funcionarios, loading } = useFetchDocuments(
-    "funcionarios",
+  const { documentos, loading, error } = useFetchMultipleCollections(
+    ["funcionarios", "pedidos"],
     null,
     uid
   );
+
+  const pedidos = documentos.pedidos;
+  const funcionarios = documentos.funcionarios;
 
   // Função para calcular a soma dos salários
   const calcularSomaSalarios = () => {
@@ -38,14 +42,14 @@ const Renda = () => {
 
   const somaSalarios = calcularSomaSalarios();
 
-  // const calcularSomaPedidos = () => {
-  //   return pedidos?.reduce((add, pedido) => {
-  //     const valorPedidos = parseFloat(pedido.valorTotal) || 0;
-  //     return add + valorPedidos;
-  //   }, 0);
-  // };
+  const calcularSomaPedidos = () => {
+    return pedidos?.reduce((add, pedido) => {
+      const valorPedidos = parseFloat(pedido.valorTotal) || 0;
+      return add + valorPedidos;
+    }, 0);
+  };
 
-  // const totalPedidos = calcularSomaPedidos();
+  const totalPedidos = calcularSomaPedidos();
 
   return (
     <>
@@ -70,7 +74,7 @@ const Renda = () => {
               </div>
             </div>
           </div>
-          {/* <div className={styles.cardTotalPedidos}>
+          <div className={styles.cardTotalPedidos}>
             <div className={styles.titleCard}>
               <img src={pedidoImg} alt="" />
               <p>Pedidos</p>
@@ -82,7 +86,7 @@ const Renda = () => {
                 <p>Pedidos: {pedidos && pedidos.length}</p>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

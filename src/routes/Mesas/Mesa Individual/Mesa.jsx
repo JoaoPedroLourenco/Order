@@ -131,7 +131,9 @@ const Mesa = () => {
     <>
       <Sidebar />
       <div className={styles.mesa}>
-        <h1>{mesaNome ? `Mesa: ${mesaNome}` : "Carregando..."}</h1>
+        <div className="title">
+          <h1>{mesaNome ? `Mesa ${mesaNome}` : "Carregando..."}</h1>
+        </div>
         <Link to="/mesas" className={styles.voltar}>
           <img src={seta} alt="" />
         </Link>
