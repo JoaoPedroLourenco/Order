@@ -108,7 +108,8 @@ const EditFuncionarios = () => {
             groupSeparator="."
             onValueChange={(salario) => setSalarioFuncionario(salario)}
           />
-          <button>Cadastrar funcionário</button>
+          {!loading && <button>Cadastrar funcionário</button>}
+          {loading && <button disabled>Aguarde...</button>}
         </form>
 
         <div
@@ -128,12 +129,17 @@ const EditFuncionarios = () => {
               {funcionarios &&
                 funcionarios.map((funcionario) => (
                   <>
-                  <button onClick={() => deletarDocumento(funcionario.id,
-                          funcionario.imagemDocumento)} >
-                        X
-                      </button>
+                    <button
+                      onClick={() =>
+                        deletarDocumento(
+                          funcionario.id,
+                          funcionario.imagemDocumento
+                        )
+                      }
+                    >
+                      X
+                    </button>
                     <tr key={funcionario.id}>
-                      
                       <td>
                         <img
                           src={funcionario.imagemDocumento}

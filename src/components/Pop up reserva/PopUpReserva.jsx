@@ -50,7 +50,9 @@ const PopUpReserva = () => {
 
   return (
     <>
-      <button onClick={abrirFecharPopUp}>reservar</button>
+      <button onClick={abrirFecharPopUp} className={styles.btnPopUp}>
+        reservar
+      </button>
       {popUp === true ? (
         <div className={styles.PopUpReserva}>
           <div className={styles.formReserva}>

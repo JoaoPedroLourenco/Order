@@ -17,8 +17,6 @@ const Funcionarios = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const { deletarDocumento } = useDeleteDocumentos("funcionarios");
-
   const {
     documents: funcionarios,
     loading,

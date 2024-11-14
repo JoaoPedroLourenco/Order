@@ -57,8 +57,8 @@ const Mesas = () => {
         <div className={styles.mesasContainer}>
           {!loading &&
             mesas &&
-            mesas.map((mesa, index) => (
-              <div key={index}>
+            mesas.map((mesa) => (
+              <div key={mesa.id}>
                 <div className={styles.mesaCard}>
                   <button
                     onClick={() => deletarDocumento(mesa.id)}
@@ -68,26 +68,34 @@ const Mesas = () => {
                   </button>
                   <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
                   <img src={mesaCard} alt="" />
-                  {estadoMesa === "livre" && (
-                    <>
-                      <button onClick={() => setEstadoMesa("ocupada")}>
-                        ocupar
-                      </button>
-                      <div>
-                        <PopUpReserva />
-                      </div>
-                    </>
-                  )}
-                  {estadoMesa === "ocupada" && (
-                    <>
-                      <button>
-                        <Link to={`/mesas/${mesa.id}`}> mesa</Link>
-                      </button>
-                      <button onClick={() => setEstadoMesa("livre")}>
-                        Cancelar
-                      </button>
-                    </>
-                  )}
+                  <div className={styles.btnsMesa}>
+                    {estadoMesa === "livre" && (
+                      <>
+                        <div className={styles.btnBorder}>
+                          <PopUpReserva />
+                        </div>
+                        <button
+                          onClick={() => setEstadoMesa("ocupada")}
+                          className={styles.btnComBg}
+                        >
+                          ocupar
+                        </button>
+                      </>
+                    )}
+                    {estadoMesa === "ocupada" && (
+                      <>
+                        <button
+                          onClick={() => setEstadoMesa("livre")}
+                          className={styles.btnBorder}
+                        >
+                          Cancelar
+                        </button>
+                        <button className={styles.btnComBg}>
+                          <Link to={`/mesas/${mesa.id}`}>Marcar Pedido</Link>
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
