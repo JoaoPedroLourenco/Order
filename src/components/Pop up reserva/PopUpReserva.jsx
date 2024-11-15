@@ -6,7 +6,7 @@ import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
 
-const PopUpReserva = () => {
+const PopUpReserva = ({ mesaId }) => {
   const [nomeCliente, setNomeCliente] = useState("");
   const [diaReserva, setDiaReserva] = useState("");
   const [horaReserva, setHoraReserva] = useState("");

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
+import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 
 import mesaCard from "../../assets/imgs/mesa.png";
@@ -20,7 +20,15 @@ const Mesas = () => {
   const [contadorMesa, setContadorMesa] = useState(0);
   const [estadoMesa, setEstadoMesa] = useState("livre");
 
-  const { documents: mesas, loading } = useFetchDocuments("mesas", null, uid);
+  const { documentos, loading } = useFetchMultipleCollections(
+    ["mesas", "reservas"],
+    null,
+    uid
+  );
+
+  const mesas = documentos.mesas;
+  const reservas = documentos.reservas;
+
   const { inserirDocumentos, response } = useInsertDocuments("mesas", user);
 
   const { deletarDocumento } = useDeleteDocumentos("mesas");
@@ -57,48 +65,74 @@ const Mesas = () => {
         <div className={styles.mesasContainer}>
           {!loading &&
             mesas &&
-            mesas.map((mesa) => (
-              <div key={mesa.id}>
-                <div className={styles.mesaCard}>
-                  <button
-                    onClick={() => deletarDocumento(mesa.id)}
-                    className={styles.deleteMesa}
-                  >
-                    X
-                  </button>
-                  <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
-                  <img src={mesaCard} alt="" />
-                  <div className={styles.btnsMesa}>
-                    {estadoMesa === "livre" && (
-                      <>
-                        <div className={styles.btnBorder}>
-                          <PopUpReserva />
+            mesas.map((mesa) => {
+              // Filtrar reservas relacionadas à mesa atual
+              const reservasDaMesa = reservas
+                ? reservas.filter((reserva) => reserva.mesaId === mesa.id)
+                : [];
+
+              return (
+                <div key={mesa.id}>
+                  <div className={styles.mesaCard}>
+                    {/* Exibe reservas apenas se relacionadas a esta mesa */}
+                    {reservasDaMesa.length > 0 ? (
+                      <div className={styles.reservasContainer}>
+                        <div className={styles.reserva}>
+                          {reservasDaMesa.map((reserva) => (
+                            <div key={reserva.id}>
+                              <p>Cliente: {reserva.nomeCliente}</p>
+                              <p>Data: {reserva.diaReserva}</p>
+                              <p>Hora: {reserva.horaReserva}</p>
+                              <p>Obs: {reserva.obsReserva}</p>
+                            </div>
+                          ))}
                         </div>
-                        <button
-                          onClick={() => setEstadoMesa("ocupada")}
-                          className={styles.btnComBg}
-                        >
-                          ocupar
-                        </button>
-                      </>
+                      </div>
+                    ) : (
+                      ""
                     )}
-                    {estadoMesa === "ocupada" && (
-                      <>
-                        <button
-                          onClick={() => setEstadoMesa("livre")}
-                          className={styles.btnBorder}
-                        >
-                          Cancelar
-                        </button>
-                        <button className={styles.btnComBg}>
-                          <Link to={`/mesas/${mesa.id}`}>Marcar Pedido</Link>
-                        </button>
-                      </>
-                    )}
+
+                    <button
+                      onClick={() => deletarDocumento(mesa.id)}
+                      className={styles.deleteMesa}
+                    >
+                      X
+                    </button>
+                    <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
+                    <img src={mesaCard} alt="" />
+                    <div className={styles.btnsMesa}>
+                      {estadoMesa === "livre" && (
+                        <>
+                          <div className={styles.btnBorder}>
+                            <PopUpReserva mesaId={mesa.id} />
+                          </div>
+                          <button
+                            onClick={() => setEstadoMesa("ocupada")}
+                            className={styles.btnComBg}
+                          >
+                            Ocupar
+                          </button>
+                        </>
+                      )}
+                      {estadoMesa === "ocupada" && (
+                        <>
+                          <button
+                            onClick={() => setEstadoMesa("livre")}
+                            className={styles.btnBorder}
+                          >
+                            Cancelar
+                          </button>
+                          <button className={styles.btnComBg}>
+                            <Link to={`/mesas/${mesa.id}`}>Marcar Pedido</Link>
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+
           {loading && (
             <div className="loading">
               <div className="bouncing-dots">
