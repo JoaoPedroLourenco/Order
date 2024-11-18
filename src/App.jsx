@@ -29,6 +29,7 @@ import FaleConosco from "./routes/FaleConosco/FaleConosco.jsx";
 import Mesa from "./routes/Mesas/Mesa Individual/Mesa.jsx";
 import Pedidos from "./routes/Pedidos/Pedidos.jsx";
 import PopUpReserva from "./components/Pop up reserva/PopUpReserva.jsx";
+import Reserva from "./routes/Reservas/Reserva.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -117,6 +118,10 @@ function App() {
               <Route
                 path="/pedidos"
                 element={user ? <Pedidos /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/reserva/:id"
+                element={user ? <Reserva /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 
@@ -11,6 +11,7 @@ import { useAuthValue } from "../../context/AuthContext";
 
 import { Link } from "react-router-dom";
 import PopUpReserva from "../../components/Pop up reserva/PopUpReserva";
+import { Timestamp } from "firebase/firestore";
 
 const Mesas = () => {
   const { user } = useAuthValue();
@@ -36,13 +37,37 @@ const Mesas = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    inserirDocumentos({ nomeMesa, createdBy: user.displayName });
+    inserirDocumentos({
+      nomeMesa,
+      estadoMesa,
+      createdAt: Timestamp.now(),
+      createdBy: user.displayName,
+    });
     setNomeMesa("");
 
     if (nomeMesa === "") {
       setContadorMesa(contadorMesa + 1);
     }
   };
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
+  useEffect(() => {
+    const mudarEstadoMesa = () => {
+      if (estadoMesa === "ocupado") {
+        setEstadoMesa("ocupado");
+      } else if (estadoMesa === "reservado") {
+        setEstadoMesa("reservado");
+      } else {
+        setEstadoMesa("livre");
+      }
+    };
+
+    return mudarEstadoMesa();
+  }, [mesas]);
 
   return (
     <>
@@ -66,7 +91,6 @@ const Mesas = () => {
           {!loading &&
             mesas &&
             mesas.map((mesa) => {
-              // Filtrar reservas relacionadas à mesa atual
               const reservasDaMesa = reservas
                 ? reservas.filter((reserva) => reserva.mesaId === mesa.id)
                 : [];
@@ -74,24 +98,6 @@ const Mesas = () => {
               return (
                 <div key={mesa.id}>
                   <div className={styles.mesaCard}>
-                    {/* Exibe reservas apenas se relacionadas a esta mesa */}
-                    {reservasDaMesa.length > 0 ? (
-                      <div className={styles.reservasContainer}>
-                        <div className={styles.reserva}>
-                          {reservasDaMesa.map((reserva) => (
-                            <div key={reserva.id}>
-                              <p>Cliente: {reserva.nomeCliente}</p>
-                              <p>Data: {reserva.diaReserva}</p>
-                              <p>Hora: {reserva.horaReserva}</p>
-                              <p>Obs: {reserva.obsReserva}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-
                     <button
                       onClick={() => deletarDocumento(mesa.id)}
                       className={styles.deleteMesa}
@@ -100,6 +106,29 @@ const Mesas = () => {
                     </button>
                     <p>{`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}</p>
                     <img src={mesaCard} alt="" />
+                    {reservasDaMesa.length > 0 ? (
+                      <div className={styles.reservasContainer}>
+                        <div className={styles.reserva}>
+                          {reservasDaMesa.map((reserva) => (
+                            <Link to={`/reserva/${reserva.id}`}>
+                              <div
+                                key={reserva.id}
+                                className={styles.infoReserva}
+                              >
+                                <p>Cliente: {reserva.nomeCliente}</p>
+                                <p>
+                                  Data: {formatDate(reserva.diaReserva)}{" "}
+                                  {reserva.horaReserva}
+                                </p>
+                                <p></p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     <div className={styles.btnsMesa}>
                       {estadoMesa === "livre" && (
                         <>

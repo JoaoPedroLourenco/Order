@@ -22,11 +22,12 @@
     flex-direction: row-reverse;
     flex-wrap: wrap;
     gap: 1em;
+    padding: 20px 0px;
 }
 
 .mesaCard{
     width: 300px;
-    height: 300px;
+    height: auto;
     background: rgb(255, 255, 255);
     border-radius: 10px;
     color: black;
@@ -35,7 +36,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;  
+    justify-content: space-between; 
+    gap: 1em; 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.164);
 }
 
@@ -100,5 +102,20 @@
 }
 
 .reserva{
+  width: 200px;
+  max-height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 0, 0, 0.244) rgb(255, 228, 228);
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.121);
   font-size: .5em;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.infoReserva{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.141);
 }

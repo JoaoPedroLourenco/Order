@@ -1,12 +1,6 @@
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { useState, useEffect } from "react";
 import { dataBase } from "../firebase/Config";
-import { useEffect, useState } from "react";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 export const useFetchMultipleCollections = (
   collections,
@@ -14,66 +8,36 @@ export const useFetchMultipleCollections = (
   uid = null
 ) => {
   const [documentos, setDocumentos] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [cancelado, setCancelado] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function carregarDados() {
-      if (cancelado) return;
-      setLoading(true);
+    const unsubscribes = [];
 
-      try {
-        const fetchCollectionData = async (docCollection) => {
-          const collectionRef = collection(dataBase, docCollection);
-          let q;
+    collections.forEach((collectionName) => {
+      const collectionRef = collection(dataBase, collectionName);
 
-          if (search) {
-            q = query(
-              collectionRef,
-              where("nomeProduto", "==", search),
-              orderBy("createdAt", "desc")
-            );
-          } else if (uid) {
-            q = query(
-              collectionRef,
-              where("uid", "==", uid),
-              orderBy("createdAt", "desc")
-            );
-          } else {
-            q = query(collectionRef, orderBy("createdAt", "desc"));
-          }
-
-          return new Promise((resolve) => {
-            onSnapshot(q, (querySnapshot) => {
-              resolve(
-                querySnapshot.docs.map((doc) => ({
-                  id: doc.id,
-                  ...doc.data(),
-                }))
-              );
-            });
-          });
-        };
-        const results = await Promise.all(
-          collections.map(async (col) => {
-            const data = await fetchCollectionData(col);
-            return { [col]: data };
-          })
-        );
-        setDocumentos(results.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
+      let q = query(collectionRef);
+      if (search) {
+        q = query(collectionRef, where("campo", "==", search));
+      } else if (uid) {
+        q = query(collectionRef, where("uid", "==", uid));
       }
-      setLoading(false);
-    }
 
-    carregarDados();
-    setCancelado(false);
-  }, [search, uid, cancelado]);
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const docs = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setDocumentos((prev) => ({ ...prev, [collectionName]: docs }));
+      });
 
-  useEffect(() => () => setCancelado(true), []);
+      unsubscribes.push(unsubscribe);
+    });
 
-  return { documentos, loading, error };
+    setLoading(false);
+
+    return () => unsubscribes.forEach((unsub) => unsub());
+  }, [search, uid]);
+
+  return { documentos, setDocumentos, loading };
 };

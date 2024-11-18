@@ -45,7 +45,7 @@ const Mesa = () => {
       const mesaSnap = await getDoc(mesaRef);
 
       if (mesaSnap.exists()) {
-        setMesaNome(mesaSnap.data().nomeMesa); // Supondo que "nome" é o campo com o nome da mesa
+        setMesaNome(mesaSnap.data().nomeMesa);
       } else {
         console.log("Mesa não encontrada.");
       }

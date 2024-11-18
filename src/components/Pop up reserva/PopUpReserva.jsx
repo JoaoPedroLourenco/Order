@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../Pop up reserva/PopUpReserva.module.css";
 
@@ -28,9 +28,7 @@ const PopUpReserva = ({ mesaId }) => {
     setPopUp(!popUp);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     await inserirDocumentos({
       nomeCliente,
       diaReserva,
