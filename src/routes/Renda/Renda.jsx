@@ -26,12 +26,12 @@ const Renda = () => {
   const [precoRenda, setPrecoRenda] = useState("")
   const [tipoRenda, setTipoRenda] = useState("lucros")
 
-  const [lucrosContainer, setLucrosContainer] = ([])
-  const [gastosContainer, setGastosContainer] = ([])
+  const [lucrosContainer, setLucrosContainer] = useState([])
+  const [gastosContainer, setGastosContainer] = useState([])
 
-  const {inserirDocumentos} = useInsertDocuments("renda", user)
+  const { inserirDocumentos } = useInsertDocuments("renda", user)
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     await inserirDocumentos({
@@ -45,16 +45,18 @@ const Renda = () => {
 
     setInfoRenda("")
     setPrecoRenda("")
-    setTipoRenda("lucros")
-    // if(tipoRenda === "lucros"){
-    //   setLucrosContainer((prevLucros) => [...prevLucros])
-    // }
-    // else{
-    //   setGastosContainer((prevGastos) => [...prevGastos])
-    // }
+    setTipoRenda("")
+
+
+    if (tipoRenda === "lucros") {
+      setLucrosContainer((prevLucros) => [...prevLucros])
+    }
+    else if (tipoRenda === "gastos") {
+      setGastosContainer((prevGastos) => [...prevGastos])
+    }
   }
 
-  
+
   const { documentos, loading, error } = useFetchMultipleCollections(
     ["funcionarios", "pedidos", "renda"],
     null,
@@ -65,15 +67,15 @@ const Renda = () => {
   const funcionarios = documentos.funcionarios;
   const renda = documentos.renda
 
-  // useEffect(() => {
-  //   if(renda){
-  //     setLucrosContainer(renda.filter((item) => item.tipoRenda === "lucros"))
-  //     setGastosContainer(renda.filter((item) => item.tipoRenda === "gastos"))
-  //   }
-  // }, [renda])
+  useEffect(() => {
+    if (renda) {
+      setLucrosContainer(() => renda.filter((item) => item.tipoRenda === "lucros"))
+      setGastosContainer(() => renda.filter((item) => item.tipoRenda === "gastos"))
+    }
+  }, [renda])
 
 
-  
+
 
   // Função para calcular a soma dos salários
   const calcularSomaSalarios = () => {
@@ -97,6 +99,7 @@ const Renda = () => {
 
   const totalPedidos = calcularSomaPedidos();
 
+
   return (
     <>
       <Sidebar />
@@ -106,8 +109,8 @@ const Renda = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" name="infoRenda" value={infoRenda} onChange={(e) => setInfoRenda(e.target.value)}/>
-          <input type="text" name="precoRenda" value={precoRenda} onChange={(e) => setPrecoRenda(e.target.value)}/>
+          <input type="text" name="infoRenda" value={infoRenda} onChange={(e) => setInfoRenda(e.target.value)} />
+          <input type="text" name="precoRenda" value={precoRenda} onChange={(e) => setPrecoRenda(e.target.value)} />
           <select name="tipoRenda" value={tipoRenda} onChange={(e) => setTipoRenda(e.target.value)}>
             <option value="lucros">Lucros</option>
             <option value="gastos">Gastos</option>
@@ -145,29 +148,40 @@ const Renda = () => {
             </div>
           </div>
         </div>
-        {/* {gastosContainer.map((gastos) => (
-          <div key={gastos.id} className={styles.cardGastos}>
-            <p>{gastos.infoRenda}</p>
-            <p>{gastos.precoRenda}</p>
-          </div>
-        ))}
-        {lucrosContainer.map((lucros) => {
-          <div key={lucros.id}>
+        <div className={styles.gastos}>
+          <h1>Gastos</h1>
+          {gastosContainer.length > 0 ? gastosContainer.map((gastos) => (
+            <div key={gastos.id} className={styles.cardGastos}>
+              <p>{gastos.infoRenda}</p>
+              <p>{gastos.precoRenda}</p>
+            </div>
+          )) : ""}
+        </div>
+        <div className={styles.lucros}>
+          <h1>Lucros</h1>
+          
 
-            <p>{lucros.infoRenda}</p>
-            <p>{lucros.precoRenda}</p>
-          </div>
-        })} */}
-        {renda && renda.length > 0 ? (
-  renda.map((rendas) => (
-    <div key={rendas.id}>
-      <p>{rendas.infoRenda}</p>
-      <p>{rendas.precoRenda}</p>
-    </div>
-  ))
-) : (
-  <p>Não há dados de renda disponíveis</p>
-)}
+          {lucrosContainer.length > 0
+            ? lucrosContainer.map((lucros) => (
+              <div key={lucros.id}>
+                <p>{lucros.infoRenda}</p>
+                <p>{lucros.precoRenda}</p>
+              </div>
+            ))
+            : ""}
+        </div>
+        {/* <div>
+            {renda && renda.length > 0 ? (
+            renda.map((rendas) => (
+              <div key={rendas.id}>
+                <p>{rendas.infoRenda}</p>
+                <p>{rendas.precoRenda}</p>
+              </div>
+            ))
+          ) : (
+            <p>Não há dados de renda disponíveis</p>
+          )}
+          </div> */}
       </div>
     </>
   );
