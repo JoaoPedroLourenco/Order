@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 
 import styles from "../Renda/Renda.module.css";
@@ -9,6 +9,8 @@ import { useAuthValue } from "../../context/AuthContext";
 
 import func from "../../assets/imgs/funcionarios.png";
 import pedidoImg from "../../assets/imgs/pedidos.png";
+import { useInsertDocuments } from "../../hooks/useInsertDocuments";
+import { Timestamp } from "firebase/firestore";
 
 const Renda = () => {
   // const [diminuirContainer, setDiminuirContainer] = useState(false);
@@ -20,14 +22,58 @@ const Renda = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
+  const [infoRenda, setInfoRenda] = useState("")
+  const [precoRenda, setPrecoRenda] = useState("")
+  const [tipoRenda, setTipoRenda] = useState("lucros")
+
+  const [lucrosContainer, setLucrosContainer] = ([])
+  const [gastosContainer, setGastosContainer] = ([])
+
+  const {inserirDocumentos} = useInsertDocuments("renda", user)
+
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+
+    await inserirDocumentos({
+      infoRenda,
+      precoRenda,
+      tipoRenda,
+      createdAt: Timestamp.now(),
+      createdBy: user.displayName
+    })
+
+
+    setInfoRenda("")
+    setPrecoRenda("")
+    setTipoRenda("lucros")
+    // if(tipoRenda === "lucros"){
+    //   setLucrosContainer((prevLucros) => [...prevLucros])
+    // }
+    // else{
+    //   setGastosContainer((prevGastos) => [...prevGastos])
+    // }
+  }
+
+  
   const { documentos, loading, error } = useFetchMultipleCollections(
-    ["funcionarios", "pedidos"],
+    ["funcionarios", "pedidos", "renda"],
     null,
     uid
   );
 
   const pedidos = documentos.pedidos;
   const funcionarios = documentos.funcionarios;
+  const renda = documentos.renda
+
+  // useEffect(() => {
+  //   if(renda){
+  //     setLucrosContainer(renda.filter((item) => item.tipoRenda === "lucros"))
+  //     setGastosContainer(renda.filter((item) => item.tipoRenda === "gastos"))
+  //   }
+  // }, [renda])
+
+
+  
 
   // Função para calcular a soma dos salários
   const calcularSomaSalarios = () => {
@@ -35,7 +81,7 @@ const Renda = () => {
     return funcionarios?.reduce((add, funcionario) => {
       // o ? serve para checar se é null ou undefined
       const salario =
-        parseFloat(funcionario.salarioFuncionario.replace(/\./g, "")) || 0; // Converte para número
+        parseFloat(funcionario.salarioFuncionario) || 0; // Converte para número
       return add + salario;
     }, 0);
   };
@@ -58,6 +104,17 @@ const Renda = () => {
         <div className="title">
           <h1>Renda</h1>
         </div>
+
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="infoRenda" value={infoRenda} onChange={(e) => setInfoRenda(e.target.value)}/>
+          <input type="text" name="precoRenda" value={precoRenda} onChange={(e) => setPrecoRenda(e.target.value)}/>
+          <select name="tipoRenda" value={tipoRenda} onChange={(e) => setTipoRenda(e.target.value)}>
+            <option value="lucros">Lucros</option>
+            <option value="gastos">Gastos</option>
+          </select>
+
+          <button>Confirmar</button>
+        </form>
 
         <div className={styles.containerCardsRenda}>
           {loading && <p>Carregando...</p>}
@@ -88,6 +145,29 @@ const Renda = () => {
             </div>
           </div>
         </div>
+        {/* {gastosContainer.map((gastos) => (
+          <div key={gastos.id} className={styles.cardGastos}>
+            <p>{gastos.infoRenda}</p>
+            <p>{gastos.precoRenda}</p>
+          </div>
+        ))}
+        {lucrosContainer.map((lucros) => {
+          <div key={lucros.id}>
+
+            <p>{lucros.infoRenda}</p>
+            <p>{lucros.precoRenda}</p>
+          </div>
+        })} */}
+        {renda && renda.length > 0 ? (
+  renda.map((rendas) => (
+    <div key={rendas.id}>
+      <p>{rendas.infoRenda}</p>
+      <p>{rendas.precoRenda}</p>
+    </div>
+  ))
+) : (
+  <p>Não há dados de renda disponíveis</p>
+)}
       </div>
     </>
   );

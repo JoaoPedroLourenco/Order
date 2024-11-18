@@ -54,7 +54,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={mesa} alt="Mesas" />
-                Mesas
+                <p>Mesas</p>
               </NavLink>
             </li>
             <li>
@@ -68,7 +68,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={cardapio} alt="Cardápio" />
-                Cardápio
+                <p>Cardápio</p>
               </NavLink>
             </li>
             <li>
@@ -82,7 +82,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={estoque} alt="Estoque" />
-                Estoque
+                <p>Estoque</p>
               </NavLink>
             </li>
             <li>
@@ -96,7 +96,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={pedidos} alt="Estoque" />
-                Pedidos
+                <p>Pedidos</p>
               </NavLink>
             </li>
             <li>
@@ -110,7 +110,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={funcionarios} alt="Estoque" />
-                Funcionários
+                <p>Funcionários</p>
               </NavLink>
             </li>
             <li>
@@ -124,7 +124,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={renda} alt="Renda" />
-                Renda
+                <p>Renda</p>
               </NavLink>
             </li>
             <hr />
@@ -139,7 +139,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={configuracoes} alt="Configurações" />
-                Config.
+                <p>Config.</p>
               </NavLink>
             </li>
             <li>
@@ -153,7 +153,7 @@ const Sidebar = () => {
                 })}
               >
                 <img src={ajuda} alt="Ajuda" />
-                Ajuda
+                <p>Ajuda</p>
               </NavLink>
             </li>
           </ul>

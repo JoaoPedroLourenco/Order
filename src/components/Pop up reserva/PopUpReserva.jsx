@@ -28,7 +28,10 @@ const PopUpReserva = ({ mesaId }) => {
     setPopUp(!popUp);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+
     await inserirDocumentos({
       nomeCliente,
       diaReserva,
