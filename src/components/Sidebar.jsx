@@ -128,20 +128,7 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <hr />
-            <li>
-              <NavLink
-                to="/configuracoes"
-                className={styles.link}
-                style={({ isActive }) => ({
-                  transition: ".2s",
-                  backgroundColor: isActive ? "#b4b4b483" : "",
-                  boxShadow: isActive ? "0px 2px 2px #0000003a" : "",
-                })}
-              >
-                <img src={configuracoes} alt="Configurações" />
-                <p>Config.</p>
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/ajuda"

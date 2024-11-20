@@ -19,7 +19,11 @@ const Pedidos = () => {
   return (
     <>
       <Sidebar />
+
       <div className={styles.pedidos}>
+        <div className="title">
+          <h1>Pedidos</h1>
+        </div>
         <div className={styles.containerPedidos}>
           {loading && <p>Carregando...</p>}
           {pedidos && pedidos.length > 0 ? (

@@ -42,7 +42,9 @@ const Ajuda = () => {
         </div>
 
         <form>
-          <h1>Como podemos ajudar?</h1>
+          <h1>
+            Como podemos <span style={{ color: "red" }}>ajudar?</span>
+          </h1>
           <textarea
             name="message"
             placeholder="Digite sua dúvida..."

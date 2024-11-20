@@ -1,11 +1,11 @@
 .ajudaContainer{
   width: 100%;
     display: flex;
-    
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0em 5em ;
+    gap: 1em;
 }
 
 .ajudaContainer > form > textarea{
@@ -42,7 +42,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 
 .pergunta{
@@ -103,4 +102,32 @@
 
 .expandirPerguntaBtn:hover{
   background: none;
+}
+
+
+@media screen and (max-width: 1024px){
+  .ajudaContainer{
+    width: 100vw;
+    padding: 0em 2em;
+  }
+
+  .ajudaContainer > form{
+    width: 100%;
+  }
+
+  .ajudaContainer .faq{
+    width: 100%;
+  }
+
+  .faq .expandirPerguntaBtn{
+    width: 100%;
+  }
+
+  .pergunta{
+    width: 100%;
+  }
+
+  .titlePergunta{
+    width: 100%;
+  }
 }

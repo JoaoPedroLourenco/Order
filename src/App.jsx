@@ -30,6 +30,7 @@ import Mesa from "./routes/Mesas/Mesa Individual/Mesa.jsx";
 import Pedidos from "./routes/Pedidos/Pedidos.jsx";
 import PopUpReserva from "./components/Pop up reserva/PopUpReserva.jsx";
 import Reserva from "./routes/Reservas/Reserva.jsx";
+import EditMesas from "./routes/Mesas/EditMesas/EditMesas.jsx";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -76,6 +77,10 @@ function App() {
                 element={user ? <Mesas /> : <Navigate to="/" />}
               />
               <Route
+                path="/mesas/editMesas"
+                element={user ? <EditMesas /> : <Navigate to="/" />}
+              />
+              <Route
                 path="/mesas/reserva"
                 element={user ? <PopUpReserva /> : <Navigate to="/" />}
               />
@@ -102,10 +107,6 @@ function App() {
               <Route
                 path="/ajuda"
                 element={user ? <Ajuda /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/configuracoes"
-                element={user ? <Configuracoes /> : <Navigate to="/" />}
               />
               <Route
                 path="/funcionarios"
