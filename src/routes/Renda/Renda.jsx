@@ -22,40 +22,36 @@ const Renda = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const [infoRenda, setInfoRenda] = useState("")
-  const [precoRenda, setPrecoRenda] = useState("")
-  const [tipoRenda, setTipoRenda] = useState("lucros")
+  const [infoRenda, setInfoRenda] = useState("");
+  const [precoRenda, setPrecoRenda] = useState("");
+  const [tipoRenda, setTipoRenda] = useState("lucros");
 
-  const [lucrosContainer, setLucrosContainer] = useState([])
-  const [gastosContainer, setGastosContainer] = useState([])
+  const [lucrosContainer, setLucrosContainer] = useState([]);
+  const [gastosContainer, setGastosContainer] = useState([]);
 
-  const { inserirDocumentos } = useInsertDocuments("renda", user)
+  const { inserirDocumentos } = useInsertDocuments("renda", user);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     await inserirDocumentos({
       infoRenda,
       precoRenda,
       tipoRenda,
       createdAt: Timestamp.now(),
-      createdBy: user.displayName
-    })
+      createdBy: user.displayName,
+    });
 
-
-    setInfoRenda("")
-    setPrecoRenda("")
-    setTipoRenda("")
-
+    setInfoRenda("");
+    setPrecoRenda("");
+    setTipoRenda("");
 
     if (tipoRenda === "lucros") {
-      setLucrosContainer((prevLucros) => [...prevLucros])
+      setLucrosContainer((prevLucros) => [...prevLucros]);
+    } else if (tipoRenda === "gastos") {
+      setGastosContainer((prevGastos) => [...prevGastos]);
     }
-    else if (tipoRenda === "gastos") {
-      setGastosContainer((prevGastos) => [...prevGastos])
-    }
-  }
-
+  };
 
   const { documentos, loading, error } = useFetchMultipleCollections(
     ["funcionarios", "pedidos", "renda"],
@@ -65,25 +61,25 @@ const Renda = () => {
 
   const pedidos = documentos.pedidos;
   const funcionarios = documentos.funcionarios;
-  const renda = documentos.renda
+  const renda = documentos.renda;
 
   useEffect(() => {
     if (renda) {
-      setLucrosContainer(() => renda.filter((item) => item.tipoRenda === "lucros"))
-      setGastosContainer(() => renda.filter((item) => item.tipoRenda === "gastos"))
+      setLucrosContainer(() =>
+        renda.filter((item) => item.tipoRenda === "lucros")
+      );
+      setGastosContainer(() =>
+        renda.filter((item) => item.tipoRenda === "gastos")
+      );
     }
-  }, [renda])
-
-
-
+  }, [renda]);
 
   // Função para calcular a soma dos salários
   const calcularSomaSalarios = () => {
     // o reduce passa por cada elemento de um array fazendo o que a função manda
     return funcionarios?.reduce((add, funcionario) => {
       // o ? serve para checar se é null ou undefined
-      const salario =
-        parseFloat(funcionario.salarioFuncionario) || 0; // Converte para número
+      const salario = parseFloat(funcionario.salarioFuncionario) || 0; // Converte para número
       return add + salario;
     }, 0);
   };
@@ -100,6 +96,21 @@ const Renda = () => {
   const totalPedidos = calcularSomaPedidos();
 
 
+
+  const calcularSomaLucros = () => {
+    return renda?.reduce((add, lucro) => {
+
+        const lucroTotal = parseFloat(lucro.precoRenda) || 0
+        return add + lucroTotal
+      
+      
+    }, 0)
+  }
+
+  const totalLucro = calcularSomaLucros()
+
+  console.log(totalLucro)
+
   return (
     <>
       <Sidebar />
@@ -108,67 +119,92 @@ const Renda = () => {
           <h1>Renda</h1>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="infoRenda" value={infoRenda} onChange={(e) => setInfoRenda(e.target.value)} />
-          <input type="text" name="precoRenda" value={precoRenda} onChange={(e) => setPrecoRenda(e.target.value)} />
-          <select name="tipoRenda" value={tipoRenda} onChange={(e) => setTipoRenda(e.target.value)}>
-            <option value="lucros">Lucros</option>
-            <option value="gastos">Gastos</option>
-          </select>
+        <div className={styles.formRenda}>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="infoRenda"
+              value={infoRenda}
+              onChange={(e) => setInfoRenda(e.target.value)}
+            />
+            <input
+              type="text"
+              name="precoRenda"
+              value={precoRenda}
+              onChange={(e) => setPrecoRenda(e.target.value)}
+            />
+            <select
+              name="tipoRenda"
+              value={tipoRenda}
+              onChange={(e) => setTipoRenda(e.target.value)}
+            >
+              <option value="lucros">Lucros</option>
+              <option value="gastos">Gastos</option>
+            </select>
 
-          <button>Confirmar</button>
-        </form>
+            <button>Confirmar</button>
+          </form>
+        </div>
 
         <div className={styles.containerCardsRenda}>
           {loading && <p>Carregando...</p>}
-          <div className={styles.cardTotalSalario}>
-            <div className={styles.titleCard}>
-              <img src={func} alt="func" />
-              <p>Funcionários</p>
-            </div>
-            <div className={styles.totalFuncionarios}>
-              <p>Total:</p>
-              <span>R$ {parseFloat(somaSalarios).toFixed(2)}</span>
-              <div className={styles.qtdFuncionarios}>
-                <p>Funcionários: {funcionarios && funcionarios.length}</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.cardTotalPedidos}>
-            <div className={styles.titleCard}>
-              <img src={pedidoImg} alt="" />
-              <p>Pedidos</p>
-            </div>
-            <div className={styles.totalPedidos}>
-              <p>Total:</p>
-              <span>R$ {parseFloat(totalPedidos).toFixed(2)}</span>
-              <div className={styles.qtdFuncionarios}>
-                <p>Pedidos: {pedidos && pedidos.length}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.gastos}>
-          <h1>Gastos</h1>
-          {gastosContainer.length > 0 ? gastosContainer.map((gastos) => (
-            <div key={gastos.id} className={styles.cardGastos}>
-              <p>{gastos.infoRenda}</p>
-              <p>{gastos.precoRenda}</p>
-            </div>
-          )) : ""}
-        </div>
-        <div className={styles.lucros}>
-          <h1>Lucros</h1>
-          
 
-          {lucrosContainer.length > 0
-            ? lucrosContainer.map((lucros) => (
-              <div key={lucros.id}>
-                <p>{lucros.infoRenda}</p>
-                <p>{lucros.precoRenda}</p>
+          <div className={styles.gastos}>
+            <h1>Gastos</h1>
+            <div className={styles.listaGastos}>
+              {gastosContainer.length > 0
+                ? gastosContainer.map((gastos) => (
+                    <div key={gastos.id} className={styles.gasto}>
+                      <h3>{gastos.infoRenda}</h3>
+                      <p>R${gastos.precoRenda}</p>
+                    </div>
+                  ))
+                : ""}
+            </div>
+          </div>
+          <div className={styles.lucros}>
+            <h1>Lucros</h1>
+            <div className={styles.listaLucros}>
+              {lucrosContainer.length > 0
+                ? lucrosContainer.map((lucros) => (
+                    <div key={lucros.id} className={styles.lucro}>
+                      <p>{lucros.infoRenda}</p>
+                      <p>{lucros.precoRenda}</p>
+                    </div>
+                  ))
+                : ""}
+                
+            </div>
+            <p>R${parseFloat(totalLucro).toFixed(2)}</p>
+          </div>
+          <div className={styles.columnCards}>
+            <div className={styles.cardTotalSalario}>
+              <div className={styles.titleCard}>
+                <img src={func} alt="func" />
+                <p>Funcionários</p>
               </div>
-            ))
-            : ""}
+              <div className={styles.totalFuncionarios}>
+                <p>Total:</p>
+                <span>R$ {parseFloat(somaSalarios).toFixed(2)}</span>
+                <div className={styles.qtdFuncionarios}>
+                  <p>Funcionários: {funcionarios && funcionarios.length}</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.cardTotalPedidos}>
+              <div className={styles.titleCard}>
+                <img src={pedidoImg} alt="" />
+                <p>Pedidos</p>
+              </div>
+              <div className={styles.totalPedidos}>
+                <p>Total:</p>
+                <span>R$ {parseFloat(totalPedidos).toFixed(2)}</span>
+                <div className={styles.qtdFuncionarios}>
+                  <p>Pedidos: {pedidos && pedidos.length}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {/* <div>
             {renda && renda.length > 0 ? (
@@ -182,6 +218,9 @@ const Renda = () => {
             <p>Não há dados de renda disponíveis</p>
           )}
           </div> */}
+        <div className={styles.totalCalculado}>
+          <p> Total Calculado: R$ ....</p>
+        </div>
       </div>
     </>
   );
