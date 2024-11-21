@@ -113,6 +113,12 @@
   display: flex;
   flex-direction: column;
   gap: .5em;
+ 
+}
+
+.reserva a{
+  text-decoration: none;
+  color: black;
 }
 
 .infoReserva{
