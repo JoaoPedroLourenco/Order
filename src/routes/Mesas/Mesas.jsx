@@ -76,12 +76,6 @@ const Mesas = () => {
                     return (
                       <div key={mesa.id}>
                         <div className="mesaCard">
-                          <button
-                            onClick={() => deletarDocumento(mesa.id)}
-                            className="deleteMesa"
-                          >
-                            X
-                          </button>
                           <p>
                             {`Mesa ${mesa.nomeMesa}` || `Mesa ${contadorMesa}`}
                           </p>
@@ -107,7 +101,7 @@ const Mesas = () => {
                             </div>
                           )}
                           <div className="btnsMesa">
-                            {mesa.estadoMesa === "livre" ? (
+                            {estadoMesa === "livre" ? (
                               <>
                                 <div className="btnBorder">
                                   <PopUpReserva mesaId={mesa.id} />
