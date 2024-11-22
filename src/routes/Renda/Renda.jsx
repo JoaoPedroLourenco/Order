@@ -9,15 +9,17 @@ import { useAuthValue } from "../../context/AuthContext";
 
 import func from "../../assets/imgs/funcionarios.png";
 import pedidoImg from "../../assets/imgs/pedidos.png";
+import gastos from "../../assets/imgs/Money With Wings.png";
+import lucros from "../../assets/imgs/Stack of Money.png";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { Timestamp } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Renda = () => {
-  // const [diminuirContainer, setDiminuirContainer] = useState(false);
-
-  // const hideContainer = () => {
-  //   setDiminuirContainer(!diminuirContainer);
-  // };
+  const [mostrarForm, setMostrarForm] = useState(false);
+  const usarForm = () => {
+    setMostrarForm(!mostrarForm);
+  };
 
   const { user } = useAuthValue();
   const uid = user.uid;
@@ -44,7 +46,7 @@ const Renda = () => {
 
     setInfoRenda("");
     setPrecoRenda("");
-    setTipoRenda("");
+    setTipoRenda("lucros");
 
     if (tipoRenda === "lucros") {
       setLucrosContainer((prevLucros) => [...prevLucros]);
@@ -95,21 +97,28 @@ const Renda = () => {
 
   const totalPedidos = calcularSomaPedidos();
 
-
-
-  const calcularSomaLucros = () => {
+  const calcularSomaLucros = (tipo) => {
     return renda?.reduce((add, lucro) => {
+      if (lucro.tipoRenda === tipo) {
+        const lucroTotal = parseFloat(lucro.precoRenda) || 0;
+        return add + lucroTotal;
+      }
+      return add;
+    }, 0);
+  };
 
-        const lucroTotal = parseFloat(lucro.precoRenda) || 0
-        return add + lucroTotal
-      
-      
-    }, 0)
-  }
+  const totalLucro = calcularSomaLucros("lucros");
+  const totalGastos = calcularSomaLucros("gastos");
 
-  const totalLucro = calcularSomaLucros()
+  const somarTotalCalculado = () => {
+    return (
+      parseFloat(totalLucro) +
+      parseFloat(totalPedidos) -
+      (parseFloat(somaSalarios) + parseFloat(totalGastos))
+    );
+  };
 
-  console.log(totalLucro)
+  const totalCalculado = somarTotalCalculado();
 
   return (
     <>
@@ -119,38 +128,52 @@ const Renda = () => {
           <h1>Renda</h1>
         </div>
 
-        <div className={styles.formRenda}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="infoRenda"
-              value={infoRenda}
-              onChange={(e) => setInfoRenda(e.target.value)}
-            />
-            <input
-              type="text"
-              name="precoRenda"
-              value={precoRenda}
-              onChange={(e) => setPrecoRenda(e.target.value)}
-            />
-            <select
-              name="tipoRenda"
-              value={tipoRenda}
-              onChange={(e) => setTipoRenda(e.target.value)}
-            >
-              <option value="lucros">Lucros</option>
-              <option value="gastos">Gastos</option>
-            </select>
+        <button onClick={usarForm} className={styles.expandBtn}>
+          Adicionar dados
+        </button>
+        {mostrarForm === true ? (
+          <div className={styles.formRenda}>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="infoRenda"
+                value={infoRenda}
+                onChange={(e) => setInfoRenda(e.target.value)}
+              />
+              <input
+                type="number"
+                name="precoRenda"
+                value={precoRenda}
+                onChange={(e) => setPrecoRenda(e.target.value)}
+              />
+              <select
+                name="tipoRenda"
+                value={tipoRenda}
+                onChange={(e) => setTipoRenda(e.target.value)}
+              >
+                <option value="lucros">Lucros</option>
+                <option value="gastos">Gastos</option>
+              </select>
 
-            <button>Confirmar</button>
-          </form>
-        </div>
+              <button>Confirmar</button>
+            </form>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={styles.containerCardsRenda}>
           {loading && <p>Carregando...</p>}
 
+          {/* ---------------- Gastos --------------- */}
+
           <div className={styles.gastos}>
-            <h1>Gastos</h1>
+            <div className={styles.titulo}>
+              <div className={styles.icon}>
+                <img src={gastos} alt="" />
+              </div>
+              <h1>Gastos</h1>
+            </div>
             <div className={styles.listaGastos}>
               {gastosContainer.length > 0
                 ? gastosContainer.map((gastos) => (
@@ -161,23 +184,41 @@ const Renda = () => {
                   ))
                 : ""}
             </div>
+            <div className={styles.totalGastos}>
+              <p>Total: R${parseFloat(totalGastos).toFixed(2)}</p>
+            </div>
           </div>
+
+          {/* ------------------------ */}
+
+          {/* ---------------- Lucros --------------- */}
+
           <div className={styles.lucros}>
-            <h1>Lucros</h1>
+            <div className={styles.titulo}>
+              <div className={styles.icon}>
+                <img src={lucros} alt="" />
+              </div>
+              <h1>Lucros</h1>
+            </div>
             <div className={styles.listaLucros}>
               {lucrosContainer.length > 0
                 ? lucrosContainer.map((lucros) => (
                     <div key={lucros.id} className={styles.lucro}>
-                      <p>{lucros.infoRenda}</p>
+                      <h3>{lucros.infoRenda}</h3>
                       <p>{lucros.precoRenda}</p>
                     </div>
                   ))
                 : ""}
-                
             </div>
-            <p>R${parseFloat(totalLucro).toFixed(2)}</p>
+            <div className={styles.totalLucros}>
+              <p>Total: R${parseFloat(totalLucro).toFixed(2)}</p>
+            </div>
           </div>
+
+          {/* ------------------------ */}
+
           <div className={styles.columnCards}>
+            {/* ---------------- Funcionarios --------------- */}
             <div className={styles.cardTotalSalario}>
               <div className={styles.titleCard}>
                 <img src={func} alt="func" />
@@ -189,8 +230,21 @@ const Renda = () => {
                 <div className={styles.qtdFuncionarios}>
                   <p>Funcionários: {funcionarios && funcionarios.length}</p>
                 </div>
+                <div className={styles.listaFuncionarios}>
+                  {funcionarios &&
+                    funcionarios.map((funcionario) => (
+                      <div key={funcionario.id} className={styles.infoFunc}>
+                        <p>{funcionario.nomeFuncionario}</p>
+                        <p>R${funcionario.salarioFuncionario}</p>
+                      </div>
+                    ))}
+                </div>
+                <Link to="/funcionarios">Ver detalhes</Link>
               </div>
             </div>
+            {/* ------------------------ */}
+
+            {/* ---------------- Pedidos --------------- */}
             <div className={styles.cardTotalPedidos}>
               <div className={styles.titleCard}>
                 <img src={pedidoImg} alt="" />
@@ -204,23 +258,25 @@ const Renda = () => {
                 </div>
               </div>
             </div>
+            {/* ------------------------ */}
           </div>
         </div>
-        {/* <div>
-            {renda && renda.length > 0 ? (
-            renda.map((rendas) => (
-              <div key={rendas.id}>
-                <p>{rendas.infoRenda}</p>
-                <p>{rendas.precoRenda}</p>
-              </div>
-            ))
-          ) : (
-            <p>Não há dados de renda disponíveis</p>
-          )}
-          </div> */}
+
+        {/* ---------------- Calculo Total --------------- */}
         <div className={styles.totalCalculado}>
-          <p> Total Calculado: R$ ....</p>
+          {totalCalculado > 0 ? (
+            <p> Total Calculado: R$ {parseFloat(totalCalculado)}</p>
+          ) : (
+            <p>
+              {" "}
+              Total Calculado:{" "}
+              <span style={{ color: "red" }}>
+                R${parseFloat(totalCalculado)}
+              </span>
+            </p>
+          )}
         </div>
+        {/* ------------------------ */}
       </div>
     </>
   );
