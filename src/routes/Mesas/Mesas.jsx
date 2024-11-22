@@ -15,7 +15,7 @@ const Mesas = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
 
-  const [estadoMesa, setEstadoMesa] = useState("livre");
+  const [estadoMesas, setEstadoMesas] = useState({}); // Armazena o estado de cada mesa individualmente
   const [doisLugares, setDoisLugares] = useState([]);
   const [quatroLugares, setQuatroLugares] = useState([]);
   const [seisLugares, setSeisLugares] = useState([]);
@@ -44,8 +44,22 @@ const Mesas = () => {
       setSeisLugares(mesas.filter((qtd) => qtd.qtdLugares === "6"));
       setOitoLugares(mesas.filter((qtd) => qtd.qtdLugares === "8"));
       setDezMaisLugares(mesas.filter((qtd) => qtd.qtdLugares === "10"));
+
+      // Inicializa o estado das mesas como "livre"
+      const estadoInicial = {};
+      mesas.forEach((mesa) => {
+        estadoInicial[mesa.id] = "livre";
+      });
+      setEstadoMesas(estadoInicial);
     }
   }, [mesas]);
+
+  const alterarEstadoMesa = (id, novoEstado) => {
+    setEstadoMesas((prevState) => ({
+      ...prevState,
+      [id]: novoEstado,
+    }));
+  };
 
   return (
     <>
@@ -101,13 +115,15 @@ const Mesas = () => {
                             </div>
                           )}
                           <div className="btnsMesa">
-                            {estadoMesa === "livre" ? (
+                            {estadoMesas[mesa.id] === "livre" ? (
                               <>
                                 <div className="btnBorder">
                                   <PopUpReserva mesaId={mesa.id} />
                                 </div>
                                 <button
-                                  onClick={() => setEstadoMesa("ocupada")}
+                                  onClick={() =>
+                                    alterarEstadoMesa(mesa.id, "ocupada")
+                                  }
                                   className="btnComBg"
                                 >
                                   Ocupar
@@ -116,7 +132,9 @@ const Mesas = () => {
                             ) : (
                               <>
                                 <button
-                                  onClick={() => setEstadoMesa("livre")}
+                                  onClick={() =>
+                                    alterarEstadoMesa(mesa.id, "livre")
+                                  }
                                   className="btnBorder"
                                 >
                                   Cancelar

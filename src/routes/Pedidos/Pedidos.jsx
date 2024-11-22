@@ -53,6 +53,9 @@ const Pedidos = () => {
                     <p>Sem itens na lista de pedidos.</p>
                   )}
                 </div>
+                <div className={styles.anotacoes}>
+                  <p>{pedido.anotacoes}</p>
+                </div>
                 <div className={styles.valorTotal}>
                   <h3>Total: R${parseFloat(pedido.valorTotal).toFixed(2)}</h3>
                 </div>

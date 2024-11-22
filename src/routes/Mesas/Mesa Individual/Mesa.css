@@ -1,0 +1,328 @@
+.mesa{
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   position: relative;
+   padding: 0em 2em;
+  overflow: hidden;
+}
+
+.mesa .allItensContainer{
+  width: 90%; 
+  display: flex;
+  gap: 2em;
+  margin: 0 auto;
+}
+
+.mesa .containerProdutos{
+  width: 40%;
+  max-height: 50%;
+  padding: 1em;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.132);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.allItensContainer .pedido_total{
+  width: 30%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.pedido_total .totalPedido{
+  width: 100%;
+  height: 120px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-spacing: 2em;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.132);
+}
+
+.totalPedido h3{
+  font-size: 2em;
+  font-weight: normal;
+}
+
+.pedido_total .pedido{
+  width: 100%;
+  height: 80%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.132);
+
+}
+
+.pedido .tituloCard{
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  font-size: 1.2em;
+  border-bottom: 1px solid red;
+}
+
+.pedido .pedidoLista{
+  width: 100%;
+  height: 85%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.pedidoLista .cardPedido{
+  width: 80%;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.132);
+  flex-direction: column;
+  padding: .5em;
+  gap: .5em;
+}
+
+.pedido .limparPedido{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.limparPedido button{
+  width: 50%;
+  height: 30px;
+  background: #EF233C;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.limparPedido button:hover{
+  background: #bf2638;
+}
+
+.cardPedido .produtoPreco{
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.cardPedido .subTotal{
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.subTotal button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.1em;
+  border: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.subTotal button:hover{
+  background: rgba(255, 0, 0, 0.361);
+}
+
+.cardProduto{
+  width: 600px;
+  height: 8em;
+  display: flex;
+  border-radius: 1em;
+  font-size: 1.2em;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.descProduto{
+  font-size: .8em;
+  color: rgba(0, 0, 0, 0.584);
+}
+
+
+.cardProduto .deleteProduto{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  background: red;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.deleteProduto:hover{
+  background: rgb(177, 0, 0);
+  transition: .2s;
+}
+
+.cardProduto .cardEsq{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.preco{
+  display: flex;
+  gap: .2em;
+}
+
+.preco span{
+  font-size: .8em;
+}
+
+.preco p{
+  font-size: .8em;
+}
+
+.cardProduto img{
+  max-width: 8em;
+  max-height: 8em;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cardProduto h1{
+  font-size: 1.2em;
+  color: red;
+  font-weight: 400;
+ 
+}
+
+.preco .precoProduto{
+  color: black;
+}
+
+.tituloProduto{
+  text-overflow: ellipsis;
+}
+
+.cardProduto .tituloCard{
+  font-size: 1.8em;
+  margin-bottom: 0.1em;
+  color: #EF233C;
+}
+
+
+.cardProduto .preco{
+  margin-top: 0.1em;
+  font-size: 1.8em;
+}
+
+.cardEsq{
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ margin-left: 0.5em;
+}
+
+.cardProduto span{
+  color: #EF233C;
+}
+
+.allItensContainer .anotacoes{
+  width: auto;
+  height: 50%;
+  
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.132);
+  background: white;
+  padding: 10px;
+  
+}
+
+.anotacoes textarea{
+  width: 100%;
+  height: 95%;
+  resize: none;
+  border: 1px solid rgba(0, 0, 0, 0.132);
+  border-radius: 10px;
+  padding: 10px;
+  background: #e8e8e8e8;
+  line-height: 1.8em;
+}
+
+.mesa .form_btn{
+  width: 50%;
+  height: 50px;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  background: #EF233C;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.form_btn:hover{
+  background: #bf2638;
+  
+}
+
+
+.cardProduto .addItem{
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-80%, -50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 0, 0, 0.162);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #EF233C;
+}
+
+.voltar{
+  width: 40px;
+  height: 40px;
+  font-size: 2em;
+  position: absolute;
+  left: 2%;
+  top: 2%;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.132);
+}
+
+.voltar img{
+  width: 25px;
+  height: 25px;
+}
+

@@ -1,10 +1,11 @@
 import Sidebar from "../../../components/Sidebar";
 import { useFetchDocuments } from "../../../hooks/useResgatarProdutos";
-import styles from "../Mesa Individual/Mesa.module.css";
+import "../Mesa Individual/Mesa.css";
 
 import { Link, useParams } from "react-router-dom";
 
-import seta from "../../../assets/imgs/downArrow.png";
+import voltar from "../../../assets/imgs/Back.png";
+import fundoCaderno from "../../../assets/imgs/fundoCaderno.jpg";
 
 import useFetchMenuItems from "../../../hooks/usePedido";
 
@@ -37,6 +38,7 @@ const Mesa = () => {
   const { inserirDocumentos } = useInsertDocuments("pedidos", user);
   const [pedidosLista, setPedidosLista] = useState([]);
   const [valorTotal, setValorTotal] = useState(0);
+  const [anotacoes, setAnotacoes] = useState("");
 
   // Buscar o nome da mesa ao carregar a página
   useEffect(() => {
@@ -63,6 +65,7 @@ const Mesa = () => {
         mesaNome,
         pedidosLista,
         valorTotal,
+        anotacoes,
         createdBy: user.displayName,
         uid: user.uid,
         createdAt: Timestamp.now(),
@@ -71,6 +74,7 @@ const Mesa = () => {
       navigate("/pedidos");
       setPedidosLista([]);
       setValorTotal(0);
+      setAnotacoes("");
     }
   };
 
@@ -118,7 +122,7 @@ const Mesa = () => {
 
   function ListaPedidos({ mesaId }) {
     const { menuItems, loading, error } = useFetchMenuItems(mesaId);
-    if (loading) return <p>Carregando...</p>;
+    // if (loading) return <p>Carregando...</p>;
     if (error) return <p>{error}</p>;
   }
 
@@ -130,76 +134,86 @@ const Mesa = () => {
   return (
     <>
       <Sidebar />
-      <div className={styles.mesa}>
+      <div className="mesa">
         <div className="title">
           <h1>{mesaNome ? `Mesa ${mesaNome}` : "Carregando..."}</h1>
         </div>
-        <Link to="/mesas" className={styles.voltar}>
-          <img src={seta} alt="" />
+
+        <Link to="/mesas" className="voltar">
+          <img src={voltar} alt="" />
         </Link>
-        <div className="title"></div>
-        <button onClick={salvarPedido}>Salvar Pedido</button>
 
-        <div className={styles.itensContainer}>
-          {loading && <p>Carregando...</p>}
-          {!loading &&
-            produtos &&
-            produtos.map((produto, index) => (
-              <div key={index}>
-                <div className={styles.cardProduto}>
-                  <img src={produto.imagemDocumento} alt="" />
-                  <div className={styles.cardEsq}>
-                    <h1 className={styles.tituloProduto}>
-                      {produto.nomeProduto}
-                    </h1>
-                    <p className={styles.descProduto}>{produto.descProduto}</p>
-                    <p className={styles.preco}>
-                      <button
-                        onClick={() => addItemNaLista(produto)}
-                        className={styles.addItem}
-                      >
-                        +
-                      </button>
-                      <span>R$</span>
-                      <span className={styles.precoProduto}>
-                        {produto.precoProduto}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-          <ListaPedidos mesaId={id} />
-
-          <div className={styles.pedido}>
-            <div className={styles.pedidoLista}>
-              {pedidosLista.map((item) => (
-                <div key={item.id} className={styles.cardPedido}>
-                  <div className={styles.produtoPreco}>
-                    <p>{item.nomeProduto}</p>
-                    <p>x{item.quantidade}</p>
-                  </div>
-                  <div className={styles.subTotal}>
-                    <p>
-                      Subtotal: R$
-                      {(item.preco * item.quantidade).toFixed(2)}
-                    </p>
-                    <button onClick={() => removeItemNaLista(item)}>-</button>
+        <div className="allItensContainer">
+          <div className="containerProdutos">
+            {!loading &&
+              produtos &&
+              produtos.map((produto, index) => (
+                <div key={index}>
+                  <div className="cardProduto">
+                    <img src={produto.imagemDocumento} alt="" />
+                    <div className="cardEsq">
+                      <h1 className="tituloProduto">{produto.nomeProduto}</h1>
+                      <p className="descProduto">{produto.descProduto}</p>
+                      <p className="preco">
+                        <button
+                          onClick={() => addItemNaLista(produto)}
+                          className="addItem"
+                        >
+                          +
+                        </button>
+                        <span>R$</span>
+                        <span className="precoProduto">
+                          {parseFloat(produto.precoProduto).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
-            </div>
+          </div>
 
-            <div className={styles.pedidoTotal}>
-              <h3>Valor Total: R${valorTotal.toFixed(2)}</h3>
-              <button onClick={limparPedido}>Limpar</button>
-              {/* <form onSubmit={salvarPedido}>
-                <button>fechar pedido</button>
-              </form> */}
+          <ListaPedidos mesaId={id} />
+
+          <div className="pedido_total">
+            <div className="pedido">
+              <p className="tituloCard">Itens adicionados</p>
+              <div className="pedidoLista">
+                {pedidosLista.map((item) => (
+                  <div key={item.id} className="cardPedido">
+                    <div className="produtoPreco">
+                      <p>{item.nomeProduto}</p>
+                      <p>x{item.quantidade}</p>
+                    </div>
+                    <div className="subTotal">
+                      <p>
+                        Subtotal: R$
+                        {(item.preco * item.quantidade).toFixed(2)}
+                      </p>
+                      <button onClick={() => removeItemNaLista(item)}>-</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="limparPedido">
+                <button onClick={limparPedido}>Limpar lista</button>
+              </div>
+            </div>
+            <div className="totalPedido">
+              <h3>Total: R${valorTotal.toFixed(2)}</h3>
             </div>
           </div>
+          <div className="anotacoes">
+            <p>Anotações</p>
+            <textarea
+              placeholder="Exemplo: X-Bacon sem salada..."
+              value={anotacoes}
+              onChange={(e) => setAnotacoes(e.target.value)}
+            ></textarea>
+          </div>
         </div>
+        <button onClick={salvarPedido} className="form_btn">
+          Salvar Pedido
+        </button>
       </div>
     </>
   );

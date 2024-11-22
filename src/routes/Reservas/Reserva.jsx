@@ -39,7 +39,16 @@ const Reserva = () => {
   }, [id]);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return (
+      <div className="loading">
+        <div className="bouncing-dots">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
+      </div>
+    );
   }
 
   if (!reserva) {
