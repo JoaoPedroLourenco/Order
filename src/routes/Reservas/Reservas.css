@@ -1,0 +1,73 @@
+.paginaReserva {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+
+.dadosContainer {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.dadosReserva label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.dadosReserva p {
+  margin: 5px 0 0 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+.dadosReserva .obs {
+  min-height: 150px;
+}
+
+.btnsReserva {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btnsReserva button {
+  flex: 1;
+  padding: 10px 15px;
+  margin: 0 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: .2s;
+}
+
+.btnsReserva button:hover {
+  background-color: rgb(221, 36, 36);
+  color: white;
+}
+
+.btnsReserva button:nth-child(2) {
+  background-color: #ffffff;
+  border: 1px solid red;
+  color: black;
+}
+
+.btnsReserva button:nth-child(2):hover {
+  background-color: rgba(221, 36, 36, 0.719);
+  color: white;
+}

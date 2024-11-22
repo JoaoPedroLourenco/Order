@@ -38,6 +38,24 @@
   width: 30%;
   display: flex;
   justify-content: center;
+  gap: 1em;
+}
+
+.formRenda form label{
+  margin-top: -20px;
+}
+
+form .formRendaBtn{
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  background: red;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: .2s;
 }
 
 .renda .containerCardsRenda{
@@ -283,7 +301,14 @@
 
 @media (max-width: 1024px) {
   .renda{
-    min-height: 140vh;
+    min-height: 160vh;
+  }
+
+  .formRenda form{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
   }
 
   .containerCardsRenda{

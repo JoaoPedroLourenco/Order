@@ -32,13 +32,19 @@ export const useDeleteDocumentos = (docCollection) => {
   };
 
   const deletarDocumento = async (id, imagemProduto) => {
+    if (!id) {
+      console.error("ID do documento não foi fornecido.");
+      return false;
+    }
+
     console.log("Deletando documento...");
     checarCanceladoAntesDoDispatch({ type: "LOADING" });
 
     try {
-      const documentoDeletado = await deleteDoc(
-        doc(dataBase, docCollection, id)
-      );
+      console.log("Coleção:", docCollection);
+      console.log("ID:", id);
+
+      await deleteDoc(doc(dataBase, docCollection, id));
       console.log("Documento deletado com sucesso!");
 
       if (imagemProduto) {
@@ -46,18 +52,19 @@ export const useDeleteDocumentos = (docCollection) => {
         const storageRef = ref(storage, imagemProduto);
         await deleteObject(storageRef);
         console.log("Imagem deletada com sucesso!");
+      } else {
+        console.log("Nenhuma imagem para deletar.");
       }
 
-      checarCanceladoAntesDoDispatch({
-        type: "DELETED_DOC",
-        payload: documentoDeletado,
-      });
+      checarCanceladoAntesDoDispatch({ type: "DELETED_DOC" });
+      return true;
     } catch (error) {
       console.error("Erro ao deletar documento ou imagem:", error);
       checarCanceladoAntesDoDispatch({
         type: "ERROR",
         payload: error.message,
       });
+      return false;
     }
   };
 

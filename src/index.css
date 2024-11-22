@@ -118,6 +118,19 @@ form .form_btn{
     cursor: pointer;
 }
 
+form select{
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background: white;
+  padding: 0px 10px;
+  font-size: 1.1em;
+}
+
+form select option:hover{
+  background: rgba(255, 0, 0, 0.224);
+}
+
 .erro{
     margin: 0 auto;
     width: 100%;

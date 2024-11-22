@@ -139,23 +139,28 @@ const Renda = () => {
                 name="infoRenda"
                 value={infoRenda}
                 onChange={(e) => setInfoRenda(e.target.value)}
+                placeholder="Insira o nome do item"
               />
               <input
                 type="number"
                 name="precoRenda"
                 value={precoRenda}
                 onChange={(e) => setPrecoRenda(e.target.value)}
+                placeholder="Insira o valor"
               />
-              <select
-                name="tipoRenda"
-                value={tipoRenda}
-                onChange={(e) => setTipoRenda(e.target.value)}
-              >
-                <option value="lucros">Lucros</option>
-                <option value="gastos">Gastos</option>
-              </select>
+              <label>
+                Tipo de renda:
+                <select
+                  name="tipoRenda"
+                  value={tipoRenda}
+                  onChange={(e) => setTipoRenda(e.target.value)}
+                >
+                  <option value="lucros">Lucros</option>
+                  <option value="gastos">Gastos</option>
+                </select>
+              </label>
 
-              <button>Confirmar</button>
+              <button className={styles.formRendaBtn}>Inserir</button>
             </form>
           </div>
         ) : (
