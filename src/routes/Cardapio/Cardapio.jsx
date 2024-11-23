@@ -32,13 +32,13 @@ const Cardapio = () => {
     uid
   );
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
 
-    if (query) {
-      return navigate(`q=/search/${query}`);
-    }
-  };
+  //   if (query) {
+  //     return navigate(`q=/search/${query}`);
+  //   }
+  // };
 
   useEffect(() => {
     if (produtos) {
@@ -61,7 +61,7 @@ const Cardapio = () => {
           Editar Cardápio
         </Link>
 
-        <div className={styles.searchForm}>
+        {/* <div className={styles.searchForm}>
           <form onSubmit={handleSearch}>
             <input
               type="text"
@@ -71,7 +71,7 @@ const Cardapio = () => {
             />
             <button>Procurar</button>
           </form>
-        </div>
+        </div> */}
 
         <div className={styles.allItensContainer}>
           <div className={styles.btnsAreaProduto}>

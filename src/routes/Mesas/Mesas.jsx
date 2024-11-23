@@ -68,7 +68,9 @@ const Mesas = () => {
         <div className="title">
           <h1>Mesas</h1>
         </div>
-        <Link to="/mesas/editMesas">Editar Mesas</Link>
+        <Link to="/mesas/editMesas" className="btnLinkPage">
+          Editar Mesas
+        </Link>
 
         <div className="mesasContainer">
           <div className="qtdContainer">

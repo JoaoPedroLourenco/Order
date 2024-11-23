@@ -1,5 +1,6 @@
 .mesa{
     width: 100%;
+    min-height: 100vh;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -11,7 +12,8 @@
 }
 
 .mesa .allItensContainer{
-  width: 90%; 
+  width: 90%;
+  min-height: 50%;
   display: flex;
   gap: 2em;
   margin: 0 auto;
@@ -19,7 +21,8 @@
 
 .mesa .containerProdutos{
   width: 40%;
-  max-height: 50%;
+  max-height: 80%;
+  min-height: 70vh;
   padding: 1em;
   background: white;
   border-radius: 10px;
@@ -30,7 +33,7 @@
 
 .allItensContainer .pedido_total{
   width: 30%;
-  height: 50%;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -78,12 +81,17 @@
 }
 
 .pedidoLista .cardPedido{
-  width: 80%;
+  width: 100%;
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.132);
   flex-direction: column;
   padding: .5em;
   gap: .5em;
+}
+
+.qtd{
+  color: red;
+  font-size: 1.2em;
 }
 
 .pedido .limparPedido{
@@ -244,7 +252,7 @@
 
 .allItensContainer .anotacoes{
   width: auto;
-  height: 50%;
+  min-height: 70vh;
   
   border-radius: 10px;
   border: none;

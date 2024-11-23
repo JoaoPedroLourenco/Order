@@ -19,10 +19,11 @@ const Estoque = () => {
     "itensEstoque",
     user
   );
-  const {
-    documents: itensEstoque,
-    loading,
-  } = useFetchDocuments("itensEstoque",null, uid);
+  const { documents: itensEstoque, loading } = useFetchDocuments(
+    "itensEstoque",
+    null,
+    uid
+  );
 
   const { deletarDocumento } = useDeleteDocumentos("itensEstoque");
 
@@ -50,16 +51,18 @@ const Estoque = () => {
           <input
             type="text"
             name="nomeItem"
+            placeholder="Nome do item em estoque"
             value={nomeItem}
             onChange={(e) => setNomeItem(e.target.value)}
           />
           <input
             type="number"
             name="qtdItem"
+            placeholder="Quantidade do item"
             value={qtdItem}
             onChange={(e) => setQtdItem(e.target.value)}
           />
-          {!response.loading && <button>Confirmar</button>}
+          {!response.loading && <button className="form_btn">Confirmar</button>}
           {response.loading && <button disabled>Aguarde...</button>}
         </form>
 

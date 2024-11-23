@@ -66,7 +66,7 @@ const EditCardapio = () => {
     setNomeProduto("");
     setDescProduto("");
     setPrecoProduto("");
-    setTipoProduto("");
+    setTipoProduto("pratosPrincipais");
     setImagemDocumento(null);
 
     if (tipoProduto === "pratosPrincipais") {

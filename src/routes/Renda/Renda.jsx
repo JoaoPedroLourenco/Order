@@ -276,7 +276,7 @@ const Renda = () => {
               {" "}
               Total Calculado:{" "}
               <span style={{ color: "red" }}>
-                R${parseFloat(totalCalculado)}
+                R${parseFloat(totalCalculado).toFixed(2)}
               </span>
             </p>
           )}

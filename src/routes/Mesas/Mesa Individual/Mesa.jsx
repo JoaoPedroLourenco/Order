@@ -182,7 +182,7 @@ const Mesa = () => {
                   <div key={item.id} className="cardPedido">
                     <div className="produtoPreco">
                       <p>{item.nomeProduto}</p>
-                      <p>x{item.quantidade}</p>
+                      <p className="qtd">x{item.quantidade}</p>
                     </div>
                     <div className="subTotal">
                       <p>

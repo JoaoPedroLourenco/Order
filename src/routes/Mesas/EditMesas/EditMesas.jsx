@@ -101,11 +101,14 @@ const EditMesas = () => {
         <div className="title">
           <h1>Edit Mesas</h1>
         </div>
-        <Link to="/mesas">Voltar para Mesas</Link>
+        <Link to="/mesas" className="btnLinkPage">
+          Voltar para Mesas
+        </Link>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="nomeMesa"
+            placeholder="Insira o nome da mesa"
             value={nomeMesa}
             onChange={(e) => setNomeMesa(e.target.value)}
           />
@@ -120,7 +123,9 @@ const EditMesas = () => {
             <option value="8">8 Lugares</option>
             <option value="10">10+ Lugares</option>
           </select>
-          {!response.loading && <button>Criar Mesa</button>}
+          {!response.loading && (
+            <button className="form_btn">Criar Mesa</button>
+          )}
           {response.loading && <button disabled>Aguarde...</button>}
         </form>
 
