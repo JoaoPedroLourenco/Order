@@ -8,7 +8,6 @@ import voltar from "../../../assets/imgs/Back.png";
 import Sidebar from "../../../components/Sidebar";
 
 // hooks
-import useFetchMenuItems from "../../../hooks/usePedido";
 import { useAuthValue } from "../../../context/AuthContext";
 import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
 import { useState, useEffect } from "react";
@@ -117,12 +116,6 @@ const Mesa = () => {
     setValorTotal(novoTotal);
   }, [pedidosLista]);
 
-  function ListaPedidos({ mesaId }) {
-    const { menuItems, loading, error } = useFetchMenuItems(mesaId);
-
-    if (error) return <p>{error}</p>;
-  }
-
   const limparPedido = () => {
     setPedidosLista([]);
     setValorTotal(0);
@@ -168,8 +161,6 @@ const Mesa = () => {
                 </div>
               ))}
           </div>
-
-          <ListaPedidos mesaId={id} />
 
           <div className="pedido_total">
             <div className="pedido">
