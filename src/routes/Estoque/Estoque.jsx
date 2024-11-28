@@ -1,10 +1,13 @@
-import { useState } from "react";
+// estilo
+import styles from "./Estoque.module.css";
 
+// componente
+import Sidebar from "../../components/Sidebar";
+
+// hooks
+import { useState } from "react";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
-
-import styles from "./Estoque.module.css";
-import Sidebar from "../../components/Sidebar";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
 import { useAuthValue } from "../../context/AuthContext";
 

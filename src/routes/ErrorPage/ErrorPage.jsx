@@ -1,11 +1,11 @@
 import React from "react";
-import "../components/ErrorPage.css";
-import erroImage from "../assets/imgs/erro.png";
+import "../ErrorPage/ErrorPage.css";
+import erroImage from "../../assets/imgs/erro.png";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div>
+    <div className="errorPage">
       <div className="titulo-erro">
         <p>
           Volte para à <Link to="/">Página Inicial</Link>

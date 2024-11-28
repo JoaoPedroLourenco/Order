@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+// componente
 import Sidebar from "../../components/Sidebar";
 
+// estilo
 import styles from "../Renda/Renda.module.css";
 
-import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
-import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
-import { useAuthValue } from "../../context/AuthContext";
-
+// imagens
 import func from "../../assets/imgs/funcionarios.png";
 import pedidoImg from "../../assets/imgs/pedidos.png";
 import gastos from "../../assets/imgs/Money With Wings.png";
 import lucros from "../../assets/imgs/Stack of Money.png";
+
+// hooks
+import React, { useEffect, useState } from "react";
+import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
+import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { Timestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";

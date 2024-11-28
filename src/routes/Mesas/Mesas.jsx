@@ -1,15 +1,18 @@
-import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
-
+// imagem
 import mesaCard from "../../assets/imgs/mesa.png";
 
+//estilo
 import "./Mesas.css";
+
+// componentes
+import PopUpReserva from "../../components/Pop up reserva/PopUpReserva";
 import Sidebar from "../../components/Sidebar";
 
-import { useAuthValue } from "../../context/AuthContext";
-
-import { Link } from "react-router-dom";
-import PopUpReserva from "../../components/Pop up reserva/PopUpReserva";
+// hooks
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuthValue } from "../../context/AuthContext";
+import { useFetchMultipleCollections } from "../../hooks/useFetchMultiplosDocumentos";
 
 const Mesas = () => {
   const { user } = useAuthValue();

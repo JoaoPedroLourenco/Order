@@ -1,26 +1,23 @@
-import Sidebar from "../../../components/Sidebar";
-import { useFetchDocuments } from "../../../hooks/useResgatarProdutos";
+// estilo
 import "../Mesa Individual/Mesa.css";
 
-import { Link, useParams } from "react-router-dom";
-
+// imagens
 import voltar from "../../../assets/imgs/Back.png";
-import fundoCaderno from "../../../assets/imgs/fundoCaderno.jpg";
 
+// componentes
+import Sidebar from "../../../components/Sidebar";
+
+// hooks
 import useFetchMenuItems from "../../../hooks/usePedido";
-
 import { useAuthValue } from "../../../context/AuthContext";
-
 import { useInsertDocuments } from "../../../hooks/useInsertDocuments";
-
 import { useState, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
-
 import { dataBase } from "../../../firebase/Config";
-
 import { doc, getDoc } from "firebase/firestore";
+import { Link, useParams } from "react-router-dom";
+import { useFetchDocuments } from "../../../hooks/useResgatarProdutos";
 
 const Mesa = () => {
   const { id } = useParams();
@@ -122,7 +119,7 @@ const Mesa = () => {
 
   function ListaPedidos({ mesaId }) {
     const { menuItems, loading, error } = useFetchMenuItems(mesaId);
-    // if (loading) return <p>Carregando...</p>;
+
     if (error) return <p>{error}</p>;
   }
 

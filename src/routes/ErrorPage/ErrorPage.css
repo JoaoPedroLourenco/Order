@@ -1,0 +1,21 @@
+.errorPage{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.titulo-erro p{
+  font-size: 2em;
+ 
+}
+
+.titulo-erro p a{
+  color: red;
+}
+
+.paragrafo-erro p{
+  font-size: 1.6em;
+}

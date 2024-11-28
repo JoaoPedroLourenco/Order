@@ -1,12 +1,17 @@
 import React from "react";
+
+// componente
 import Sidebar from "../../components/Sidebar";
+
+// estilo
+import "../Reservas/Reservas.css";
+
+// hooks
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../../firebase/Config";
 import { useDeleteDocumentos } from "../../hooks/useDeleteDocumentos";
-
-import "../Reservas/Reservas.css";
 
 const Reserva = () => {
   const navigate = useNavigate();

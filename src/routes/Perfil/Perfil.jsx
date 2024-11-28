@@ -1,9 +1,13 @@
+// estilo
+import styles from "../Perfil/Perfil.module.css";
+
+// componente
+import Sidebar from "../../components/Sidebar";
+
+// hooks
+import { useAuthValue } from "../../context/AuthContext";
 import React, { useState } from "react";
 import { useAuthentication } from "../../hooks/useAuthentication";
-
-import styles from "../Perfil/Perfil.module.css";
-import { useAuthValue } from "../../context/AuthContext";
-import Sidebar from "../../components/Sidebar";
 
 const Perfil = () => {
   const [popUp, setPopUp] = useState(false);

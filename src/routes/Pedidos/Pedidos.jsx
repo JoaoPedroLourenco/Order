@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+// componente
 import Sidebar from "../../components/Sidebar";
 
+// estilo
 import styles from "../Pedidos/Pedidos.module.css";
 
+// hooks
+import React, { useState, useEffect } from "react";
 import { useFetchDocuments } from "../../hooks/useResgatarProdutos";
 import { useAuthValue } from "../../context/AuthContext";
 
