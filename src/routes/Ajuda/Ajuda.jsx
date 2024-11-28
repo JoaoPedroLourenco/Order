@@ -16,19 +16,14 @@ const Ajuda = () => {
         "Vá até a página onde deseja adicionar algo e procure pelo botão de editar as informações (exemplo: na página de mesas existe o botão 'Editar mesas') coloque as informações e clique no botão para cadastrar os dados",
     },
     {
-      id: 2,
-      titulo: "Como editar itens?",
-      explicacao:
-        "Procure pelo item na lista, clique no botão de editar, altere as informações e salve.",
-    },
-    {
       id: 3,
       titulo: "Como deletar itens?",
       explicacao:
-        "Encontre o item que deseja excluir, clique no botão de deletar e confirme a exclusão.",
+        "Encontre o item que deseja excluir, clique no botão de deletar e pronto!",
     },
   ];
 
+  // feito assim para expandir uma pergunta de cada vez
   const expandir = (id) => {
     setExpandirPergunta((prevId) => (prevId === id ? null : id));
   };

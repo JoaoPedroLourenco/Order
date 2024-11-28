@@ -60,4 +60,34 @@
 
 .ladoDir h2 span{
     color: red;
+
+}
+
+@media screen and (max-width:1024px) {
+    .faleConosco{
+        width: 100vw;
+     
+    }
+
+    .ladoDir{
+        display: none;
+    }
+    .faleConosco .ladoEsq{
+        width: 60%;
+        
+    }
+    .ladoEsq > h1{
+        font-size: 4em;
+        width: 8em;
+        text-align: center;
+    }
+    form{
+        justify-content: left;
+        align-items: left;
+       
+        width: 100%;
+    }
+    input, textarea, label{
+        width: 100%;
+    }
 }

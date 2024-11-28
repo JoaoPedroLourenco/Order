@@ -1,31 +1,61 @@
-import styles from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
-import logo from "../assets/imgs/1-removebg-preview 2.png";
+import logoGrande from "../assets/imgs/logoGrande.png";
+import logoMenor from "../assets/imgs/logoMenor.png";
+import mais from "../assets/imgs/More.png";
+import close from "../assets/imgs/Close.png";
+import { useState } from "react";
 
 const Header = () => {
+  const [dropDown, setDropDown] = useState(false);
+
+  const openDropDown = () => {
+    setDropDown(!dropDown);
+  };
+
   return (
     <header>
       <nav>
-        <div className={styles.logo}>
-          <img src={logo} alt="" />
+        <div className="logo">
+          <img src={logoGrande} alt="" />
         </div>
         <ul>
-          <li>
-            <NavLink>Sobre nós</NavLink>
-          </li>
-          <li>
-            <NavLink to="/faleConosco">Fale Conosco</NavLink>
-          </li>
+          <Link to="/faleConosco">Fale Conosco</Link>
+          <Link to="/">Sobre Nós</Link>
         </ul>
       </nav>
-      <div className={styles.login_navBar}>
-        <NavLink to="/login" className={styles.login_btn}>
-          Login
-        </NavLink>
-        <NavLink to="/cadastro" className={styles.cadastro_btn}>
-          Cadastro
-        </NavLink>
+      <div className="login-navBar">
+        <Link to="/login">
+          <button className="login-btn">Login</button>
+        </Link>
+        <Link to="/cadastro">
+          <button className="cadastro-btn">Comece de graça</button>
+        </Link>
+        <div className="btn-header">
+          <button onClick={openDropDown}>
+            <img src={mais} alt="" />
+          </button>
+
+          {dropDown === true ? (
+            <div className={`dropDown ${dropDown ? "open" : "close"}`}>
+              <div className="closeBtn">
+                <button onClick={openDropDown}>
+                  <img src={close} alt="Fechar" />
+                </button>
+              </div>
+              <Link to="/faleConosco">Fale Conosco</Link>
+              <Link to="/">Sobre Nós</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/cadastro">Comece de graça</Link>
+              <div className="logoDropDown">
+                <img src={logoMenor} alt="" />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </header>
   );

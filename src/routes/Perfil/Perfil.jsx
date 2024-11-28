@@ -27,10 +27,14 @@ const Perfil = () => {
         <div className={styles.infoUser}>
           {user && (
             <>
-              <p>Nome do Restaurante: </p>
-              <span>{user.displayName}</span>
-              <p>Email: </p>
-              <span>{user.email}</span>
+              <div className={styles.nomeRestaurante}>
+                <p>Nome do Restaurante: </p>
+                <span>{user.displayName}</span>
+              </div>
+              <div className={styles.nomeRestaurante}>
+                <p>Email: </p>
+                <span>{user.email}</span>
+              </div>
             </>
           )}
         </div>

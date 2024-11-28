@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+
 }
 
 .form_container{
@@ -19,6 +20,7 @@
     font-weight: 500;
     text-transform: uppercase;
     margin-bottom:50px;
+    margin-top: 20%;
 }
 
 .lado_dir{
@@ -31,4 +33,32 @@
 
 .lado_dir img{
     width: 90%;
+}
+
+
+@media screen and (max-width:1024px)
+    {   
+    .form_container > h1{
+        font-size: 4em;
+    }
+        
+    .lado_dir{
+    z-index: 0;
+    position: absolute;
+    visibility: hidden;
+    }
+
+    .cadastro_container{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form_container{
+        background-color: transparent ;
+        width: 100%;
+        z-index: 999;
+        height: 100vh;   
+    }
 }

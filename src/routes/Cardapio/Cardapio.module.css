@@ -50,27 +50,6 @@
   color: rgba(0, 0, 0, 0.584);
 }
 
-
-.cardProduto .deleteProduto{
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  font-weight: bolder;
-  background: red;
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.deleteProduto:hover{
-  background: rgb(177, 0, 0);
-  transition: .2s;
-}
-
 .cardProduto .cardEsq{
   width: 50%;
   height: 100%;
@@ -215,4 +194,45 @@ background: #b8b8b898;
 
 .btnsAreaProduto button:focus{
 background: #b8b8b898;
+}
+
+@media (max-width: 1024px){
+  .cardapio{
+    min-height: 115vh;
+  }
+
+  .allItensContainer .itensContainer{
+    width: 100%;
+    height: auto;
+    
+    display: flex;
+  }
+
+  .cardProduto{
+    width: auto;
+
+  }
+
+  .cardProduto .tituloProduto{
+    font-size: 1.2em;
+  }
+
+  .cardProduto .descProduto{
+    font-size: .8em;
+  }
+
+  .cardProduto .preco span{
+    font-size: .7em;
+  }
+
+  .btnsAreaProduto{
+    height: auto;
+    
+    font-size: .8em;
+    padding: 10px;
+  }
+
+  .btnsAreaProduto button{
+    border-radius: 10px;
+  }
 }

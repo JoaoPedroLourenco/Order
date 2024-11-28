@@ -81,3 +81,9 @@
 .estoque form{
   width: 30%;
 }
+
+@media (max-width: 1024px) {
+  .estoque form{
+    width: 90%;
+  }
+}

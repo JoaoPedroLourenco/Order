@@ -154,7 +154,7 @@ const Mesas = () => {
                     );
                   })
                 ) : (
-                  <p>não tem nada não</p>
+                  <p>Você não possui mesas inseridas nessa sessão ainda...</p>
                 )}
               </fieldset>
             ))}

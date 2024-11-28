@@ -171,52 +171,53 @@ const Renda = () => {
           {loading && <p>Carregando...</p>}
 
           {/* ---------------- Gastos --------------- */}
-
-          <div className={styles.gastos}>
-            <div className={styles.titulo}>
-              <div className={styles.icon}>
-                <img src={gastos} alt="" />
+          <div className={styles.gastosLucros}>
+            <div className={styles.gastos}>
+              <div className={styles.titulo}>
+                <div className={styles.icon}>
+                  <img src={gastos} alt="" />
+                </div>
+                <h1>Gastos</h1>
               </div>
-              <h1>Gastos</h1>
-            </div>
-            <div className={styles.listaGastos}>
-              {gastosContainer.length > 0
-                ? gastosContainer.map((gastos) => (
-                    <div key={gastos.id} className={styles.gasto}>
-                      <h3>{gastos.infoRenda}</h3>
-                      <p>R${gastos.precoRenda}</p>
-                    </div>
-                  ))
-                : ""}
-            </div>
-            <div className={styles.totalGastos}>
-              <p>Total: R${parseFloat(totalGastos).toFixed(2)}</p>
-            </div>
-          </div>
-
-          {/* ------------------------ */}
-
-          {/* ---------------- Lucros --------------- */}
-
-          <div className={styles.lucros}>
-            <div className={styles.titulo}>
-              <div className={styles.icon}>
-                <img src={lucros} alt="" />
+              <div className={styles.listaGastos}>
+                {gastosContainer.length > 0
+                  ? gastosContainer.map((gastos) => (
+                      <div key={gastos.id} className={styles.gasto}>
+                        <h3>{gastos.infoRenda}</h3>
+                        <p>R${gastos.precoRenda}</p>
+                      </div>
+                    ))
+                  : ""}
               </div>
-              <h1>Lucros</h1>
+              <div className={styles.totalGastos}>
+                <p>Total: R${parseFloat(totalGastos).toFixed(2)}</p>
+              </div>
             </div>
-            <div className={styles.listaLucros}>
-              {lucrosContainer.length > 0
-                ? lucrosContainer.map((lucros) => (
-                    <div key={lucros.id} className={styles.lucro}>
-                      <h3>{lucros.infoRenda}</h3>
-                      <p>{lucros.precoRenda}</p>
-                    </div>
-                  ))
-                : ""}
-            </div>
-            <div className={styles.totalLucros}>
-              <p>Total: R${parseFloat(totalLucro).toFixed(2)}</p>
+
+            {/* ------------------------ */}
+
+            {/* ---------------- Lucros --------------- */}
+
+            <div className={styles.lucros}>
+              <div className={styles.titulo}>
+                <div className={styles.icon}>
+                  <img src={lucros} alt="" />
+                </div>
+                <h1>Lucros</h1>
+              </div>
+              <div className={styles.listaLucros}>
+                {lucrosContainer.length > 0
+                  ? lucrosContainer.map((lucros) => (
+                      <div key={lucros.id} className={styles.lucro}>
+                        <h3>{lucros.infoRenda}</h3>
+                        <p>{lucros.precoRenda}</p>
+                      </div>
+                    ))
+                  : ""}
+              </div>
+              <div className={styles.totalLucros}>
+                <p>Total: R${parseFloat(totalLucro).toFixed(2)}</p>
+              </div>
             </div>
           </div>
 

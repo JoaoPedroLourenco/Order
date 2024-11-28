@@ -1,4 +1,4 @@
-import styles from "./Cadastro.module.css";
+import "./Cadastro.css";
 
 import Header from "../../components/Header";
 
@@ -61,8 +61,8 @@ const Cadastro = () => {
     <div>
       <>
         <Header />
-        <div className={styles.cadastro_container}>
-          <div className={styles.form_container}>
+        <div className='cadastro_container'>
+          <div className='form_container'>
             <h1>Cadastro</h1>
 
             <form onSubmit={handleSubmit}>
@@ -121,7 +121,7 @@ const Cadastro = () => {
           </div>
 
           <div
-            className={styles.lado_dir}
+            className='lado_dir'
             style={{
               backgroundImage: `url(${logoBg})`,
               backgroundPosition: "center",

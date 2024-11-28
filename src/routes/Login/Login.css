@@ -1,0 +1,56 @@
+.login_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer{
+  width: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.formContainer h1{
+    font-size: 5em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.lado_dir{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.lado_dir .mockUp{
+  width: 50%;
+}
+
+@media screen and (max-width:1024px)
+    {
+    .lado_dir{
+    z-index: 0;
+    position: absolute;
+    visibility: hidden;
+    }
+
+    .login_container{
+        height: 90vh;
+        height: 100%;
+    }
+
+    .login_container .formContainer{
+        background-color: transparent ;
+        width: 90%;
+        z-index: 999;
+        height: 100vh;   
+    }
+}

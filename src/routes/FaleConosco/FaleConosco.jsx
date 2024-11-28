@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import emailjs from "@emailjs/browser";
 
-import styles from "../FaleConosco/FaleConosco.module.css";
+import  "../FaleConosco/FaleConosco.css";
 import Header from "../../components/Header";
 
 const FaleConosco = () => {
@@ -29,10 +29,10 @@ const FaleConosco = () => {
   };
 
   return (
-    <div className={styles.faleConosco}>
+    <div className='faleConosco'>
       <Header />
 
-      <div className={styles.ladoEsq}>
+      <div className='ladoEsq'>
         <h1>Fale Conosco</h1>
         <form ref={form} onSubmit={sendEmail}>
           <label>
@@ -62,7 +62,7 @@ const FaleConosco = () => {
         </form>
       </div>
 
-      <div className={styles.ladoDir}>
+      <div className="ladoDir">
         <h2>
           Nos dê <span>seu feedback</span> e ajude-nos a <span>melhorar</span>{" "}
           cada vez mais!

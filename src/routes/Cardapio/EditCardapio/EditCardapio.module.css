@@ -295,3 +295,66 @@ textarea:focus{
 .btnsAreaProduto button:focus{
   background: #b8b8b898;
 }
+
+@media (max-width: 1024px){
+  .editCardapio{
+    margin-bottom: 100px;
+  }
+
+  .editCardapio form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editCardapio form .infoProdutos{
+    width: 100%;
+  }
+
+  .editCardapio form .uploadImagemProduto{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+    .uploadImagemProduto .enviarImagem{
+      width: 55%;
+    }
+
+  .allItensContainer .itensContainer{
+    width: 100%;
+    height: auto;
+    
+    display: flex;
+  }
+
+  .cardProduto{
+    width: auto;
+
+  }
+
+  .cardProduto .tituloProduto{
+    font-size: 1.2em;
+  }
+
+  .cardProduto .descProduto{
+    font-size: .8em;
+  }
+
+  .cardProduto .preco span{
+    font-size: .7em;
+  }
+
+  .btnsAreaProduto{
+    height: auto;
+    
+    font-size: .8em;
+    padding: 10px;
+  }
+
+  .btnsAreaProduto button{
+    border-radius: 10px;
+  }
+}

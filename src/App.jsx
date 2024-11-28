@@ -64,6 +64,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/*" element={<ErrorPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/faleConosco" element={<FaleConosco />} />

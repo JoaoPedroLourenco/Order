@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import styles from "./Login.module.css";
+import "./Login.css";
 
 import mockUpLoginImage from "../../assets/imgs/MacBook Pro and iPhone 15 Pro Mockup.png";
 import logoBg from "../../assets/imgs/LogoBackground.png";
@@ -53,8 +53,8 @@ const Login = () => {
       {user ? navigate("/mesas") : ""}
 
       <Header />
-      <div className={styles.login_container}>
-        <div className={styles.form_container}>
+      <div className="login_container">
+        <div className="formContainer">
           <h1>Login</h1>
 
           <form onSubmit={handleSubmit}>
@@ -94,7 +94,7 @@ const Login = () => {
         </div>
 
         <div
-          className={styles.lado_dir}
+          className="lado_dir"
           style={{
             backgroundImage: `url(${logoBg})`,
             backgroundPosition: "center",
@@ -106,7 +106,7 @@ const Login = () => {
             justifyContent: "center",
           }}
         >
-          <img src={mockUpLoginImage} alt="Use Order!" />
+          <img src={mockUpLoginImage} alt="Use Order!" className="mockUp" />
         </div>
       </div>
     </>

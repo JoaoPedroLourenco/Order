@@ -1,0 +1,238 @@
+*, html, body{
+    scroll-behavior: smooth !important;
+}
+
+.containerLandingPage{
+  width: 100%;
+  display: flex;
+    align-items: center;
+
+    flex-direction: column ;
+}
+
+.containerLandingPage > main{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lado-dir-home{
+    width: 50%;
+    height: 83vh;
+}
+
+.img-ladodir{
+    width: 100%;
+    height: 100%;
+    margin-top: 4em;
+}
+
+main > .lado-esq-home{
+    width: 50%;
+    height: 75vh;
+    display: flex;
+    justify-content:end;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 5em;
+}
+
+main > .lado-esq-home > h1{
+    font-size: 6em;
+    font-weight: 500;
+    line-height: 110%;
+}
+
+
+.lado-esq-home > p{
+    font-size: 1.5em;
+}
+
+.lado-esq-home > button{
+    width: 250px;
+    padding: 15px;
+    background-color: #ff0000;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover{
+    background: #cd0101;
+}
+
+.btn-saibamais{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.saibamais{
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: none;
+    background-color: #FF0000;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+    transition: .2s;
+}
+
+.saibamais:hover{
+  box-shadow: 0 6px 12px #ff0000af;
+}
+
+.text-saibamais{
+    color: #FF0000;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 6em;
+}
+
+.tela1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2em;    
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 70%;
+}
+
+.titulo-tela1{
+    font-size: 3em;
+    padding-bottom: 0.3em;
+    margin-left: 1em;
+}
+
+.text-tela1{
+    margin-left: 3.5em;
+}
+
+.img-tela1{
+    width: 70%;
+    margin-left: 3em;
+    margin-top: 2em;
+    margin-bottom: 6em;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: hsla(0, 0%, 0%, 0.514);
+}
+
+address{
+    line-height: 1.5em;
+}
+
+.address{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2em;
+}
+
+.logo-address{
+    width: 18%;
+}
+
+@media screen and (max-width:1024px){
+    
+    
+.containerLandingPage > main{
+    width: auto;
+    display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+main > .lado-esq-home{
+    width: 80%;
+    height: 60vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0em;
+    margin-top: 3em;
+}
+.tela1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    margin-left: 0em;
+    
+}
+
+.left{
+    width: 100%;
+    
+}
+
+.left > .titulo-tela1{
+    font-size: 2em;
+}
+
+.text-tela1{
+    margin-left: 2.2em;
+}
+
+.img-tela1{
+    width: 70%;
+    margin-left: 0em;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+main > .lado-esq-home > h1{
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 0.6em;
+}
+
+.lado-esq-home > button{
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    margin-top: 1em;
+    font-size: 0.8em;
+}
+
+.lado-esq-home > p{
+    font-size: 1.2em;
+    text-align: center;
+}
+
+main > .lado-dir-home {
+    display: none;
+}
+
+.btn-saibamais{
+    display: none;
+}
+}

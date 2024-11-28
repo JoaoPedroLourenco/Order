@@ -21,8 +21,6 @@ const Cardapio = () => {
   const [bebidasArea, setBebidasArea] = useState([]);
   const [outrosArea, setOutrosArea] = useState([]);
 
-  const navigate = useNavigate();
-
   const { user } = useAuthValue();
   const uid = user.uid;
 
@@ -31,14 +29,6 @@ const Cardapio = () => {
     null,
     uid
   );
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-
-  //   if (query) {
-  //     return navigate(`q=/search/${query}`);
-  //   }
-  // };
 
   useEffect(() => {
     if (produtos) {
@@ -60,18 +50,6 @@ const Cardapio = () => {
         <Link to="/cardapio/editCardapio" className="btnLinkPage">
           Editar Cardápio
         </Link>
-
-        {/* <div className={styles.searchForm}>
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              name="search"
-              placeholder="Procure por produtos"
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <button>Procurar</button>
-          </form>
-        </div> */}
 
         <div className={styles.allItensContainer}>
           <div className={styles.btnsAreaProduto}>

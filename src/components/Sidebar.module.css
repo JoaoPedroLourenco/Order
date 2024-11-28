@@ -157,6 +157,7 @@ hr{
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        gap: 0;
         position: fixed;
         top: 86.5%;
         left: 0;
@@ -166,18 +167,29 @@ hr{
     }
 
     .sideBar .links_list{
+      height: 100%;
         display: flex;
         flex-direction: row;
+        justify-content: center;
         height: 5em;
     }
 
 
     .links_list .link{
+        width: 60px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100%;
+        margin: 0;
+    }
+    .link p{
+      display: none;
+    }
+
+    .links_list li{
+      width: 60px;
     }
 
     hr{
@@ -196,7 +208,8 @@ hr{
         display: none;
     }
 
-    .perfilLink{
+    .links_list .perfilLink{
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;

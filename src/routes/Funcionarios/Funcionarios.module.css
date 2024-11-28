@@ -89,12 +89,18 @@ tbody td{
 }
 
 td img{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .salario{
     color: red;
+}
+
+@media (max-width: 1024px) {
+  table{
+    width: 100%;
+  }
 }
