@@ -37,23 +37,16 @@ export const useDeleteDocumentos = (docCollection) => {
       return false;
     }
 
-    console.log("Deletando documento...");
     checarCanceladoAntesDoDispatch({ type: "LOADING" });
 
     try {
-      console.log("Coleção:", docCollection);
-      console.log("ID:", id);
-
       await deleteDoc(doc(dataBase, docCollection, id));
-      console.log("Documento deletado com sucesso!");
 
       if (imagemProduto) {
-        console.log("Deletando imagem...");
         const storageRef = ref(storage, imagemProduto);
         await deleteObject(storageRef);
-        console.log("Imagem deletada com sucesso!");
       } else {
-        console.log("Nenhuma imagem para deletar.");
+        throw new Error("Nenhuma imagem para deletar.");
       }
 
       checarCanceladoAntesDoDispatch({ type: "DELETED_DOC" });

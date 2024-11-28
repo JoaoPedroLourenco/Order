@@ -41,7 +41,6 @@ const Mesas = () => {
 
   useEffect(() => {
     if (mesas) {
-      console.log(mesas);
       setDoisLugares(mesas.filter((qtd) => qtd.qtdLugares === "2"));
       setQuatroLugares(mesas.filter((qtd) => qtd.qtdLugares === "4"));
       setSeisLugares(mesas.filter((qtd) => qtd.qtdLugares === "6"));

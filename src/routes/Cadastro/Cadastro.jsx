@@ -46,9 +46,9 @@ const Cadastro = () => {
       return;
     }
 
-    const response = await criarUsuario(usuario);
+    const res = await criarUsuario(usuario);
 
-    console.log(response);
+    console.log(res);
   };
 
   useEffect(() => {
@@ -61,8 +61,8 @@ const Cadastro = () => {
     <div>
       <>
         <Header />
-        <div className='cadastro_container'>
-          <div className='form_container'>
+        <div className="cadastro_container">
+          <div className="form_container">
             <h1>Cadastro</h1>
 
             <form onSubmit={handleSubmit}>
@@ -121,7 +121,7 @@ const Cadastro = () => {
           </div>
 
           <div
-            className='lado_dir'
+            className="lado_dir"
             style={{
               backgroundImage: `url(${logoBg})`,
               backgroundPosition: "center",
