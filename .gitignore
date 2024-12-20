@@ -13,6 +13,7 @@ dist-ssr
 *.local
 
 toDo.txt
+src/firebase
 
 # Editor directories and files
 .vscode/*
