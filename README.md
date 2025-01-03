@@ -2,6 +2,9 @@
 
 ![WhatsApp Image 2024-05-23 at 16 57 12](https://github.com/user-attachments/assets/e4d53d20-935d-401b-bb6e-40f78c7a36ba)
 
+### Projeto feito para o TCC do 3° ano do ensino médio integrado ao técnico em Desenvolvimento de Sistemas
+Grupo: <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-louren%C3%A7o-dos-santos-28b501291/" target="_blank">João Pedro Lourenço</a>, <a href="https://www.instagram.com/lah_mell0/">Laura Mello</a>, <a href="https://github.com/EnzoTakaku7">Enzo Takaku</a>
+
 ## Visão Geral
 
 O Order é um sistema desenvolvido utilizando React e Firebase, projetado para otimizar a gestão de restaurantes. Ele busca aumentar a eficiência operacional, proporcionar uma experiência gastronômica superior e criar um ambiente mais agradável e produtivo para todos os envolvidos.
